@@ -725,16 +725,17 @@
         answer.classList.add('correct');
         
         setTimeout(() => {
-            // Скрываем ТОЛЬКО блок с ответами, оставляя картинку
+            // Скрываем ТОЛЬКО варианты ответов, оставляя картинку
             const answersBlock = document.querySelector('#fluorQuestion .answers');
             answersBlock.style.display = 'none';
             
             // Меняем заголовок вопроса, чтобы было понятно
             const questionTitle = document.querySelector('#fluorQuestion h3');
-            questionTitle.textContent = 'На флюорографии изменений не видно';
+            questionTitle.textContent = 'На флюорографии изменений действительно не видно';
             
             document.getElementById('ctQuestion').style.display = 'block';
             
+            // Прокручиваем чуть ниже для блока с КТ
             setTimeout(() => {
                 window.scrollBy({
                     top: -70,
