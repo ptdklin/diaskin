@@ -725,15 +725,16 @@
         answer.classList.add('correct');
         
         setTimeout(() => {
-            // Скрываем только варианты ответов, оставляя картинку
-            document.querySelectorAll('#fluorQuestion .answers').forEach(answers => {
-                answers.style.display = 'none';
-            });
+            // Скрываем ТОЛЬКО блок с ответами, оставляя картинку
+            const answersBlock = document.querySelector('#fluorQuestion .answers');
+            answersBlock.style.display = 'none';
             
-            // Показываем следующий вопрос
+            // Меняем заголовок вопроса, чтобы было понятно
+            const questionTitle = document.querySelector('#fluorQuestion h3');
+            questionTitle.textContent = 'На флюорографии изменений не видно';
+            
             document.getElementById('ctQuestion').style.display = 'block';
             
-            // Прокручиваем если нужно
             setTimeout(() => {
                 window.scrollBy({
                     top: -70,
