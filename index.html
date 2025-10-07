@@ -26,6 +26,8 @@
             --gray-200: #e2e8f0;
             --gray-300: #cbd5e1;
             --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
             --gray-800: #1e293b;
             --gray-900: #0f172a;
         }
@@ -369,6 +371,17 @@
             line-height: 1.5;
         }
 
+        .author-signature {
+            display: none;
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            color: var(--gray-500);
+            font-size: 14px;
+            border-top: 1px solid var(--gray-200);
+            font-style: italic;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 40px 20px;
@@ -623,10 +636,10 @@
             <p style="text-align: left;">Если у вас остались вопросы, обратитесь в противотуберкулезный диспансер.</p>
         </section>
 
-        <!-- Подпись автора -->
-        <footer style="text-align: center; margin-top: 60px; padding: 20px; color: var(--gray-400); font-size: 14px; border-top: 1px solid var(--gray-200);">
-            <p>Автор и разработчик: заведующий филиалом Клинский Лукаш И.А.</p>
-        </footer>
+        <!-- Подпись автора (скрыта изначально) -->
+        <div class="author-signature" id="authorSignature">
+            <p>Автор и разработчик: заведующий филиалом "Клинский" ГБУЗ МО МОКПТД Лукаш И.А.</p>
+        </div>
 
         <div class="modal" id="successModal">
             <div class="modal-content">
@@ -643,6 +656,7 @@
             const knowledgeTest = document.getElementById('knowledgeTest');
             const visualDiagnostics = document.getElementById('visualDiagnostics');
             const finalInfo = document.getElementById('finalInfo');
+            const authorSignature = document.getElementById('authorSignature');
             
             let currentBasicQuestion = 0;
             
@@ -719,10 +733,16 @@
                         document.getElementById('ctQuestion').style.display = 'none';
                         document.getElementById('ctResult').style.display = 'block';
                         
-                        // Через 10 секунд показываем заключение и прокручиваем к нему
+                        // Через 10 секунд показываем ВСЕ финальные блоки и прокручиваем к заключению
                         setTimeout(() => {
+                            // Показываем все три блока одновременно
                             document.getElementById('conclusionBlock').style.display = 'block';
+                            document.getElementById('finalInfo').style.display = 'block';
+                            document.getElementById('authorSignature').style.display = 'block';
+                            
+                            // Прокручиваем только к блоку с заключением
                             document.getElementById('conclusionBlock').scrollIntoView({ behavior: 'smooth' });
+                            
                         }, 10000);
                     }, 800);
                 } else {
@@ -758,15 +778,6 @@
                 knowledgeTest.style.display = 'none';
                 visualDiagnostics.style.display = 'block';
                 visualDiagnostics.scrollIntoView({ behavior: 'smooth' });
-            }
-            
-            function showFinalInfo() {
-                // Показываем финальную информацию и блок с заключением
-                finalInfo.style.display = 'block';
-                document.getElementById('conclusionBlock').style.display = 'block';
-                
-                // Прокручиваем к блоку с заключением
-                document.getElementById('conclusionBlock').scrollIntoView({ behavior: 'smooth' });
             }
             
             initTest();
