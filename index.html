@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка здоровья коллектива</title>
+    <style>
+        /* Основные стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Заголовок */
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Вступительное слово */
+        .intro {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .intro h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .intro p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        /* Важная информация */
+        .important-info {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #f39c12;
+        }
+        
+        .important-info h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .important-info ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .important-info li {
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            background-color: #fff9e6;
+            border-radius: 5px;
+            border-left: 3px solid #f39c12;
+        }
+        
+        /* Блоки с информацией */
+        .info-block {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .info-block h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .info-block h3 {
+            color: #3498db;
+            margin: 20px 0 15px;
+            font-size: 1.5rem;
+        }
+        
+        .highlight {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 3px solid #3498db;
+        }
+        
+        .characteristics {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .characteristic {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #2ecc71;
+        }
+        
+        /* Тестирование */
+        .test-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .test-container h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .question {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .question h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .answers {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .answer {
+            padding: 12px 15px;
+            background-color: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .answer:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .correct {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        
+        .incorrect {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        
+        /* Всплывающее окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .modal h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .modal p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Следующий блок */
+        .next-block {
+            display: none;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .next-block h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .intro, .important-info, .info-block, .test-container {
+                padding: 20px;
+            }
+            
+            .characteristics {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Проверка здоровья коллектива после выявленного случая туберкулеза или подозрения на него</h1>
+        </header>
+        
+        <section class="intro">
+            <h2>Важная информация</h2>
+            <p>Сотрудники/учащиеся обязаны пройти обследование, а администрация — обеспечить организацию его проведения. Отказ от обследования ведёт к временной приостановке работы, а нарушение руководителями этой обязанности влечёт ответственность.</p>
+            <p>Несвоевременное выявление инфекции может привести к распространению заболевания. В детских учреждениях это является отягощающим фактором.</p>
+            <p>Нарушение правил рассматривается как нарушение санитарного законодательства (ст. 6.3 КоАП РФ) и может повлечь административную или уголовную ответственность.</p>
+        </section>
+        
+        <section class="important-info">
+            <h2>Ключевые факты о туберкулезе</h2>
+            <ul>
+                <li>Туберкулёз долго не проявляется — человек может чувствовать себя здоровым, но инфекция развивается.</li>
+                <li>Ранние изменения на обычной флюорографии не видны.</li>
+                <li>Диаскинтест и КТ помогают выявить инфекцию вовремя.</li>
+            </ul>
+        </section>
+        
+        <section class="info-block">
+            <h2>Методы диагностики</h2>
+            
+            <h3>1. Диаскинтест</h3>
+            
+            <div class="characteristics">
+                <div class="characteristic">
+                    <p>Внутрикожный тест, похожий на лёгкую аллергическую пробу.</p>
+                </div>
+                <div class="characteristic">
+                    <p>Показывает наличие инфекции.</p>
+                </div>
+                <div class="characteristic">
+                    <p>Не прививка и не вакцина, безопасен.</p>
+                </div>
+                <div class="characteristic">
+                    <p>Результат оценивается через 3 дня.</p>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <p>Человек может быть заражён, но иммунная система ещё не выработала ответ (Диаскинтест не дал положительной реакции). Чтобы точнее оценить ситуацию, рекомендуется повторить тесты через 3, 6 и 12 месяцев.</p>
+            </div>
+            
+            <h3>2. Проверка лёгких</h3>
+            <ul>
+                <li>Тест отрицательный → рентгенография лёгких.</li>
+                <li>Тест положительный → КТ лёгких, чтобы увидеть мельчайшие изменения.</li>
+            </ul>
+            
+            <p>Все процедуры быстрые, безопасные и обязательные. Цель — выявить изменения на ранней стадии и защитить здоровье всех сотрудников.</p>
+        </section>
+        
+        <section class="test-container">
+            <h2>Проверка знаний</h2>
+            
+            <div class="question" id="question1">
+                <h3>Вопрос 1: Диаскинтест — это прививка?</h3>
+                <div class="answers">
+                    <div class="answer" data-correct="false">Да</div>
+                    <div class="answer" data-correct="true">Нет</div>
+                </div>
+            </div>
+            
+            <div class="question" id="question2">
+                <h3>Вопрос 2: Когда оценивают результат Диаскинтеста?</h3>
+                <div class="answers">
+                    <div class="answer" data-correct="false">Сразу после постановки</div>
+                    <div class="answer" data-correct="true">Через 3 дня</div>
+                    <div class="answer" data-correct="false">Через неделю</div>
+                </div>
+            </div>
+            
+            <div class="question" id="question3">
+                <h3>Вопрос 3: Если Диаскинтест положительный, что нужно сделать?</h3>
+                <div class="answers">
+                    <div class="answer" data-correct="false">Повторить тест через месяц</div>
+                    <div class="answer" data-correct="true">Сделать КТ лёгких</div>
+                    <div class="answer" data-correct="false">Ничего не делать, подождать</div>
+                </div>
+            </div>
+            
+            <div class="question" id="question4">
+                <h3>Вопрос 4: Если Диаскинтест отрицательный, но вы контактировали с больным туберкулёзом, что делать?</h3>
+                <div class="answers">
+                    <div class="answer" data-correct="false">Можно не переживать</div>
+                    <div class="answer" data-correct="false">Пройти КТ лёгких</div>
+                    <div class="answer" data-correct="true">Повторить тест через 3–6 месяцев</div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="modal" id="successModal">
+            <div class="modal-content">
+                <h2>Поздравляю!</h2>
+                <p>Тест пройден успешно.</p>
+            </div>
+        </div>
+        
+        <section class="next-block" id="nextBlock">
+            <h2>Дополнительная информация</h2>
+            <p>После успешного прохождения теста вы получили важные знания о диагностике туберкулеза. Помните, что своевременное обследование — это ответственность каждого сотрудника и забота о здоровье всего коллектива.</p>
+            <p>Если у вас остались вопросы, обратитесь к медицинскому работнику вашей организации.</p>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const questions = document.querySelectorAll('.question');
+            const successModal = document.getElementById('successModal');
+            const nextBlock = document.getElementById('nextBlock');
+            let currentQuestion = 0;
+            
+            // Инициализация теста
+            function initTest() {
+                // Скрываем все вопросы кроме первого
+                questions.forEach((question, index) => {
+                    if (index > 0) {
+                        question.style.display = 'none';
+                    }
+                });
+                
+                // Добавляем обработчики событий для ответов
+                document.querySelectorAll('.answer').forEach(answer => {
+                    answer.addEventListener('click', handleAnswerClick);
+                });
+            }
+            
+            // Обработчик клика по ответу
+            function handleAnswerClick(e) {
+                const answer = e.target;
+                const isCorrect = answer.getAttribute('data-correct') === 'true';
+                
+                if (isCorrect) {
+                    // Правильный ответ
+                    answer.classList.add('correct');
+                    
+                    // Переход к следующему вопросу через 1 секунду
+                    setTimeout(() => {
+                        showNextQuestion();
+                    }, 1000);
+                } else {
+                    // Неправильный ответ
+                    answer.classList.add('incorrect');
+                    
+                    // Убираем подсветку через 1 секунду
+                    setTimeout(() => {
+                        answer.classList.remove('incorrect');
+                    }, 1000);
+                }
+            }
+            
+            // Показать следующий вопрос
+            function showNextQuestion() {
+                // Скрываем текущий вопрос
+                questions[currentQuestion].style.display = 'none';
+                
+                // Переходим к следующему вопросу
+                currentQuestion++;
+                
+                if (currentQuestion < questions.length) {
+                    // Показываем следующий вопрос
+                    questions[currentQuestion].style.display = 'block';
+                } else {
+                    // Тест завершен
+                    showSuccessModal();
+                }
+            }
+            
+            // Показать модальное окно успеха
+            function showSuccessModal() {
+                successModal.style.display = 'flex';
+                
+                // Закрываем модальное окно через 2 секунды
+                setTimeout(() => {
+                    successModal.style.display = 'none';
+                    showNextBlock();
+                }, 2000);
+            }
+            
+            // Показать следующий блок
+            function showNextBlock() {
+                nextBlock.style.display = 'block';
+            }
+            
+            // Инициализируем тест
+            initTest();
+        });
+    </script>
+</body>
+</html>
