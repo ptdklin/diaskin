@@ -606,7 +606,9 @@
                     <div class="image-comparison">
                         <img src="image4.png" alt="КТ с обведенным очагом">
                     </div>
-                    
+                </div>
+
+                <div id="conclusionBlock" style="display: none;">
                     <div class="conclusion-box">
                         <p>Теперь вы понимаете, почему так важен Диаскинтест. Именно он позволяет выявить тех, кому нужно сделать КТ. А КТ, в свою очередь, может обнаружить болезнь на самой ранней стадии, когда лечение наиболее эффективно.</p>
                     </div>
@@ -620,6 +622,11 @@
             <p style="text-align: left;">После успешного прохождения теста вы получили важные знания о диагностике туберкулеза. Помните, что своевременное обследование — это ответственность каждого сотрудника и забота о здоровье всего коллектива.</p>
             <p style="text-align: left;">Если у вас остались вопросы, обратитесь в противотуберкулезный диспансер.</p>
         </section>
+
+        <!-- Подпись автора -->
+        <footer style="text-align: center; margin-top: 60px; padding: 20px; color: var(--gray-400); font-size: 14px; border-top: 1px solid var(--gray-200);">
+            <p>Автор и разработчик: заведующий филиалом Клинский Лукаш И.А.</p>
+        </footer>
 
         <div class="modal" id="successModal">
             <div class="modal-content">
@@ -712,9 +719,10 @@
                         document.getElementById('ctQuestion').style.display = 'none';
                         document.getElementById('ctResult').style.display = 'block';
                         
-                        // Показываем финальную информацию через 5 секунд
+                        // Через 10 секунд показываем заключение и прокручиваем к нему
                         setTimeout(() => {
-                            showFinalInfo();
+                            document.getElementById('conclusionBlock').style.display = 'block';
+                            document.getElementById('conclusionBlock').scrollIntoView({ behavior: 'smooth' });
                         }, 10000);
                     }, 800);
                 } else {
@@ -753,9 +761,12 @@
             }
             
             function showFinalInfo() {
-                // Не скрываем визуальную диагностику, а добавляем финальную информацию
+                // Показываем финальную информацию и блок с заключением
                 finalInfo.style.display = 'block';
-                finalInfo.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('conclusionBlock').style.display = 'block';
+                
+                // Прокручиваем к блоку с заключением
+                document.getElementById('conclusionBlock').scrollIntoView({ behavior: 'smooth' });
             }
             
             initTest();
