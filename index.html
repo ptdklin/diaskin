@@ -718,33 +718,38 @@
 }
         
         function handleFluorAnswerClick(e) {
-            const answer = e.target;
-            const isCorrect = answer.getAttribute('data-fluor-correct') === 'true';
+    const answer = e.target;
+    const isCorrect = answer.getAttribute('data-fluor-correct') === 'true';
+    
+    if (isCorrect) {
+        answer.classList.add('correct');
+        
+        setTimeout(() => {
+            // Скрываем только варианты ответов, оставляя картинку
+            document.querySelectorAll('#fluorQuestion .answers').forEach(answers => {
+                answers.style.display = 'none';
+            });
             
-            if (isCorrect) {
-                answer.classList.add('correct');
-                
-                setTimeout(() => {
-                    document.getElementById('fluorQuestion').style.display = 'none';
-                    document.getElementById('ctQuestion').style.display = 'block';
-                    
-                    // Прокручиваем чуть ниже для блока с КТ
-                    setTimeout(() => {
-                        window.scrollBy({
-                            top: -70,
-                            behavior: 'smooth'
-                        });
-                    }, 100);
-                    
-                }, 800);
-            } else {
-                answer.classList.add('incorrect');
-                
-                setTimeout(() => {
-                    answer.classList.remove('incorrect');
-                }, 800);
-            }
-        }
+            // Показываем следующий вопрос
+            document.getElementById('ctQuestion').style.display = 'block';
+            
+            // Прокручиваем если нужно
+            setTimeout(() => {
+                window.scrollBy({
+                    top: -70,
+                    behavior: 'smooth'
+                });
+            }, 100);
+            
+        }, 800);
+    } else {
+        answer.classList.add('incorrect');
+        
+        setTimeout(() => {
+            answer.classList.remove('incorrect');
+        }, 800);
+    }
+}
         
         function handleCtOptionClick(e) {
             const option = e.target;
