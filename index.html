@@ -455,70 +455,73 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const questions = document.querySelectorAll('.question');
-            const successModal = document.getElementById('successModal');
-            const nextBlock = document.getElementById('nextBlock');
-            let currentQuestion = 0;
-            
-            function initTest() {
-                questions.forEach((question, index) => {
-                    if (index > 0) {
-                        question.style.display = 'none';
-                    }
-                });
-                
-                document.querySelectorAll('.answer').forEach(answer => {
-                    answer.addEventListener('click', handleAnswerClick);
-                });
-            }
-            
-            function handleAnswerClick(e) {
-                const answer = e.target;
-                const isCorrect = answer.getAttribute('data-correct') === 'true';
-                
-                if (isCorrect) {
-                    answer.classList.add('correct');
-                    
-                    setTimeout(() => {
-                        showNextQuestion();
-                    }, 800);
-                } else {
-                    answer.classList.add('incorrect');
-                    
-                    setTimeout(() => {
-                        answer.classList.remove('incorrect');
-                    }, 800);
+    document.addEventListener('DOMContentLoaded', function() {
+        const questions = document.querySelectorAll('.question');
+        const successModal = document.getElementById('successModal');
+        const nextBlock = document.getElementById('nextBlock');
+        const testSection = document.querySelector('.test-container').closest('.section'); // Находим раздел "Контроль знаний"
+        let currentQuestion = 0;
+        
+        function initTest() {
+            questions.forEach((question, index) => {
+                if (index > 0) {
+                    question.style.display = 'none';
                 }
-            }
+            });
             
-            function showNextQuestion() {
-                questions[currentQuestion].style.display = 'none';
-                currentQuestion++;
-                
-                if (currentQuestion < questions.length) {
-                    questions[currentQuestion].style.display = 'block';
-                } else {
-                    showSuccessModal();
-                }
-            }
+            document.querySelectorAll('.answer').forEach(answer => {
+                answer.addEventListener('click', handleAnswerClick);
+            });
+        }
+        
+        function handleAnswerClick(e) {
+            const answer = e.target;
+            const isCorrect = answer.getAttribute('data-correct') === 'true';
             
-            function showSuccessModal() {
-                successModal.style.display = 'flex';
+            if (isCorrect) {
+                answer.classList.add('correct');
                 
                 setTimeout(() => {
-                    successModal.style.display = 'none';
-                    showNextBlock();
-                }, 2000);
+                    showNextQuestion();
+                }, 800);
+            } else {
+                answer.classList.add('incorrect');
+                
+                setTimeout(() => {
+                    answer.classList.remove('incorrect');
+                }, 800);
             }
+        }
+        
+        function showNextQuestion() {
+            questions[currentQuestion].style.display = 'none';
+            currentQuestion++;
             
-            function showNextBlock() {
-                nextBlock.style.display = 'block';
-                nextBlock.scrollIntoView({ behavior: 'smooth' });
+            if (currentQuestion < questions.length) {
+                questions[currentQuestion].style.display = 'block';
+            } else {
+                showSuccessModal();
             }
+        }
+        
+        function showSuccessModal() {
+            successModal.style.display = 'flex';
             
-            initTest();
-        });
-    </script>
+            setTimeout(() => {
+                successModal.style.display = 'none';
+                showNextBlock();
+            }, 2000);
+        }
+        
+        function showNextBlock() {
+            nextBlock.style.display = 'block';
+            // Скрываем раздел "Контроль знаний"
+            testSection.style.display = 'none';
+            nextBlock.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        initTest();
+    });
+</script>
 </body>
 </html>
