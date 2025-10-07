@@ -275,6 +275,59 @@
             color: var(--primary-dark);
         }
 
+        .image-comparison {
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .image-comparison img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-caption {
+            margin-top: 12px;
+            font-style: italic;
+            color: var(--gray-600);
+            text-align: center;
+        }
+
+        .ct-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .ct-option {
+            padding: 16px;
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .ct-option:hover {
+            border-color: var(--primary-light);
+            background: var(--gray-50);
+        }
+
+        .result-image {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .result-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 40px 20px;
@@ -302,6 +355,10 @@
             
             body {
                 font-size: 17px;
+            }
+            
+            .ct-options {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -404,7 +461,8 @@
             </div>
         </section>
 
-        <section class="section">
+        <!-- Уровень 1: Основной тест -->
+        <section class="section" id="knowledgeTest">
             <h2>Контроль знаний</h2>
             
             <div class="test-container">
@@ -444,151 +502,201 @@
                 </div>
             </div>
         </section>
-        
+
+        <!-- Уровень 2: Визуальная диагностика (скрыт изначально) -->
+        <section class="section" id="visualDiagnostics" style="display: none;">
+            <h2>Визуальная диагностика: почему важен Диаскинтест</h2>
+            
+            <div class="subsection">
+                <h3>Когда изменения видны даже на флюорографии</h3>
+                <div class="image-comparison">
+                    <img src="https://via.placeholder.com/800x400/3B82F6/FFFFFF?text=Флюорограмма+с+очевидными+изменениями+справа" alt="Флюорограмма с изменениями">
+                    <p class="image-caption">Запущенные процессы видны даже на обычной флюорографии - здесь изменения с правой стороны картинки</p>
+                </div>
+            </div>
+
+            <div class="subsection" id="interactiveCase">
+                <h3>А сможете ли вы найти ранние изменения?</h3>
+                
+                <div class="question" id="fluorQuestion">
+                    <h3>Видите ли вы здесь патологические изменения?</h3>
+                    <div class="image-comparison">
+                        <img src="https://via.placeholder.com/800x400/10B981/FFFFFF?text=Чистая+флюорограмма+без+видимых+изменений" alt="Чистая флюорограмма">
+                    </div>
+                    <div class="answers">
+                        <div class="answer" data-fluor-correct="false">Да, вижу изменения</div>
+                        <div class="answer" data-fluor-correct="true">Нет, все чисто</div>
+                        <div class="answer" data-fluor-correct="false">Не уверен(а)</div>
+                    </div>
+                </div>
+
+                <div class="question" id="ctQuestion" style="display: none;">
+                    <h3>На самом деле, у этого пациента была ранняя стадия туберкулеза. На флюорографии изменения не видны. Но посмотрите на КТ этого же пациента:</h3>
+                    <div class="image-comparison">
+                        <img src="https://via.placeholder.com/800x400/8B5CF6/FFFFFF?text=КТ+легких+с+небольшим+очагом" alt="КТ легких с очагом">
+                    </div>
+                    <h3>Попробуйте найти патологический очаг. Где он расположен НА КАРТИНКЕ?</h3>
+                    <div class="ct-options">
+                        <div class="ct-option" data-ct-correct="false">Сверху слева на картинке</div>
+                        <div class="ct-option" data-ct-correct="true">Сверху справа на картинке</div>
+                        <div class="ct-option" data-ct-correct="false">Снизу слева на картинке</div>
+                        <div class="ct-option" data-ct-correct="false">Снизу справа на картинке</div>
+                    </div>
+                </div>
+
+                <div class="result-image" id="ctResult" style="display: none;">
+                    <h3>Вот он! Небольшой очаг в верхней правой части снимка. Такие минимальные изменения видны только на КТ.</h3>
+                    <img src="https://via.placeholder.com/800x400/8B5CF6/FFFFFF?text=КТ+с+обведенным+очагом+в+верхнем+правом+углу" alt="КТ с обведенным очагом">
+                    <p class="image-caption">Теперь вы понимаете, почему так важен Диаскинтест. Именно он позволяет выявить тех, кому нужно сделать КТ. А КТ, в свою очередь, может обнаружить болезнь на самой ранней стадии, когда лечение наиболее эффективно.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Уровень 3: Финальная информация (скрыт изначально) -->
+        <section class="next-block" id="finalInfo" style="display: none;">
+            <h2 style="text-align: left; margin-bottom: 20px;">Дополнительная информация</h2>
+            <p>После успешного прохождения теста вы получили важные знания о диагностике туберкулеза. Помните, что своевременное обследование — это ответственность каждого сотрудника и забота о здоровье всего коллектива.</p>
+            <p>Если у вас остались вопросы, обратитесь в противотуберкулезный диспансер.</p>
+        </section>
+
         <div class="modal" id="successModal">
             <div class="modal-content">
                 <h2>Поздравляю!</h2>
                 <p>Тест пройден успешно.</p>
             </div>
         </div>
-        
-        <section class="next-block" id="nextBlock">
-            <h2>Дополнительная информация</h2>
-            <p>После успешного прохождения теста вы получили важные знания о диагностике туберкулеза. Помните, что своевременное обследование — это ответственность каждого сотрудника и забота о здоровье всего коллектива.</p>
-            <p>Если у вас остались вопросы, обратитесь в противотуберкулезный диспансер.</p>
-        </section>
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const basicQuestions = document.querySelectorAll('#knowledgeTest .question');
-        const successModal = document.getElementById('successModal');
-        const knowledgeTest = document.getElementById('knowledgeTest');
-        const visualDiagnostics = document.getElementById('visualDiagnostics');
-        const finalInfo = document.getElementById('finalInfo');
-        
-        let currentQuestion = 0;
-        
-        function initTest() {
-            // Скрываем все вопросы кроме первого в основном тесте
-            basicQuestions.forEach((question, index) => {
-                if (index > 0) {
-                    question.style.display = 'none';
-                }
-            });
+        document.addEventListener('DOMContentLoaded', function() {
+            const basicQuestions = document.querySelectorAll('#knowledgeTest .question');
+            const successModal = document.getElementById('successModal');
+            const knowledgeTest = document.getElementById('knowledgeTest');
+            const visualDiagnostics = document.getElementById('visualDiagnostics');
+            const finalInfo = document.getElementById('finalInfo');
             
-            // Обработчики для основного теста
-            document.querySelectorAll('#knowledgeTest .answer').forEach(answer => {
-                answer.addEventListener('click', handleBasicAnswerClick);
-            });
+            let currentBasicQuestion = 0;
             
-            // Обработчики для визуального теста
-            document.querySelectorAll('#fluorQuestion .answer').forEach(answer => {
-                answer.addEventListener('click', handleFluorAnswerClick);
-            });
-            
-            document.querySelectorAll('.ct-option').forEach(option => {
-                option.addEventListener('click', handleCtOptionClick);
-            });
-        }
-        
-        function handleBasicAnswerClick(e) {
-            const answer = e.target;
-            const isCorrect = answer.getAttribute('data-correct') === 'true';
-            
-            if (isCorrect) {
-                answer.classList.add('correct');
+            function initTest() {
+                // Скрываем все вопросы кроме первого в основном тесте
+                basicQuestions.forEach((question, index) => {
+                    if (index > 0) {
+                        question.style.display = 'none';
+                    }
+                });
                 
-                setTimeout(() => {
-                    showNextBasicQuestion();
-                }, 800);
-            } else {
-                answer.classList.add('incorrect');
+                // Обработчики для основного теста
+                document.querySelectorAll('#knowledgeTest .answer').forEach(answer => {
+                    answer.addEventListener('click', handleBasicAnswerClick);
+                });
                 
-                setTimeout(() => {
-                    answer.classList.remove('incorrect');
-                }, 800);
+                // Обработчики для визуального теста
+                document.querySelectorAll('#fluorQuestion .answer').forEach(answer => {
+                    answer.addEventListener('click', handleFluorAnswerClick);
+                });
+                
+                document.querySelectorAll('.ct-option').forEach(option => {
+                    option.addEventListener('click', handleCtOptionClick);
+                });
             }
-        }
-        
-        function handleFluorAnswerClick(e) {
-            const answer = e.target;
-            const isCorrect = answer.getAttribute('data-fluor-correct') === 'true';
             
-            if (isCorrect) {
-                answer.classList.add('correct');
+            function handleBasicAnswerClick(e) {
+                const answer = e.target;
+                const isCorrect = answer.getAttribute('data-correct') === 'true';
                 
-                setTimeout(() => {
-                    document.getElementById('fluorQuestion').style.display = 'none';
-                    document.getElementById('ctQuestion').style.display = 'block';
-                }, 800);
-            } else {
-                answer.classList.add('incorrect');
-                
-                setTimeout(() => {
-                    answer.classList.remove('incorrect');
-                }, 800);
-            }
-        }
-        
-        function handleCtOptionClick(e) {
-            const option = e.target;
-            const isCorrect = option.getAttribute('data-ct-correct') === 'true';
-            
-            if (isCorrect) {
-                option.classList.add('correct');
-                
-                setTimeout(() => {
-                    document.getElementById('ctQuestion').style.display = 'none';
-                    document.getElementById('ctResult').style.display = 'block';
+                if (isCorrect) {
+                    answer.classList.add('correct');
                     
                     setTimeout(() => {
-                        showFinalInfo();
-                    }, 3000);
-                }, 800);
-            } else {
-                option.classList.add('incorrect');
+                        showNextBasicQuestion();
+                    }, 800);
+                } else {
+                    answer.classList.add('incorrect');
+                    
+                    setTimeout(() => {
+                        answer.classList.remove('incorrect');
+                    }, 800);
+                }
+            }
+            
+            function handleFluorAnswerClick(e) {
+                const answer = e.target;
+                const isCorrect = answer.getAttribute('data-fluor-correct') === 'true';
+                
+                if (isCorrect) {
+                    answer.classList.add('correct');
+                    
+                    setTimeout(() => {
+                        document.getElementById('fluorQuestion').style.display = 'none';
+                        document.getElementById('ctQuestion').style.display = 'block';
+                    }, 800);
+                } else {
+                    answer.classList.add('incorrect');
+                    
+                    setTimeout(() => {
+                        answer.classList.remove('incorrect');
+                    }, 800);
+                }
+            }
+            
+            function handleCtOptionClick(e) {
+                const option = e.target;
+                const isCorrect = option.getAttribute('data-ct-correct') === 'true';
+                
+                if (isCorrect) {
+                    option.classList.add('correct');
+                    
+                    setTimeout(() => {
+                        document.getElementById('ctQuestion').style.display = 'none';
+                        document.getElementById('ctResult').style.display = 'block';
+                        
+                        setTimeout(() => {
+                            showFinalInfo();
+                        }, 3000);
+                    }, 800);
+                } else {
+                    option.classList.add('incorrect');
+                    
+                    setTimeout(() => {
+                        option.classList.remove('incorrect');
+                    }, 800);
+                }
+            }
+            
+            function showNextBasicQuestion() {
+                basicQuestions[currentBasicQuestion].style.display = 'none';
+                currentBasicQuestion++;
+                
+                if (currentBasicQuestion < basicQuestions.length) {
+                    basicQuestions[currentBasicQuestion].style.display = 'block';
+                } else {
+                    showSuccessModal();
+                }
+            }
+            
+            function showSuccessModal() {
+                successModal.style.display = 'flex';
                 
                 setTimeout(() => {
-                    option.classList.remove('incorrect');
-                }, 800);
+                    successModal.style.display = 'none';
+                    showVisualDiagnostics();
+                }, 2000);
             }
-        }
-        
-        function showNextBasicQuestion() {
-            basicQuestions[currentQuestion].style.display = 'none';
-            currentQuestion++;
             
-            if (currentQuestion < basicQuestions.length) {
-                basicQuestions[currentQuestion].style.display = 'block';
-            } else {
-                showSuccessModal();
+            function showVisualDiagnostics() {
+                knowledgeTest.style.display = 'none';
+                visualDiagnostics.style.display = 'block';
+                visualDiagnostics.scrollIntoView({ behavior: 'smooth' });
             }
-        }
-        
-        function showSuccessModal() {
-            successModal.style.display = 'flex';
             
-            setTimeout(() => {
-                successModal.style.display = 'none';
-                showVisualDiagnostics();
-            }, 2000);
-        }
-        
-        function showVisualDiagnostics() {
-            knowledgeTest.style.display = 'none';
-            visualDiagnostics.style.display = 'block';
-            visualDiagnostics.scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        function showFinalInfo() {
-            visualDiagnostics.style.display = 'none';
-            finalInfo.style.display = 'block';
-            finalInfo.scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        initTest();
-    });
-</script>
+            function showFinalInfo() {
+                visualDiagnostics.style.display = 'none';
+                finalInfo.style.display = 'block';
+                finalInfo.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            initTest();
+        });
+    </script>
 </body>
 </html>
