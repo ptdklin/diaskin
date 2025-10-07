@@ -460,72 +460,135 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const questions = document.querySelectorAll('.question');
-            const successModal = document.getElementById('successModal');
-            const nextBlock = document.getElementById('nextBlock');
-            const testSection = document.querySelector('.test-container').closest('.section');
-            let currentQuestion = 0;
-            
-            function initTest() {
-                questions.forEach((question, index) => {
-                    if (index > 0) {
-                        question.style.display = 'none';
-                    }
-                });
-                
-                document.querySelectorAll('.answer').forEach(answer => {
-                    answer.addEventListener('click', handleAnswerClick);
-                });
-            }
-            
-            function handleAnswerClick(e) {
-                const answer = e.target;
-                const isCorrect = answer.getAttribute('data-correct') === 'true';
-                
-                if (isCorrect) {
-                    answer.classList.add('correct');
-                    
-                    setTimeout(() => {
-                        showNextQuestion();
-                    }, 800);
-                } else {
-                    answer.classList.add('incorrect');
-                    
-                    setTimeout(() => {
-                        answer.classList.remove('incorrect');
-                    }, 800);
+    document.addEventListener('DOMContentLoaded', function() {
+        const basicQuestions = document.querySelectorAll('#knowledgeTest .question');
+        const successModal = document.getElementById('successModal');
+        const knowledgeTest = document.getElementById('knowledgeTest');
+        const visualDiagnostics = document.getElementById('visualDiagnostics');
+        const finalInfo = document.getElementById('finalInfo');
+        
+        let currentQuestion = 0;
+        
+        function initTest() {
+            // Скрываем все вопросы кроме первого в основном тесте
+            basicQuestions.forEach((question, index) => {
+                if (index > 0) {
+                    question.style.display = 'none';
                 }
-            }
+            });
             
-            function showNextQuestion() {
-                questions[currentQuestion].style.display = 'none';
-                currentQuestion++;
-                
-                if (currentQuestion < questions.length) {
-                    questions[currentQuestion].style.display = 'block';
-                } else {
-                    showSuccessModal();
-                }
-            }
+            // Обработчики для основного теста
+            document.querySelectorAll('#knowledgeTest .answer').forEach(answer => {
+                answer.addEventListener('click', handleBasicAnswerClick);
+            });
             
-            function showSuccessModal() {
-                successModal.style.display = 'flex';
+            // Обработчики для визуального теста
+            document.querySelectorAll('#fluorQuestion .answer').forEach(answer => {
+                answer.addEventListener('click', handleFluorAnswerClick);
+            });
+            
+            document.querySelectorAll('.ct-option').forEach(option => {
+                option.addEventListener('click', handleCtOptionClick);
+            });
+        }
+        
+        function handleBasicAnswerClick(e) {
+            const answer = e.target;
+            const isCorrect = answer.getAttribute('data-correct') === 'true';
+            
+            if (isCorrect) {
+                answer.classList.add('correct');
                 
                 setTimeout(() => {
-                    successModal.style.display = 'none';
-                    showNextBlock();
-                }, 2000);
+                    showNextBasicQuestion();
+                }, 800);
+            } else {
+                answer.classList.add('incorrect');
+                
+                setTimeout(() => {
+                    answer.classList.remove('incorrect');
+                }, 800);
             }
+        }
+        
+        function handleFluorAnswerClick(e) {
+            const answer = e.target;
+            const isCorrect = answer.getAttribute('data-fluor-correct') === 'true';
             
-            function showNextBlock() {
-                nextBlock.style.display = 'block';
-                testSection.style.display = 'none';
-                nextBlock.scrollIntoView({ behavior: 'smooth' });
+            if (isCorrect) {
+                answer.classList.add('correct');
+                
+                setTimeout(() => {
+                    document.getElementById('fluorQuestion').style.display = 'none';
+                    document.getElementById('ctQuestion').style.display = 'block';
+                }, 800);
+            } else {
+                answer.classList.add('incorrect');
+                
+                setTimeout(() => {
+                    answer.classList.remove('incorrect');
+                }, 800);
             }
+        }
+        
+        function handleCtOptionClick(e) {
+            const option = e.target;
+            const isCorrect = option.getAttribute('data-ct-correct') === 'true';
             
-            initTest();
-        });
-    </script>
+            if (isCorrect) {
+                option.classList.add('correct');
+                
+                setTimeout(() => {
+                    document.getElementById('ctQuestion').style.display = 'none';
+                    document.getElementById('ctResult').style.display = 'block';
+                    
+                    setTimeout(() => {
+                        showFinalInfo();
+                    }, 3000);
+                }, 800);
+            } else {
+                option.classList.add('incorrect');
+                
+                setTimeout(() => {
+                    option.classList.remove('incorrect');
+                }, 800);
+            }
+        }
+        
+        function showNextBasicQuestion() {
+            basicQuestions[currentQuestion].style.display = 'none';
+            currentQuestion++;
+            
+            if (currentQuestion < basicQuestions.length) {
+                basicQuestions[currentQuestion].style.display = 'block';
+            } else {
+                showSuccessModal();
+            }
+        }
+        
+        function showSuccessModal() {
+            successModal.style.display = 'flex';
+            
+            setTimeout(() => {
+                successModal.style.display = 'none';
+                showVisualDiagnostics();
+            }, 2000);
+        }
+        
+        function showVisualDiagnostics() {
+            knowledgeTest.style.display = 'none';
+            visualDiagnostics.style.display = 'block';
+            visualDiagnostics.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function showFinalInfo() {
+            visualDiagnostics.style.display = 'none';
+            finalInfo.style.display = 'block';
+            finalInfo.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        initTest();
+    });
+</script>
 </body>
 </html>
