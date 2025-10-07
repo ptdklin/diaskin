@@ -725,14 +725,8 @@
         answer.classList.add('correct');
         
         setTimeout(() => {
-            // Скрываем ТОЛЬКО варианты ответов, оставляя картинку
-            const answersBlock = document.querySelector('#fluorQuestion .answers');
-            answersBlock.style.display = 'none';
-            
-            // Меняем заголовок вопроса, чтобы было понятно
-            const questionTitle = document.querySelector('#fluorQuestion h3');
-            questionTitle.textContent = 'На флюорографии изменений действительно не видно';
-            
+            // ВАЖНО: оставляем как было, чтобы первый тест работал
+            document.getElementById('fluorQuestion').style.display = 'none';
             document.getElementById('ctQuestion').style.display = 'block';
             
             // Прокручиваем чуть ниже для блока с КТ
