@@ -328,6 +328,47 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
+        .final-highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 32px;
+            border-radius: 16px;
+            margin: 32px 0;
+            color: white;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+            text-align: center;
+        }
+
+        .final-highlight h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .final-highlight p {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .conclusion-box {
+            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
+            padding: 32px;
+            border-radius: 16px;
+            margin: 32px 0;
+            color: white;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            text-align: center;
+        }
+
+        .conclusion-box p {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 40px 20px;
@@ -359,6 +400,18 @@
             
             .ct-options {
                 grid-template-columns: 1fr;
+            }
+            
+            .final-highlight h3 {
+                font-size: 22px;
+            }
+            
+            .final-highlight p {
+                font-size: 18px;
+            }
+            
+            .conclusion-box p {
+                font-size: 18px;
             }
         }
     </style>
@@ -510,7 +563,7 @@
             <div class="subsection">
                 <h3>Когда изменения видны даже на флюорографии</h3>
                 <div class="image-comparison">
-                    <img src="https://via.placeholder.com/800x400/3B82F6/FFFFFF?text=Флюорограмма+с+очевидными+изменениями+справа" alt="Флюорограмма с изменениями">
+                    <img src="image1.jpg" alt="Флюорограмма с изменениями">
                     <p class="image-caption">Запущенные процессы видны даже на обычной флюорографии - здесь изменения с правой стороны картинки</p>
                 </div>
             </div>
@@ -521,7 +574,7 @@
                 <div class="question" id="fluorQuestion">
                     <h3>Видите ли вы здесь патологические изменения?</h3>
                     <div class="image-comparison">
-                        <img src="https://via.placeholder.com/800x400/10B981/FFFFFF?text=Чистая+флюорограмма+без+видимых+изменений" alt="Чистая флюорограмма">
+                        <img src="image2.jpg" alt="Чистая флюорограмма">
                     </div>
                     <div class="answers">
                         <div class="answer" data-fluor-correct="false">Да, вижу изменения</div>
@@ -533,7 +586,7 @@
                 <div class="question" id="ctQuestion" style="display: none;">
                     <h3>На самом деле, у этого пациента была ранняя стадия туберкулеза. На флюорографии изменения не видны. Но посмотрите на КТ этого же пациента:</h3>
                     <div class="image-comparison">
-                        <img src="https://via.placeholder.com/800x400/8B5CF6/FFFFFF?text=КТ+легких+с+небольшим+очагом" alt="КТ легких с очагом">
+                        <img src="image3.jpg" alt="КТ легких с очагом">
                     </div>
                     <h3>Попробуйте найти патологический очаг. Где он расположен НА КАРТИНКЕ?</h3>
                     <div class="ct-options">
@@ -545,9 +598,16 @@
                 </div>
 
                 <div class="result-image" id="ctResult" style="display: none;">
-                    <h3>Вот он! Небольшой очаг в верхней правой части снимка. Такие минимальные изменения видны только на КТ.</h3>
-                    <img src="https://via.placeholder.com/800x400/8B5CF6/FFFFFF?text=КТ+с+обведенным+очагом+в+верхнем+правом+углу" alt="КТ с обведенным очагом">
-                    <p class="image-caption">Теперь вы понимаете, почему так важен Диаскинтест. Именно он позволяет выявить тех, кому нужно сделать КТ. А КТ, в свою очередь, может обнаружить болезнь на самой ранней стадии, когда лечение наиболее эффективно.</p>
+                    <div class="final-highlight">
+                        <h3>Вот он! Небольшой очаг в верхней правой части снимка.</h3>
+                        <p>Такие минимальные изменения видны только на КТ.</p>
+                    </div>
+                    
+                    <img src="image4.jpg" alt="КТ с обведенным очагом">
+                    
+                    <div class="conclusion-box">
+                        <p>Теперь вы понимаете, почему так важен Диаскинтест. Именно он позволяет выявить тех, кому нужно сделать КТ. А КТ, в свою очередь, может обнаружить болезнь на самой ранней стадии, когда лечение наиболее эффективно.</p>
+                    </div>
                 </div>
             </div>
         </section>
