@@ -256,7 +256,7 @@
             background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
             padding: 40px;
             border-radius: 16px;
-            text-align: center;
+            text-align: left;
             margin-top: 40px;
             color: white;
             box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
@@ -563,7 +563,7 @@
             <div class="subsection">
                 <h3>Когда изменения видны даже на флюорографии</h3>
                 <div class="image-comparison">
-                    <img src="image1.jpg" alt="Флюорограмма с изменениями">
+                    <img src="Image1.png" alt="Флюорограмма с изменениями">
                     <p class="image-caption">Запущенные процессы видны даже на обычной флюорографии - здесь изменения с правой стороны картинки</p>
                 </div>
             </div>
@@ -574,7 +574,7 @@
                 <div class="question" id="fluorQuestion">
                     <h3>Видите ли вы здесь патологические изменения?</h3>
                     <div class="image-comparison">
-                        <img src="image2.jpg" alt="Чистая флюорограмма">
+                        <img src="Image2.png" alt="Чистая флюорограмма">
                     </div>
                     <div class="answers">
                         <div class="answer" data-fluor-correct="false">Да, вижу изменения</div>
@@ -586,7 +586,7 @@
                 <div class="question" id="ctQuestion" style="display: none;">
                     <h3>На самом деле, у этого пациента была ранняя стадия туберкулеза. На флюорографии изменения не видны. Но посмотрите на КТ этого же пациента:</h3>
                     <div class="image-comparison">
-                        <img src="image3.jpg" alt="КТ легких с очагом">
+                        <img src="Image3.png" alt="КТ легких с очагом">
                     </div>
                     <h3>Попробуйте найти патологический очаг. Где он расположен НА КАРТИНКЕ?</h3>
                     <div class="ct-options">
@@ -597,13 +597,15 @@
                     </div>
                 </div>
 
-                <div class="result-image" id="ctResult" style="display: none;">
+                <div id="ctResult" style="display: none;">
                     <div class="final-highlight">
                         <h3>Вот он! Небольшой очаг в верхней правой части снимка.</h3>
                         <p>Такие минимальные изменения видны только на КТ.</p>
                     </div>
                     
-                    <img src="image4.jpg" alt="КТ с обведенным очагом">
+                    <div class="image-comparison">
+                        <img src="Image4.png" alt="КТ с обведенным очагом">
+                    </div>
                     
                     <div class="conclusion-box">
                         <p>Теперь вы понимаете, почему так важен Диаскинтест. Именно он позволяет выявить тех, кому нужно сделать КТ. А КТ, в свою очередь, может обнаружить болезнь на самой ранней стадии, когда лечение наиболее эффективно.</p>
@@ -615,8 +617,8 @@
         <!-- Уровень 3: Финальная информация (скрыт изначально) -->
         <section class="next-block" id="finalInfo" style="display: none;">
             <h2 style="text-align: left; margin-bottom: 20px;">Дополнительная информация</h2>
-            <p>После успешного прохождения теста вы получили важные знания о диагностике туберкулеза. Помните, что своевременное обследование — это ответственность каждого сотрудника и забота о здоровье всего коллектива.</p>
-            <p>Если у вас остались вопросы, обратитесь в противотуберкулезный диспансер.</p>
+            <p style="text-align: left;">После успешного прохождения теста вы получили важные знания о диагностике туберкулеза. Помните, что своевременное обследование — это ответственность каждого сотрудника и забота о здоровье всего коллектива.</p>
+            <p style="text-align: left;">Если у вас остались вопросы, обратитесь в противотуберкулезный диспансер.</p>
         </section>
 
         <div class="modal" id="successModal">
@@ -710,9 +712,10 @@
                         document.getElementById('ctQuestion').style.display = 'none';
                         document.getElementById('ctResult').style.display = 'block';
                         
+                        // Показываем финальную информацию через 5 секунд
                         setTimeout(() => {
                             showFinalInfo();
-                        }, 3000);
+                        }, 5000);
                     }, 800);
                 } else {
                     option.classList.add('incorrect');
@@ -750,7 +753,7 @@
             }
             
             function showFinalInfo() {
-                visualDiagnostics.style.display = 'none';
+                // Не скрываем визуальную диагностику, а добавляем финальную информацию
                 finalInfo.style.display = 'block';
                 finalInfo.scrollIntoView({ behavior: 'smooth' });
             }
