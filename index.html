@@ -683,24 +683,42 @@
             });
         }
         
-        function handleBasicAnswerClick(e) {
-            const answer = e.target;
-            const isCorrect = answer.getAttribute('data-correct') === 'true';
+        function handleFluorAnswerClick(e) {
+    const answer = e.target;
+    const isCorrect = answer.getAttribute('data-fluor-correct') === 'true';
+    
+    if (isCorrect) {
+        answer.classList.add('correct');
+        
+        setTimeout(() => {
+            // УБИРАЕМ эту строчку, чтобы картинка 2 не пропадала:
+            // document.getElementById('fluorQuestion').style.display = 'none';
             
-            if (isCorrect) {
-                answer.classList.add('correct');
-                
-                setTimeout(() => {
-                    showNextBasicQuestion();
-                }, 800);
-            } else {
-                answer.classList.add('incorrect');
-                
-                setTimeout(() => {
-                    answer.classList.remove('incorrect');
-                }, 800);
-            }
-        }
+            // Вместо этого скрываем только варианты ответов
+            document.querySelectorAll('#fluorQuestion .answer').forEach(answer => {
+                answer.style.display = 'none';
+            });
+            
+            // И показываем следующий вопрос
+            document.getElementById('ctQuestion').style.display = 'block';
+            
+            // Прокручиваем если нужно
+            setTimeout(() => {
+                window.scrollBy({
+                    top: -70,
+                    behavior: 'smooth'
+                });
+            }, 100);
+            
+        }, 800);
+    } else {
+        answer.classList.add('incorrect');
+        
+        setTimeout(() => {
+            answer.classList.remove('incorrect');
+        }, 800);
+    }
+}
         
         function handleFluorAnswerClick(e) {
             const answer = e.target;
