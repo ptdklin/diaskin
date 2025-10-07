@@ -12,12 +12,30 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: 16px;
             line-height: 1.6;
-            color: #1d1d1f;
-            background: #ffffff;
+            color: var(--gray-900);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             font-weight: 400;
             -webkit-font-smoothing: antialiased;
         }
@@ -36,9 +54,13 @@
         h1 {
             font-size: 32px;
             font-weight: 700;
-            color: #1d1d1f;
+            color: var(--gray-900);
             margin-bottom: 12px;
             letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .section {
@@ -48,33 +70,38 @@
         h2 {
             font-size: 24px;
             font-weight: 600;
-            color: #1d1d1f;
+            color: var(--gray-900);
             margin-bottom: 24px;
             letter-spacing: -0.3px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-light);
         }
 
         h3 {
             font-size: 20px;
             font-weight: 600;
-            color: #1d1d1f;
+            color: var(--primary-dark);
             margin-bottom: 20px;
             margin-top: 32px;
         }
 
         p {
             margin-bottom: 20px;
-            color: #424245;
+            color: var(--gray-800);
         }
 
         .intro {
-            background: #f5f5f7;
+            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
             padding: 32px;
             border-radius: 16px;
             margin-bottom: 48px;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
         .intro p {
             margin-bottom: 16px;
+            padding: 8px 0;
         }
 
         .important-points {
@@ -85,10 +112,14 @@
             display: flex;
             align-items: flex-start;
             margin-bottom: 16px;
+            padding: 12px 16px;
+            background: var(--gray-50);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
         }
 
         .point-bullet {
-            color: #0071e3;
+            color: var(--accent);
             margin-right: 12px;
             font-weight: 600;
             min-width: 20px;
@@ -96,11 +127,21 @@
         }
 
         .highlight-box {
-            background: #f5f5f7;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
             padding: 24px;
             border-radius: 12px;
             margin: 24px 0;
-            border-left: 4px solid #0071e3;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--warning);
+            color: var(--gray-900);
         }
 
         .characteristics {
@@ -111,9 +152,17 @@
 
         .characteristic {
             padding: 20px;
-            background: #f5f5f7;
+            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
             border-radius: 12px;
             font-weight: 500;
+            border: 1px solid var(--gray-200);
+            transition: all 0.2s ease;
+        }
+
+        .characteristic:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-light);
         }
 
         .test-container {
@@ -123,15 +172,17 @@
         .question {
             margin-bottom: 40px;
             padding: 32px;
-            background: #f5f5f7;
+            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
             border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
         .question h3 {
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 20px;
-            color: #1d1d1f;
+            color: var(--gray-900);
             margin-top: 0;
         }
 
@@ -143,7 +194,7 @@
         .answer {
             padding: 16px 20px;
             background: white;
-            border: 1px solid #d2d2d7;
+            border: 2px solid var(--gray-200);
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -151,18 +202,23 @@
         }
 
         .answer:hover {
-            border-color: #0071e3;
-            background: #f8f9fa;
+            border-color: var(--primary-light);
+            background: var(--gray-50);
+            transform: translateY(-1px);
         }
 
         .correct {
-            background: #f0f7ff;
-            border-color: #0071e3;
+            background: #dcfce7 !important;
+            border-color: var(--success) !important;
+            color: #166534;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
         }
 
         .incorrect {
-            background: #fff0f0;
-            border-color: #ff3b30;
+            background: #fef2f2 !important;
+            border-color: var(--error) !important;
+            color: #991b1b;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
         }
 
         .modal {
@@ -186,20 +242,23 @@
             max-width: 400px;
             width: 90%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
         }
 
         .modal h2 {
-            color: #0071e3;
+            color: var(--success);
             margin-bottom: 16px;
         }
 
         .next-block {
             display: none;
-            background: #f5f5f7;
+            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
             padding: 40px;
             border-radius: 16px;
             text-align: center;
             margin-top: 40px;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
         }
 
         .subsection {
@@ -291,7 +350,7 @@
                         </div>
                     </div>
                     
-                    <div class="highlight-box">
+                    <div class="warning-box">
                         Человек может быть заражён, но иммунная система ещё не выработала ответ (Диаскинтест не дал положительной реакции). Чтобы точнее оценить ситуацию, рекомендуется повторить тесты через 3, 6 и 12 месяцев.
                     </div>
                 </div>
@@ -317,7 +376,7 @@
         </section>
 
         <section class="section">
-            <h2>Проверка знаний</h2>
+            <h2>Контроль знаний</h2>
             
             <div class="test-container">
                 <div class="question" id="question1">
