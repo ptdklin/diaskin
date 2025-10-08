@@ -720,13 +720,15 @@
             
             document.getElementById('ctQuestion').style.display = 'block';
             
-            // Прокручиваем ВВЕРХ чтобы увидеть больше контента
+            // Ждем немного чтобы блок успел отобразиться, затем прокручиваем к нему
             setTimeout(() => {
-                window.scrollBy({
-                    top: -400,  // Поднимаем страницу на 400px вверх (вдвое больше)
-                    behavior: 'smooth'
+                const ctQuestion = document.getElementById('ctQuestion');
+                // Прокручиваем так, чтобы элемент был вверху экрана
+                ctQuestion.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
                 });
-            }, 100);
+            }, 50);
             
         }, 800);
     } else {
