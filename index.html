@@ -710,25 +710,18 @@
         answer.classList.add('correct');
         
         setTimeout(() => {
-            // Скрываем ТОЛЬКО варианты ответов, оставляя картинку и заголовок
-            const answersBlock = document.querySelector('#fluorQuestion .answers');
-            answersBlock.style.display = 'none';
-            
-            // Меняем заголовок чтобы было понятно
-            const questionTitle = document.querySelector('#fluorQuestion h3');
-            questionTitle.textContent = 'На флюорографии изменений не видно';
-            
+            // ВОЗВРАЩАЕМ КАК БЫЛО - скрываем весь вопрос
+            document.getElementById('fluorQuestion').style.display = 'none';
             document.getElementById('ctQuestion').style.display = 'block';
             
-            // Ждем немного чтобы блок успел отобразиться, затем прокручиваем к нему
+            // Прокручиваем к началу visualDiagnostics раздела
             setTimeout(() => {
-                const ctQuestion = document.getElementById('ctQuestion');
-                // Прокручиваем так, чтобы элемент был вверху экрана
-                ctQuestion.scrollIntoView({ 
+                const visualSection = document.getElementById('visualDiagnostics');
+                visualSection.scrollIntoView({ 
                     behavior: 'smooth', 
                     block: 'start' 
                 });
-            }, 50);
+            }, 100);
             
         }, 800);
     } else {
