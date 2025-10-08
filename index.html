@@ -663,26 +663,29 @@ document.addEventListener('DOMContentLoaded', function() {
     let showFinalTimer = null;
 
     function initTest() {
+        // Показываем только первый базовый вопрос
         basicQuestions.forEach((q, i) => q.style.display = i === 0 ? 'block' : 'none');
 
+        // Навешиваем обработчики на ответы базовых вопросов
         document.querySelectorAll('#knowledgeTest .answer').forEach(a =>
             a.addEventListener('click', handleBasicAnswerClick)
         );
 
+        // Навешиваем обработчики на флюорограмму
         document.querySelectorAll('#fluorQuestion .answer').forEach(a =>
             a.addEventListener('click', handleFluorAnswerClick)
         );
 
+        // Навешиваем обработчики на CT опции
         document.querySelectorAll('.ct-option').forEach(o =>
             o.addEventListener('click', handleCtOptionClick)
         );
 
-        // 👆 Навешиваем обработчик один раз
+        // Навешиваем обработчик на клик по картинке CT результата
         ctResult.addEventListener('click', () => {
-            if (ctResult.style.display === 'block') {
-                clearTimeout(showFinalTimer);
-                showFinalBlocks();
-            }
+            // Просто скроллим к следующему блоку, не скрывая текущий
+            clearTimeout(showFinalTimer);
+            showFinalBlocks();
         });
     }
 
@@ -707,6 +710,7 @@ document.addEventListener('DOMContentLoaded', function() {
             q.querySelector('.answers').style.display = 'none';
             q.querySelector('h3').textContent =
                 'Флюорограмма выглядит чистой, но это обманчиво...';
+
             const ctQ = document.getElementById('ctQuestion');
             ctQ.style.display = 'block';
             ctQ.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -720,22 +724,24 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!ok) return setTimeout(() => o.classList.remove('incorrect'), 800);
 
         setTimeout(() => {
-            document.getElementById('ctQuestion').style.display = 'none';
+            const ctQ = document.getElementById('ctQuestion');
+            ctQ.style.display = 'none';
             ctResult.style.display = 'block';
             ctResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-            // ⏱️ Через 7 секунд показать финальные блоки
+            // Через 7 секунд показать финальные блоки
             showFinalTimer = setTimeout(showFinalBlocks, 7000);
         }, 800);
     }
 
     function showFinalBlocks() {
-        ctResult.style.display = 'none';
-        document.getElementById('conclusionBlock').style.display = 'block';
+        // Не скрываем ctResult, просто показываем следующие блоки
+        const nextBlock = document.getElementById('conclusionBlock');
+        nextBlock.style.display = 'block';
         finalInfo.style.display = 'block';
         authorSignature.style.display = 'block';
-        document.getElementById('conclusionBlock')
-            .scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        nextBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function showNextBasicQuestion() {
@@ -764,6 +770,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initTest();
 });
 </script>
+
 
 
 
