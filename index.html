@@ -655,151 +655,24 @@
     </div>
 
     <script>
+// Простой тест - проверяем работу кнопок
+console.log('Скрипт запущен!');
+
+// Ждем загрузки страницы
 document.addEventListener('DOMContentLoaded', function() {
-    // Элементы
-    const basicQuestions = document.querySelectorAll('#knowledgeTest .question');
-    const successModal = document.getElementById('successModal');
-    const knowledgeTest = document.getElementById('knowledgeTest');
-    const visualDiagnostics = document.getElementById('visualDiagnostics');
+    console.log('Страница загружена!');
     
-    let currentBasicQuestion = 0;
+    // Находим все кнопки первого теста
+    const buttons = document.querySelectorAll('#knowledgeTest .answer');
+    console.log('Найдено кнопок в первом тесте:', buttons.length);
     
-    // Инициализация теста
-    function initTest() {
-        console.log('Тест инициализирован');
-        
-        // Скрываем все вопросы кроме первого
-        basicQuestions.forEach((question, index) => {
-            question.style.display = index === 0 ? 'block' : 'none';
+    // Вешаем простой обработчик
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            alert('Кнопка работает! Текст: ' + this.textContent);
+            this.style.background = 'yellow'; // Подсветим кнопку
         });
-        
-        // Обработчики для основного теста
-        document.querySelectorAll('#knowledgeTest .answer').forEach(answer => {
-            answer.addEventListener('click', handleBasicAnswerClick);
-        });
-        
-        // Обработчики для визуального теста
-        document.querySelectorAll('#fluorQuestion .answer').forEach(answer => {
-            answer.addEventListener('click', handleFluorAnswerClick);
-        });
-        
-        document.querySelectorAll('.ct-option').forEach(option => {
-            option.addEventListener('click', handleCtOptionClick);
-        });
-    }
-    
-    // Обработчик основного теста
-    function handleBasicAnswerClick(e) {
-        const answer = e.target;
-        const isCorrect = answer.getAttribute('data-correct') === 'true';
-        
-        console.log('Ответ кликнут:', answer.textContent, isCorrect);
-        
-        if (isCorrect) {
-            answer.classList.add('correct');
-            
-            setTimeout(() => {
-                showNextBasicQuestion();
-            }, 800);
-        } else {
-            answer.classList.add('incorrect');
-            
-            setTimeout(() => {
-                answer.classList.remove('incorrect');
-            }, 800);
-        }
-    }
-    
-    // Показать следующий вопрос
-    function showNextBasicQuestion() {
-        basicQuestions[currentBasicQuestion].style.display = 'none';
-        currentBasicQuestion++;
-        
-        if (currentBasicQuestion < basicQuestions.length) {
-            basicQuestions[currentBasicQuestion].style.display = 'block';
-        } else {
-            showSuccessModal();
-        }
-    }
-    
-    // Модальное окно успеха
-    function showSuccessModal() {
-        successModal.style.display = 'flex';
-        
-        setTimeout(() => {
-            successModal.style.display = 'none';
-            showVisualDiagnostics();
-        }, 2000);
-    }
-    
-    // Показать визуальную диагностику
-    function showVisualDiagnostics() {
-        knowledgeTest.style.display = 'none';
-        visualDiagnostics.style.display = 'block';
-        visualDiagnostics.scrollIntoView({ behavior: 'smooth' });
-    }
-    
-    // Обработчик флюорографии
-    function handleFluorAnswerClick(e) {
-        const answer = e.target;
-        const isCorrect = answer.getAttribute('data-fluor-correct') === 'true';
-        
-        if (isCorrect) {
-            answer.classList.add('correct');
-            
-            setTimeout(() => {
-                document.getElementById('fluorQuestion').style.display = 'none';
-                document.getElementById('ctQuestion').style.display = 'block';
-                
-                setTimeout(() => {
-                    window.scrollBy({ top: -70, behavior: 'smooth' });
-                }, 100);
-                
-            }, 800);
-        } else {
-            answer.classList.add('incorrect');
-            
-            setTimeout(() => {
-                answer.classList.remove('incorrect');
-            }, 800);
-        }
-    }
-    
-    // Обработчик КТ
-    function handleCtOptionClick(e) {
-        const option = e.target;
-        const isCorrect = option.getAttribute('data-ct-correct') === 'true';
-        
-        if (isCorrect) {
-            option.classList.add('correct');
-            
-            setTimeout(() => {
-                document.getElementById('ctQuestion').style.display = 'none';
-                document.getElementById('ctResult').style.display = 'block';
-                
-                setTimeout(() => {
-                    window.scrollBy({ top: -30, behavior: 'smooth' });
-                }, 100);
-                
-                setTimeout(() => {
-                    document.getElementById('conclusionBlock').style.display = 'block';
-                    document.getElementById('finalInfo').style.display = 'block';
-                    document.getElementById('authorSignature').style.display = 'block';
-                    document.getElementById('conclusionBlock').scrollIntoView({ behavior: 'smooth' });
-                }, 10000);
-                
-            }, 800);
-        } else {
-            option.classList.add('incorrect');
-            
-            setTimeout(() => {
-                option.classList.remove('incorrect');
-            }, 800);
-        }
-    }
-    
-    // Запуск
-    initTest();
+    });
 });
 </script>
 </body>
