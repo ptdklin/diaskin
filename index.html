@@ -663,29 +663,24 @@ document.addEventListener('DOMContentLoaded', function() {
     let showFinalTimer = null;
 
     function initTest() {
-        // Показываем только первый базовый вопрос
         basicQuestions.forEach((q, i) => q.style.display = i === 0 ? 'block' : 'none');
 
-        // Навешиваем обработчики на ответы базовых вопросов
         document.querySelectorAll('#knowledgeTest .answer').forEach(a =>
             a.addEventListener('click', handleBasicAnswerClick)
         );
 
-        // Навешиваем обработчики на флюорограмму
         document.querySelectorAll('#fluorQuestion .answer').forEach(a =>
             a.addEventListener('click', handleFluorAnswerClick)
         );
 
-        // Навешиваем обработчики на CT опции
         document.querySelectorAll('.ct-option').forEach(o =>
             o.addEventListener('click', handleCtOptionClick)
         );
 
-        // Навешиваем обработчик на клик по картинке CT результата
+        // Клик по картинке CT теперь просто скроллит к финальному блоку
         ctResult.addEventListener('click', () => {
-            // Просто скроллим к следующему блоку, не скрывая текущий
             clearTimeout(showFinalTimer);
-            showFinalBlocks();
+            scrollToFinalBlocks();
         });
     }
 
@@ -724,18 +719,17 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!ok) return setTimeout(() => o.classList.remove('incorrect'), 800);
 
         setTimeout(() => {
-            const ctQ = document.getElementById('ctQuestion');
-            ctQ.style.display = 'none';
+            document.getElementById('ctQuestion').style.display = 'none';
             ctResult.style.display = 'block';
             ctResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-            // Через 7 секунд показать финальные блоки
-            showFinalTimer = setTimeout(showFinalBlocks, 7000);
+            // Через 7 секунд показать финальные блоки автоматически
+            showFinalTimer = setTimeout(scrollToFinalBlocks, 7000);
         }, 800);
     }
 
-    function showFinalBlocks() {
-        // Не скрываем ctResult, просто показываем следующие блоки
+    // Новая функция: только скроллит к финальному блоку, ничего не скрывая
+    function scrollToFinalBlocks() {
         const nextBlock = document.getElementById('conclusionBlock');
         nextBlock.style.display = 'block';
         finalInfo.style.display = 'block';
@@ -770,6 +764,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initTest();
 });
 </script>
+
 
 
 
