@@ -720,9 +720,10 @@
             
             document.getElementById('ctQuestion').style.display = 'block';
             
+            // Прокручиваем ВВЕРХ чтобы увидеть больше контента
             setTimeout(() => {
                 window.scrollBy({
-                    top: -70,
+                    top: -200,  // Поднимаем страницу на 200px вверх
                     behavior: 'smooth'
                 });
             }, 100);
