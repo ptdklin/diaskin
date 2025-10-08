@@ -655,24 +655,153 @@
     </div>
 
     <script>
-// Простой тест - проверяем работу кнопок
-console.log('Скрипт запущен!');
-
-// Ждем загрузки страницы
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Страница загружена!');
+    console.log('=== ТЕСТ ЗАПУЩЕН ===');
     
-    // Находим все кнопки первого теста
-    const buttons = document.querySelectorAll('#knowledgeTest .answer');
-    console.log('Найдено кнопок в первом тесте:', buttons.length);
+    // Основной тест
+    const basicQuestions = document.querySelectorAll('#knowledgeTest .question');
+    const successModal = document.getElementById('successModal');
+    const knowledgeTest = document.getElementById('knowledgeTest');
+    const visualDiagnostics = document.getElementById('visualDiagnostics');
+    const finalInfo = document.getElementById('finalInfo');
+    const authorSignature = document.getElementById('authorSignature');
     
-    // Вешаем простой обработчик
-    buttons.forEach(button => {
-        button.addEventListener('click', function() {
-            alert('Кнопка работает! Текст: ' + this.textContent);
-            this.style.background = 'yellow'; // Подсветим кнопку
+    let currentBasicQuestion = 0;
+    
+    function initTest() {
+        console.log('Инициализация теста, вопросов:', basicQuestions.length);
+        
+        // Скрываем все вопросы кроме первого
+        basicQuestions.forEach((question, index) => {
+            question.style.display = index === 0 ? 'block' : 'none';
         });
-    });
+        
+        // Обработчики для ОСНОВНОГО теста
+        document.querySelectorAll('#knowledgeTest .answer').forEach(answer => {
+            answer.addEventListener('click', function(e) {
+                handleBasicAnswerClick(e);
+            });
+        });
+        
+        // Обработчики для визуального теста
+        document.querySelectorAll('#fluorQuestion .answer').forEach(answer => {
+            answer.addEventListener('click', handleFluorAnswerClick);
+        });
+        
+        document.querySelectorAll('.ct-option').forEach(option => {
+            option.addEventListener('click', handleCtOptionClick);
+        });
+    }
+    
+    function handleBasicAnswerClick(e) {
+        console.log('Клик в основном тесте:', e.target.textContent);
+        const answer = e.target;
+        const isCorrect = answer.getAttribute('data-correct') === 'true';
+        
+        if (isCorrect) {
+            console.log('Правильный ответ!');
+            answer.classList.add('correct');
+            
+            setTimeout(() => {
+                showNextBasicQuestion();
+            }, 800);
+        } else {
+            console.log('Неправильный ответ!');
+            answer.classList.add('incorrect');
+            
+            setTimeout(() => {
+                answer.classList.remove('incorrect');
+            }, 800);
+        }
+    }
+    
+    function showNextBasicQuestion() {
+        console.log('Переход к следующему вопросу. Текущий:', currentBasicQuestion);
+        basicQuestions[currentBasicQuestion].style.display = 'none';
+        currentBasicQuestion++;
+        
+        if (currentBasicQuestion < basicQuestions.length) {
+            basicQuestions[currentBasicQuestion].style.display = 'block';
+            console.log('Показан вопрос:', currentBasicQuestion);
+        } else {
+            console.log('Тест завершен!');
+            showSuccessModal();
+        }
+    }
+    
+    function showSuccessModal() {
+        console.log('Показ модального окна');
+        successModal.style.display = 'flex';
+        
+        setTimeout(() => {
+            successModal.style.display = 'none';
+            showVisualDiagnostics();
+        }, 2000);
+    }
+    
+    function showVisualDiagnostics() {
+        knowledgeTest.style.display = 'none';
+        visualDiagnostics.style.display = 'block';
+        visualDiagnostics.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    function handleFluorAnswerClick(e) {
+        const answer = e.target;
+        const isCorrect = answer.getAttribute('data-fluor-correct') === 'true';
+        
+        if (isCorrect) {
+            answer.classList.add('correct');
+            
+            setTimeout(() => {
+                document.getElementById('fluorQuestion').style.display = 'none';
+                document.getElementById('ctQuestion').style.display = 'block';
+                
+                setTimeout(() => {
+                    window.scrollBy({ top: -70, behavior: 'smooth' });
+                }, 100);
+            }, 800);
+        } else {
+            answer.classList.add('incorrect');
+            
+            setTimeout(() => {
+                answer.classList.remove('incorrect');
+            }, 800);
+        }
+    }
+    
+    function handleCtOptionClick(e) {
+        const option = e.target;
+        const isCorrect = option.getAttribute('data-ct-correct') === 'true';
+        
+        if (isCorrect) {
+            option.classList.add('correct');
+            
+            setTimeout(() => {
+                document.getElementById('ctQuestion').style.display = 'none';
+                document.getElementById('ctResult').style.display = 'block';
+                
+                setTimeout(() => {
+                    window.scrollBy({ top: -30, behavior: 'smooth' });
+                }, 100);
+                
+                setTimeout(() => {
+                    document.getElementById('conclusionBlock').style.display = 'block';
+                    document.getElementById('finalInfo').style.display = 'block';
+                    document.getElementById('authorSignature').style.display = 'block';
+                    document.getElementById('conclusionBlock').scrollIntoView({ behavior: 'smooth' });
+                }, 10000);
+            }, 800);
+        } else {
+            option.classList.add('incorrect');
+            
+            setTimeout(() => {
+                option.classList.remove('incorrect');
+            }, 800);
+        }
+    }
+    
+    // Запускаем тест
+    initTest();
 });
 </script>
 </body>
