@@ -661,19 +661,16 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentBasicQuestion = 0;
     
     function initTest() {
-        // Скрываем все вопросы кроме первого в основном тесте
         basicQuestions.forEach((question, index) => {
             if (index > 0) {
                 question.style.display = 'none';
             }
         });
         
-        // Обработчики для основного теста
         document.querySelectorAll('#knowledgeTest .answer').forEach(answer => {
             answer.addEventListener('click', handleBasicAnswerClick);
         });
         
-        // Обработчики для визуального теста
         document.querySelectorAll('#fluorQuestion .answer').forEach(answer => {
             answer.addEventListener('click', handleFluorAnswerClick);
         });
@@ -689,13 +686,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (isCorrect) {
             answer.classList.add('correct');
-            
             setTimeout(() => {
                 showNextBasicQuestion();
             }, 800);
         } else {
             answer.classList.add('incorrect');
-            
             setTimeout(() => {
                 answer.classList.remove('incorrect');
             }, 800);
@@ -708,27 +703,20 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (isCorrect) {
             answer.classList.add('correct');
-            
             setTimeout(() => {
                 document.getElementById('fluorQuestion').style.display = 'none';
                 document.getElementById('ctQuestion').style.display = 'block';
                 
-                // Прокручиваем к блоку ctQuestion с отступом
+                // ПРОСТО ПРОКРУТИМ В САМЫЙ ВЕРХ СТРАНИЦЫ
                 setTimeout(() => {
-                    const ctQuestion = document.getElementById('ctQuestion');
-                    const elementPosition = ctQuestion.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - 150; // Отступ 150px от верха
-                    
                     window.scrollTo({
-                        top: offsetPosition,
+                        top: 0,
                         behavior: 'smooth'
                     });
                 }, 100);
-                
             }, 800);
         } else {
             answer.classList.add('incorrect');
-            
             setTimeout(() => {
                 answer.classList.remove('incorrect');
             }, 800);
@@ -741,42 +729,27 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (isCorrect) {
             option.classList.add('correct');
-            
             setTimeout(() => {
                 document.getElementById('ctQuestion').style.display = 'none';
                 document.getElementById('ctResult').style.display = 'block';
                 
-                // Прокручиваем к блоку ctResult с отступом
+                // ТОЖЕ ПРОКРУТИМ В ВЕРХ
                 setTimeout(() => {
-                    const ctResult = document.getElementById('ctResult');
-                    const elementPosition = ctResult.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - 100; // Отступ 100px от верха
-                    
                     window.scrollTo({
-                        top: offsetPosition,
+                        top: 0,
                         behavior: 'smooth'
                     });
                 }, 100);
                 
-                // Через 10 секунд показываем финальные блоки
                 setTimeout(() => {
                     document.getElementById('conclusionBlock').style.display = 'block';
                     document.getElementById('finalInfo').style.display = 'block';
                     document.getElementById('authorSignature').style.display = 'block';
-                    
-                    // Прокручиваем к заключению
-                    setTimeout(() => {
-                        document.getElementById('conclusionBlock').scrollIntoView({ 
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }, 100);
-                    
+                    document.getElementById('conclusionBlock').scrollIntoView({ behavior: 'smooth' });
                 }, 10000);
             }, 800);
         } else {
             option.classList.add('incorrect');
-            
             setTimeout(() => {
                 option.classList.remove('incorrect');
             }, 800);
@@ -786,7 +759,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function showNextBasicQuestion() {
         basicQuestions[currentBasicQuestion].style.display = 'none';
         currentBasicQuestion++;
-        
         if (currentBasicQuestion < basicQuestions.length) {
             basicQuestions[currentBasicQuestion].style.display = 'block';
         } else {
@@ -796,7 +768,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function showSuccessModal() {
         successModal.style.display = 'flex';
-        
         setTimeout(() => {
             successModal.style.display = 'none';
             showVisualDiagnostics();
@@ -806,14 +777,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function showVisualDiagnostics() {
         knowledgeTest.style.display = 'none';
         visualDiagnostics.style.display = 'block';
-        
-        // Прокручиваем к началу визуальной диагностики
-        setTimeout(() => {
-            visualDiagnostics.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }, 100);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     
     initTest();
