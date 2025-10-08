@@ -663,17 +663,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function initTest() {
         // Скрываем все вопросы кроме первого в основном тесте
         basicQuestions.forEach((question, index) => {
-            if (index > 0) {
-                question.style.display = 'none';
-            }
+            if (index > 0) question.style.display = 'none';
         });
         
-        // Обработчики для основного теста
+        // Обработчики основного теста
         document.querySelectorAll('#knowledgeTest .answer').forEach(answer => {
             answer.addEventListener('click', handleBasicAnswerClick);
         });
         
-        // Обработчики для визуального теста
+        // Обработчики визуального теста
         document.querySelectorAll('#fluorQuestion .answer').forEach(answer => {
             answer.addEventListener('click', handleFluorAnswerClick);
         });
@@ -685,72 +683,61 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function handleBasicAnswerClick(e) {
         const answer = e.target;
-        const isCorrect = answer.getAttribute('data-correct') === 'true';
+        const isCorrect = answer.dataset.correct === 'true';
         
         if (isCorrect) {
             answer.classList.add('correct');
-            
-            setTimeout(() => {
-                showNextBasicQuestion();
-            }, 800);
+            setTimeout(() => showNextBasicQuestion(), 800);
         } else {
             answer.classList.add('incorrect');
-            
-            setTimeout(() => {
-                answer.classList.remove('incorrect');
-            }, 800);
+            setTimeout(() => answer.classList.remove('incorrect'), 800);
         }
     }
-    
-    // 🔹 Теперь картинка image2.png остаётся видимой после ответа
+
+    // 🟢 Теперь картинка image2.png не скрывается
     function handleFluorAnswerClick(e) {
         const answer = e.target;
-        const isCorrect = answer.getAttribute('data-fluor-correct') === 'true';
+        const isCorrect = answer.dataset.fluorCorrect === 'true';
         
         if (isCorrect) {
             answer.classList.add('correct');
-            
             setTimeout(() => {
                 const fluorQuestion = document.getElementById('fluorQuestion');
                 const answersBlock = fluorQuestion.querySelector('.answers');
                 const questionText = fluorQuestion.querySelector('h3');
                 
-                // Скрываем только ответы
+                // Скрываем ответы, но не саму картинку
                 answersBlock.style.display = 'none';
                 
-                // Меняем текст под картинкой
-                questionText.textContent = 'Вот снимок, на котором не видно изменений — но они есть!';
+                // Меняем текст вопроса
+                questionText.textContent = 'Флюорограмма выглядит чистой, но это обманчиво...';
                 
-                // Показываем следующий блок
+                // Показываем следующий блок с КТ
                 const ctQuestion = document.getElementById('ctQuestion');
                 ctQuestion.style.display = 'block';
                 
-                // Прокручиваем к началу блока с КТ
+                // Прокручиваем к следующему блоку
                 setTimeout(() => {
                     ctQuestion.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 200);
+                }, 400);
             }, 800);
         } else {
             answer.classList.add('incorrect');
-            
-            setTimeout(() => {
-                answer.classList.remove('incorrect');
-            }, 800);
+            setTimeout(() => answer.classList.remove('incorrect'), 800);
         }
     }
-    
+
     function handleCtOptionClick(e) {
         const option = e.target;
-        const isCorrect = option.getAttribute('data-ct-correct') === 'true';
+        const isCorrect = option.dataset.ctCorrect === 'true';
         
         if (isCorrect) {
             option.classList.add('correct');
-            
             setTimeout(() => {
                 document.getElementById('ctQuestion').style.display = 'none';
                 document.getElementById('ctResult').style.display = 'block';
                 
-                // Прокручиваем к блоку с результатом
+                // Прокрутка к результату
                 setTimeout(() => {
                     document.getElementById('ctResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 200);
@@ -760,17 +747,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('conclusionBlock').style.display = 'block';
                     document.getElementById('finalInfo').style.display = 'block';
                     document.getElementById('authorSignature').style.display = 'block';
-                    
-                    // Прокрутка к заключению
                     document.getElementById('conclusionBlock').scrollIntoView({ behavior: 'smooth' });
                 }, 10000);
             }, 800);
         } else {
             option.classList.add('incorrect');
-            
-            setTimeout(() => {
-                option.classList.remove('incorrect');
-            }, 800);
+            setTimeout(() => option.classList.remove('incorrect'), 800);
         }
     }
     
@@ -787,7 +769,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function showSuccessModal() {
         successModal.style.display = 'flex';
-        
         setTimeout(() => {
             successModal.style.display = 'none';
             showVisualDiagnostics();
@@ -803,6 +784,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initTest();
 });
 </script>
+
 
 </body>
 </html>
