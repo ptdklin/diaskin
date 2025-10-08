@@ -694,7 +694,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 🟢 Теперь картинка image2.png не скрывается
+    // 🟢 Картинка image2.png остаётся видимой
     function handleFluorAnswerClick(e) {
         const answer = e.target;
         const isCorrect = answer.dataset.fluorCorrect === 'true';
@@ -742,13 +742,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('ctResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 200);
                 
-                // Через 10 секунд показываем финальные блоки
-                setTimeout(() => {
+                // 🕒 Через 7 секунд показываем финальные блоки
+                let showFinalTimeout = setTimeout(showFinalBlocks, 7000);
+
+                // 👆 Если пользователь тапнул — показать финал сразу
+                const ctResultBlock = document.getElementById('ctResult');
+                ctResultBlock.addEventListener('click', () => {
+                    clearTimeout(showFinalTimeout);
+                    showFinalBlocks();
+                });
+
+                function showFinalBlocks() {
                     document.getElementById('conclusionBlock').style.display = 'block';
                     document.getElementById('finalInfo').style.display = 'block';
                     document.getElementById('authorSignature').style.display = 'block';
                     document.getElementById('conclusionBlock').scrollIntoView({ behavior: 'smooth' });
-                }, 10000);
+                }
+
             }, 800);
         } else {
             option.classList.add('incorrect');
@@ -784,6 +794,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initTest();
 });
 </script>
+
 
 
 </body>
