@@ -657,14 +657,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const visualDiagnostics = document.getElementById('visualDiagnostics');
     const finalInfo = document.getElementById('finalInfo');
     const authorSignature = document.getElementById('authorSignature');
-    
+    const ctResult = document.getElementById('ctResult');
+
     let currentBasicQuestion = 0;
-    
+    let showFinalTimer = null;
+
     function initTest() {
         basicQuestions.forEach((q, i) => q.style.display = i === 0 ? 'block' : 'none');
-        document.querySelectorAll('#knowledgeTest .answer').forEach(a => a.addEventListener('click', handleBasicAnswerClick));
-        document.querySelectorAll('#fluorQuestion .answer').forEach(a => a.addEventListener('click', handleFluorAnswerClick));
-        document.querySelectorAll('.ct-option').forEach(o => o.addEventListener('click', handleCtOptionClick));
+
+        document.querySelectorAll('#knowledgeTest .answer').forEach(a =>
+            a.addEventListener('click', handleBasicAnswerClick)
+        );
+
+        document.querySelectorAll('#fluorQuestion .answer').forEach(a =>
+            a.addEventListener('click', handleFluorAnswerClick)
+        );
+
+        document.querySelectorAll('.ct-option').forEach(o =>
+            o.addEventListener('click', handleCtOptionClick)
+        );
+
+        // 👆 Навешиваем обработчик один раз
+        ctResult.addEventListener('click', () => {
+            if (ctResult.style.display === 'block') {
+                clearTimeout(showFinalTimer);
+                showFinalBlocks();
+            }
+        });
     }
 
     function handleBasicAnswerClick(e) {
@@ -672,7 +691,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const ok = a.dataset.correct === 'true';
         a.classList.add(ok ? 'correct' : 'incorrect');
         setTimeout(() => {
-            if (ok) showNextBasicQuestion(); else a.classList.remove('incorrect');
+            if (ok) showNextBasicQuestion();
+            else a.classList.remove('incorrect');
         }, 800);
     }
 
@@ -680,15 +700,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const a = e.target;
         const ok = a.dataset.fluorCorrect === 'true';
         a.classList.add(ok ? 'correct' : 'incorrect');
-        if (!ok) { setTimeout(() => a.classList.remove('incorrect'), 800); return; }
+        if (!ok) return setTimeout(() => a.classList.remove('incorrect'), 800);
 
         setTimeout(() => {
             const q = document.getElementById('fluorQuestion');
             q.querySelector('.answers').style.display = 'none';
-            q.querySelector('h3').textContent = 'Флюорограмма выглядит чистой, но это обманчиво...';
+            q.querySelector('h3').textContent =
+                'Флюорограмма выглядит чистой, но это обманчиво...';
             const ctQ = document.getElementById('ctQuestion');
             ctQ.style.display = 'block';
-            setTimeout(() => ctQ.scrollIntoView({ behavior: 'smooth', block: 'start' }), 400);
+            ctQ.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 800);
     }
 
@@ -696,32 +717,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const o = e.target;
         const ok = o.dataset.ctCorrect === 'true';
         o.classList.add(ok ? 'correct' : 'incorrect');
-        if (!ok) { setTimeout(() => o.classList.remove('incorrect'), 800); return; }
+        if (!ok) return setTimeout(() => o.classList.remove('incorrect'), 800);
 
         setTimeout(() => {
             document.getElementById('ctQuestion').style.display = 'none';
-            const ctResult = document.getElementById('ctResult');
             ctResult.style.display = 'block';
-            setTimeout(() => ctResult.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+            ctResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-            // ⏱️ Через 7 секунд показываем финальные блоки
-            let timer = setTimeout(showFinalBlocks, 7000);
-
-            // 👆 При тапе по блоку — показать финал сразу
-            ctResult.addEventListener('click', () => {
-                clearTimeout(timer);
-                showFinalBlocks();
-            });
-
-            function showFinalBlocks() {
-                // 🔹 Скрываем сам блок с картинкой 4
-                ctResult.style.display = 'none';
-                document.getElementById('conclusionBlock').style.display = 'block';
-                document.getElementById('finalInfo').style.display = 'block';
-                document.getElementById('authorSignature').style.display = 'block';
-                document.getElementById('conclusionBlock').scrollIntoView({ behavior: 'smooth' });
-            }
+            // ⏱️ Через 7 секунд показать финальные блоки
+            showFinalTimer = setTimeout(showFinalBlocks, 7000);
         }, 800);
+    }
+
+    function showFinalBlocks() {
+        ctResult.style.display = 'none';
+        document.getElementById('conclusionBlock').style.display = 'block';
+        finalInfo.style.display = 'block';
+        authorSignature.style.display = 'block';
+        document.getElementById('conclusionBlock')
+            .scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function showNextBasicQuestion() {
@@ -735,7 +749,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showSuccessModal() {
         successModal.style.display = 'flex';
-        setTimeout(() => { successModal.style.display = 'none'; showVisualDiagnostics(); }, 2000);
+        setTimeout(() => {
+            successModal.style.display = 'none';
+            showVisualDiagnostics();
+        }, 2000);
     }
 
     function showVisualDiagnostics() {
@@ -747,6 +764,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initTest();
 });
 </script>
+
 
 
 
