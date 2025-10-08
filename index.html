@@ -656,21 +656,21 @@
 
     <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Элементы
     const basicQuestions = document.querySelectorAll('#knowledgeTest .question');
     const successModal = document.getElementById('successModal');
     const knowledgeTest = document.getElementById('knowledgeTest');
     const visualDiagnostics = document.getElementById('visualDiagnostics');
-    const finalInfo = document.getElementById('finalInfo');
-    const authorSignature = document.getElementById('authorSignature');
     
     let currentBasicQuestion = 0;
     
+    // Инициализация теста
     function initTest() {
-        // Скрываем все вопросы кроме первого в основном тесте
+        console.log('Тест инициализирован');
+        
+        // Скрываем все вопросы кроме первого
         basicQuestions.forEach((question, index) => {
-            if (index > 0) {
-                question.style.display = 'none';
-            }
+            question.style.display = index === 0 ? 'block' : 'none';
         });
         
         // Обработчики для основного теста
@@ -688,9 +688,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Обработчик основного теста
     function handleBasicAnswerClick(e) {
         const answer = e.target;
         const isCorrect = answer.getAttribute('data-correct') === 'true';
+        
+        console.log('Ответ кликнут:', answer.textContent, isCorrect);
         
         if (isCorrect) {
             answer.classList.add('correct');
@@ -707,6 +710,36 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Показать следующий вопрос
+    function showNextBasicQuestion() {
+        basicQuestions[currentBasicQuestion].style.display = 'none';
+        currentBasicQuestion++;
+        
+        if (currentBasicQuestion < basicQuestions.length) {
+            basicQuestions[currentBasicQuestion].style.display = 'block';
+        } else {
+            showSuccessModal();
+        }
+    }
+    
+    // Модальное окно успеха
+    function showSuccessModal() {
+        successModal.style.display = 'flex';
+        
+        setTimeout(() => {
+            successModal.style.display = 'none';
+            showVisualDiagnostics();
+        }, 2000);
+    }
+    
+    // Показать визуальную диагностику
+    function showVisualDiagnostics() {
+        knowledgeTest.style.display = 'none';
+        visualDiagnostics.style.display = 'block';
+        visualDiagnostics.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Обработчик флюорографии
     function handleFluorAnswerClick(e) {
         const answer = e.target;
         const isCorrect = answer.getAttribute('data-fluor-correct') === 'true';
@@ -715,16 +748,11 @@ document.addEventListener('DOMContentLoaded', function() {
             answer.classList.add('correct');
             
             setTimeout(() => {
-                // Скрываем ВЕСЬ вопрос с флюорографией
                 document.getElementById('fluorQuestion').style.display = 'none';
                 document.getElementById('ctQuestion').style.display = 'block';
                 
-                // Прокручиваем чуть ниже для блока с КТ
                 setTimeout(() => {
-                    window.scrollBy({
-                        top: -70,
-                        behavior: 'smooth'
-                    });
+                    window.scrollBy({ top: -70, behavior: 'smooth' });
                 }, 100);
                 
             }, 800);
@@ -737,6 +765,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Обработчик КТ
     function handleCtOptionClick(e) {
         const option = e.target;
         const isCorrect = option.getAttribute('data-ct-correct') === 'true';
@@ -748,25 +777,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('ctQuestion').style.display = 'none';
                 document.getElementById('ctResult').style.display = 'block';
                 
-                // Прокручиваем чуть ниже для блока "Вот он небольшой очаг"
                 setTimeout(() => {
-                    window.scrollBy({
-                        top: -30,
-                        behavior: 'smooth'
-                    });
+                    window.scrollBy({ top: -30, behavior: 'smooth' });
                 }, 100);
                 
-                // Через 10 секунд показываем ВСЕ финальные блоки и прокручиваем к заключению
                 setTimeout(() => {
-                    // Показываем все три блока одновременно
                     document.getElementById('conclusionBlock').style.display = 'block';
                     document.getElementById('finalInfo').style.display = 'block';
                     document.getElementById('authorSignature').style.display = 'block';
-                    
-                    // Прокручиваем только к блоку с заключением
                     document.getElementById('conclusionBlock').scrollIntoView({ behavior: 'smooth' });
-                    
                 }, 10000);
+                
             }, 800);
         } else {
             option.classList.add('incorrect');
@@ -777,32 +798,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    function showNextBasicQuestion() {
-        basicQuestions[currentBasicQuestion].style.display = 'none';
-        currentBasicQuestion++;
-        
-        if (currentBasicQuestion < basicQuestions.length) {
-            basicQuestions[currentBasicQuestion].style.display = 'block';
-        } else {
-            showSuccessModal();
-        }
-    }
-    
-    function showSuccessModal() {
-        successModal.style.display = 'flex';
-        
-        setTimeout(() => {
-            successModal.style.display = 'none';
-            showVisualDiagnostics();
-        }, 2000);
-    }
-    
-    function showVisualDiagnostics() {
-        knowledgeTest.style.display = 'none';
-        visualDiagnostics.style.display = 'block';
-        visualDiagnostics.scrollIntoView({ behavior: 'smooth' });
-    }
-    
+    // Запуск
     initTest();
 });
 </script>
