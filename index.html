@@ -582,19 +582,24 @@
             </div>
 
             <div class="subsection" id="interactiveCase">
-                <h3>А сможете ли вы найти ранние изменения?</h3>
-                
-                <div class="question" id="fluorQuestion">
-                    <h3>Видите ли вы здесь патологические изменения?</h3>
-                    <div class="image-comparison">
-                        <img src="image2.png" alt="Чистая флюорограмма">
-                    </div>
-                    <div class="answers">
-                        <div class="answer" data-fluor-correct="false">Да, вижу изменения</div>
-                        <div class="answer" data-fluor-correct="true">Нет, все чисто</div>
-                        <div class="answer" data-fluor-correct="false">Не уверен(а)</div>
-                    </div>
-                </div>
+    <h3>А сможете ли вы найти ранние изменения?</h3>
+    
+    <!-- Картинка 2 вынесена отдельно -->
+    <div class="image-comparison" id="fluorImage">
+        <img src="image2.png" alt="Чистая флюорограмма">
+    </div>
+    
+    <div class="question" id="fluorQuestion">
+        <h3>Видите ли вы здесь патологические изменения?</h3>
+        <div class="answers">
+            <div class="answer" data-fluor-correct="false">Да, вижу изменения</div>
+            <div class="answer" data-fluor-correct="true">Нет, все чисто</div>
+            <div class="answer" data-fluor-correct="false">Не уверен(а)</div>
+        </div>
+    </div>
+
+    <!-- остальной код без изменений -->
+</div>
 
                 <div class="question" id="ctQuestion" style="display: none;">
                     <h3>На самом деле, у пациента с "чистой" флюорографией была ранняя стадия туберкулеза. На флюорографии изменения не видны. Но посмотрите на КТ этого же пациента:</h3>
