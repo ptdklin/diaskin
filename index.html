@@ -661,139 +661,93 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentBasicQuestion = 0;
     
     function initTest() {
-        // Скрываем все вопросы кроме первого в основном тесте
-        basicQuestions.forEach((question, index) => {
-            if (index > 0) question.style.display = 'none';
-        });
-        
-        // Обработчики основного теста
-        document.querySelectorAll('#knowledgeTest .answer').forEach(answer => {
-            answer.addEventListener('click', handleBasicAnswerClick);
-        });
-        
-        // Обработчики визуального теста
-        document.querySelectorAll('#fluorQuestion .answer').forEach(answer => {
-            answer.addEventListener('click', handleFluorAnswerClick);
-        });
-        
-        document.querySelectorAll('.ct-option').forEach(option => {
-            option.addEventListener('click', handleCtOptionClick);
-        });
-    }
-    
-    function handleBasicAnswerClick(e) {
-        const answer = e.target;
-        const isCorrect = answer.dataset.correct === 'true';
-        
-        if (isCorrect) {
-            answer.classList.add('correct');
-            setTimeout(() => showNextBasicQuestion(), 800);
-        } else {
-            answer.classList.add('incorrect');
-            setTimeout(() => answer.classList.remove('incorrect'), 800);
-        }
+        basicQuestions.forEach((q, i) => q.style.display = i === 0 ? 'block' : 'none');
+        document.querySelectorAll('#knowledgeTest .answer').forEach(a => a.addEventListener('click', handleBasicAnswerClick));
+        document.querySelectorAll('#fluorQuestion .answer').forEach(a => a.addEventListener('click', handleFluorAnswerClick));
+        document.querySelectorAll('.ct-option').forEach(o => o.addEventListener('click', handleCtOptionClick));
     }
 
-    // 🟢 Картинка image2.png остаётся видимой
+    function handleBasicAnswerClick(e) {
+        const a = e.target;
+        const ok = a.dataset.correct === 'true';
+        a.classList.add(ok ? 'correct' : 'incorrect');
+        setTimeout(() => {
+            if (ok) showNextBasicQuestion(); else a.classList.remove('incorrect');
+        }, 800);
+    }
+
     function handleFluorAnswerClick(e) {
-        const answer = e.target;
-        const isCorrect = answer.dataset.fluorCorrect === 'true';
-        
-        if (isCorrect) {
-            answer.classList.add('correct');
-            setTimeout(() => {
-                const fluorQuestion = document.getElementById('fluorQuestion');
-                const answersBlock = fluorQuestion.querySelector('.answers');
-                const questionText = fluorQuestion.querySelector('h3');
-                
-                // Скрываем ответы, но не саму картинку
-                answersBlock.style.display = 'none';
-                
-                // Меняем текст вопроса
-                questionText.textContent = 'Флюорограмма выглядит чистой, но это обманчиво...';
-                
-                // Показываем следующий блок с КТ
-                const ctQuestion = document.getElementById('ctQuestion');
-                ctQuestion.style.display = 'block';
-                
-                // Прокручиваем к следующему блоку
-                setTimeout(() => {
-                    ctQuestion.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 400);
-            }, 800);
-        } else {
-            answer.classList.add('incorrect');
-            setTimeout(() => answer.classList.remove('incorrect'), 800);
-        }
+        const a = e.target;
+        const ok = a.dataset.fluorCorrect === 'true';
+        a.classList.add(ok ? 'correct' : 'incorrect');
+        if (!ok) { setTimeout(() => a.classList.remove('incorrect'), 800); return; }
+
+        setTimeout(() => {
+            const q = document.getElementById('fluorQuestion');
+            q.querySelector('.answers').style.display = 'none';
+            q.querySelector('h3').textContent = 'Флюорограмма выглядит чистой, но это обманчиво...';
+            const ctQ = document.getElementById('ctQuestion');
+            ctQ.style.display = 'block';
+            setTimeout(() => ctQ.scrollIntoView({ behavior: 'smooth', block: 'start' }), 400);
+        }, 800);
     }
 
     function handleCtOptionClick(e) {
-        const option = e.target;
-        const isCorrect = option.dataset.ctCorrect === 'true';
-        
-        if (isCorrect) {
-            option.classList.add('correct');
-            setTimeout(() => {
-                document.getElementById('ctQuestion').style.display = 'none';
-                document.getElementById('ctResult').style.display = 'block';
-                
-                // Прокрутка к результату
-                setTimeout(() => {
-                    document.getElementById('ctResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 200);
-                
-                // 🕒 Через 7 секунд показываем финальные блоки
-                let showFinalTimeout = setTimeout(showFinalBlocks, 7000);
+        const o = e.target;
+        const ok = o.dataset.ctCorrect === 'true';
+        o.classList.add(ok ? 'correct' : 'incorrect');
+        if (!ok) { setTimeout(() => o.classList.remove('incorrect'), 800); return; }
 
-                // 👆 Если пользователь тапнул — показать финал сразу
-                const ctResultBlock = document.getElementById('ctResult');
-                ctResultBlock.addEventListener('click', () => {
-                    clearTimeout(showFinalTimeout);
-                    showFinalBlocks();
-                });
+        setTimeout(() => {
+            document.getElementById('ctQuestion').style.display = 'none';
+            const ctResult = document.getElementById('ctResult');
+            ctResult.style.display = 'block';
+            setTimeout(() => ctResult.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
 
-                function showFinalBlocks() {
-                    document.getElementById('conclusionBlock').style.display = 'block';
-                    document.getElementById('finalInfo').style.display = 'block';
-                    document.getElementById('authorSignature').style.display = 'block';
-                    document.getElementById('conclusionBlock').scrollIntoView({ behavior: 'smooth' });
-                }
+            // ⏱️ Через 7 секунд показываем финальные блоки
+            let timer = setTimeout(showFinalBlocks, 7000);
 
-            }, 800);
-        } else {
-            option.classList.add('incorrect');
-            setTimeout(() => option.classList.remove('incorrect'), 800);
-        }
+            // 👆 При тапе по блоку — показать финал сразу
+            ctResult.addEventListener('click', () => {
+                clearTimeout(timer);
+                showFinalBlocks();
+            });
+
+            function showFinalBlocks() {
+                // 🔹 Скрываем сам блок с картинкой 4
+                ctResult.style.display = 'none';
+                document.getElementById('conclusionBlock').style.display = 'block';
+                document.getElementById('finalInfo').style.display = 'block';
+                document.getElementById('authorSignature').style.display = 'block';
+                document.getElementById('conclusionBlock').scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 800);
     }
-    
+
     function showNextBasicQuestion() {
         basicQuestions[currentBasicQuestion].style.display = 'none';
         currentBasicQuestion++;
-        
-        if (currentBasicQuestion < basicQuestions.length) {
+        if (currentBasicQuestion < basicQuestions.length)
             basicQuestions[currentBasicQuestion].style.display = 'block';
-        } else {
+        else
             showSuccessModal();
-        }
     }
-    
+
     function showSuccessModal() {
         successModal.style.display = 'flex';
-        setTimeout(() => {
-            successModal.style.display = 'none';
-            showVisualDiagnostics();
-        }, 2000);
+        setTimeout(() => { successModal.style.display = 'none'; showVisualDiagnostics(); }, 2000);
     }
-    
+
     function showVisualDiagnostics() {
         knowledgeTest.style.display = 'none';
         visualDiagnostics.style.display = 'block';
         visualDiagnostics.scrollIntoView({ behavior: 'smooth' });
     }
-    
+
     initTest();
 });
 </script>
+
 
 
 
