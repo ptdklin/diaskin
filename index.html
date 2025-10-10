@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+а<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -463,7 +463,7 @@
             </div>
             
             <h3>Особое внимание:</h3>
-            <p> При распространении туберкулёза из-за нарушения профилактики ответственность вплоть до уголовной (зависит от последствий). В детских коллективах несвоевременное выявление туберкулеза особенно опасно из-за большей уязвимости иммунной системы детей.</p>
+            <p> При распространении туберкулёза из‑за нарушения профилактики ответственность вплоть до уголовной (зависит от последствий). В детских коллективах несвоевременное выявление туберкулеза особенно опасно из-за большей уязвимости иммунной системы детей.</p>
         </section>
 
         <section class="section">
@@ -621,15 +621,14 @@
                 </div>
 
                 <div id="conclusionBlock" style="display: none;">
-                    <div class="conclusion-box" style="text-align: left; padding: 40px;">
-                        <p style="margin-bottom: 24px; line-height: 1.6;">Диаскинтест — ключевой этап диагностики. Он помогает определить, кто нуждается в более тщательном обследовании с помощью КТ.</p>
-                        
-                        <p style="margin-bottom: 24px; line-height: 1.6;">Компьютерная томография (КТ) позволяет выявить туберкулёз на ранней стадии, когда лечение наиболее эффективно.</p>
-                        
-                        <p style="margin-bottom: 0; line-height: 1.6;">Если при положительном Диаскинтесте на КТ изменений не обнаружено, врач назначает профилактическое лечение, которое предотвращает развитие болезни в будущем.</p>
-                    </div>
-                </div>
-            </div>
+    <div class="conclusion-box" style="text-align: left; padding: 40px;">
+        <p style="margin-bottom: 24px; line-height: 1.6;">Диаскинтест — ключевой этап диагностики. Он помогает определить, кто нуждается в более тщательном обследовании с помощью КТ.</p>
+        
+        <p style="margin-bottom: 24px; line-height: 1.6;">Компьютерная томография (КТ) позволяет выявить туберкулёз на ранней стадии, когда лечение наиболее эффективно.</p>
+        
+        <p style="margin-bottom: 0; line-height: 1.6;">Если при положительном Диаскинтесте на КТ изменений не обнаружено, врач назначает профилактическое лечение, которое предотвращает развитие болезни в будущем.</p>
+    </div>
+</div>
         </section>
 
         <!-- Уровень 3: Финальная информация (скрыт изначально) -->
@@ -650,15 +649,6 @@
                 <p>Тест пройден успешно.</p>
             </div>
         </div>
-
-        <!-- Новое всплывающее окно для КТ-уведомления -->
-        <div class="modal" id="ctModal" aria-hidden="true">
-            <div class="modal-content">
-                <p style="font-size:18px; color: var(--gray-900);">
-                    «Данный КТ проведен только потому, что у пациента был положительный Диаскинтест.»
-                </p>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -670,16 +660,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const finalInfo = document.getElementById('finalInfo');
     const authorSignature = document.getElementById('authorSignature');
     const ctResult = document.getElementById('ctResult');
-    const ctQuestion = document.getElementById('ctQuestion');
-    const ctModal = document.getElementById('ctModal');
 
     let currentBasicQuestion = 0;
     let showFinalTimer = null;
-    let ctModalTimer = null;
-    let ctModalActive = false;
 
     function initTest() {
-        // Показываем только первый базовый вопрос
         basicQuestions.forEach((q, i) => q.style.display = i === 0 ? 'block' : 'none');
 
         document.querySelectorAll('#knowledgeTest .answer').forEach(a =>
@@ -694,7 +679,11 @@ document.addEventListener('DOMContentLoaded', function() {
             o.addEventListener('click', handleCtOptionClick)
         );
 
-        // Убираем автоматическую "подкрутку" при клике на результат КТ — теперь поток управляется модальным окном
+        // Клик по картинке CT теперь просто скроллит к финальному блоку
+        ctResult.addEventListener('click', () => {
+            clearTimeout(showFinalTimer);
+            scrollToFinalBlocks();
+        });
     }
 
     function handleBasicAnswerClick(e) {
@@ -715,7 +704,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         setTimeout(() => {
             const q = document.getElementById('fluorQuestion');
-            // скрываем ответы и заменяем заголовок
             q.querySelector('.answers').style.display = 'none';
             q.querySelector('h3').textContent =
                 'Флюорограмма выглядит чистой, но это обманчиво...';
@@ -730,82 +718,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const o = e.target;
         const ok = o.dataset.ctCorrect === 'true';
         o.classList.add(ok ? 'correct' : 'incorrect');
+        if (!ok) return setTimeout(() => o.classList.remove('incorrect'), 800);
 
-        if (!ok) {
-            return setTimeout(() => o.classList.remove('incorrect'), 800);
-        }
-
-        // Если модальное уже показано — ничего не делаем
-        if (ctModalActive) return;
-        ctModalActive = true;
-
-        // Небольшая задержка, чтобы видно было подсветку правильного ответа
         setTimeout(() => {
-            // скрываем сам вопрос с вариантами
-            if (ctQuestion) ctQuestion.style.display = 'none';
-            // показываем модальное уведомление о причине выполнения КТ
-            showCtModal();
+            document.getElementById('ctQuestion').style.display = 'none';
+            ctResult.style.display = 'block';
+            ctResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Через 7 секунд показать финальные блоки автоматически
+            showFinalTimer = setTimeout(scrollToFinalBlocks, 7000);
         }, 800);
     }
 
-    // Показать специальное модальное окно с текстом про Диаскинтест
-    function showCtModal() {
-        if (!ctModal) return showNextContent(); // на случай, если элемент отсутствует
-
-        // Показать модальное окно
-        ctModal.style.display = 'flex';
-        ctModal.setAttribute('aria-hidden', 'false');
-
-        // Функция-обработчик для клика (тапа) по модалке — закроет её
-        function onCtModalClick() {
-            closeCtModal();
-        }
-
-        // Добавляем обработчик клика и включаем автозакрытие через 6 секунд
-        ctModal.addEventListener('click', onCtModalClick);
-        ctModalTimer = setTimeout(() => {
-            closeCtModal();
-        }, 6000);
-
-        // Закрытие модального окна
-        function closeCtModal() {
-            // защитимся от многократного вызова
-            if (!ctModal) return;
-            clearTimeout(ctModalTimer);
-            ctModal.style.display = 'none';
-            ctModal.setAttribute('aria-hidden', 'true');
-            ctModal.removeEventListener('click', onCtModalClick);
-            // показать следующий контент после закрытия модалки
-            showNextContent();
-        }
-    }
-
-    // Показывает блок результата КТ, а затем через короткую паузу — финальные блоки
-    function showNextContent() {
-        // Сначала показываем результат КТ
-        if (ctResult) {
-            ctResult.style.display = 'block';
-            ctResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        // Отменим предыдущий таймер, если был
-        if (showFinalTimer) {
-            clearTimeout(showFinalTimer);
-            showFinalTimer = null;
-        }
-
-        // Через небольшую паузу показываем итоговые блоки (чтобы было видно результат КТ)
-        showFinalTimer = setTimeout(scrollToFinalBlocks, 600);
-    }
-
-    // Оригинальная функция — показывает заключительный блок, финИнфо и подпись
+    // Новая функция: только скроллит к финальному блоку, ничего не скрывая
     function scrollToFinalBlocks() {
         const nextBlock = document.getElementById('conclusionBlock');
-        if (nextBlock) nextBlock.style.display = 'block';
-        if (finalInfo) finalInfo.style.display = 'block';
-        if (authorSignature) authorSignature.style.display = 'block';
+        nextBlock.style.display = 'block';
+        finalInfo.style.display = 'block';
+        authorSignature.style.display = 'block';
 
-        if (nextBlock) nextBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        nextBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function showNextBasicQuestion() {
@@ -819,10 +751,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showSuccessModal() {
         successModal.style.display = 'flex';
-        successModal.setAttribute('aria-hidden', 'false');
         setTimeout(() => {
             successModal.style.display = 'none';
-            successModal.setAttribute('aria-hidden', 'true');
             showVisualDiagnostics();
         }, 2000);
     }
