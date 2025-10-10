@@ -13,7 +13,842 @@
         }
 
         :root {
+            --primary<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка здоровья коллектива</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
             --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section {
+            margin-bottom: 56px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 24px;
+            letter-spacing: -0.3px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            margin-top: 32px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--gray-800);
+        }
+
+        .intro {
+            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
+            padding: 32px;
+            border-radius: 16px;
+            margin-bottom: 48px;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .intro p {
+            margin-bottom: 16px;
+            padding: 8px 0;
+        }
+
+        .important-points {
+            margin: 24px 0;
+        }
+
+        .point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: var(--gray-50);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .point-bullet {
+            color: var(--accent);
+            margin-right: 12px;
+            font-weight: 600;
+            min-width: 20px;
+            margin-top: 2px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--warning);
+            color: var(--gray-900);
+        }
+
+        .characteristics {
+            display: grid;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .characteristic {
+            padding: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
+            border-radius: 12px;
+            font-weight: 500;
+            border: 1px solid var(--gray-200);
+            transition: all 0.2s ease;
+        }
+
+        .characteristic:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-light);
+        }
+
+        .test-container {
+            margin-top: 40px;
+        }
+
+        .question {
+            margin-bottom: 40px;
+            padding: 32px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .answers {
+            display: grid;
+            gap: 12px;
+        }
+
+        .answer {
+            padding: 18px 22px;
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 17px;
+        }
+
+        .answer:hover {
+            border-color: var(--primary-light);
+            background: var(--gray-50);
+            transform: translateY(-1px);
+        }
+
+        .correct {
+            background: #dcfce7 !important;
+            border-color: var(--success) !important;
+            color: #166534;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+        }
+
+        .incorrect {
+            background: #fef2f2 !important;
+            border-color: var(--error) !important;
+            color: #991b1b;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 520px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
+        }
+
+        .modal h2 {
+            color: var(--success);
+            margin-bottom: 16px;
+        }
+
+        .next-block {
+            display: none;
+            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
+            padding: 40px;
+            border-radius: 16px;
+            text-align: left;
+            margin-top: 40px;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
+        }
+
+        .subsection {
+            margin-top: 32px;
+        }
+
+        .subsection-content {
+            margin-top: 20px;
+        }
+
+        .emphasis {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .image-comparison {
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .image-comparison img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-caption {
+            margin-top: 12px;
+            font-style: italic;
+            color: var(--gray-600);
+            text-align: center;
+        }
+
+        .ct-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .ct-option {
+            padding: 16px;
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .ct-option:hover {
+            border-color: var(--primary-light);
+            background: var(--gray-50);
+        }
+
+        .result-image {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .result-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .final-highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 32px;
+            border-radius: 16px;
+            margin: 32px 0;
+            color: white;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+            text-align: center;
+        }
+
+        .final-highlight h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .final-highlight p {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .conclusion-box {
+            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
+            padding: 32px;
+            border-radius: 16px;
+            margin: 32px 0;
+            color: white;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            text-align: center;
+        }
+
+        .conclusion-box p {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        .author-signature {
+            display: none;
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            color: var(--gray-500);
+            font-size: 14px;
+            border-top: 1px solid var(--gray-200);
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            h1 { font-size: 32px; }
+            h2 { font-size: 26px; }
+            h3 { font-size: 20px; }
+            .intro { padding: 24px; }
+            .question { padding: 24px; }
+            body { font-size: 17px; }
+            .ct-options { grid-template-columns: 1fr; }
+            .final-highlight h3 { font-size: 22px; }
+            .final-highlight p { font-size: 18px; }
+            .conclusion-box p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <!-- Убрал заголовок "Проверка здоровья коллектива" -->
+        </header>
+        
+        <section class="intro">
+            <h2>Информация об обследовании на туберкулез в Вашем коллективе</h2>
+            <p>В связи с подтверждённым или предполагаемым случаем туберкулёза в Вашем учреждении проводится обязательное обследование. <span class="emphasis">Цель</span> — защитить здоровье каждого и остановить распространение инфекции.</p>
+            
+            <h3>Что нужно сделать:</h3>
+            <div class="point">
+                <div class="point-bullet">•</div>
+                <div><span class="emphasis">Сотрудникам/учащимся:</span> пройти обязательное обследование.</div>
+            </div>
+            <div class="point">
+                <div class="point-bullet">•</div>
+                <div><span class="emphasis">Администрации:</span> организовать и обеспечить проведение обследования для всего коллектива.</div>
+            </div>
+            
+            <h3>Почему это обязательно?</h3>
+            <p>Своевременное обследование — единственный надежный способ раннего выявления инфекции и начала лечения. Это требование ст. 6.3 КоАП РФ, обеспечивающее безопасность коллектива.</p>
+            
+            <h3>Последствия невыполнения:</h3>
+            <div class="point">
+                <div class="point-bullet">•</div>
+                <div><span class="emphasis">Для сотрудников/учащихся:</span> невозможность дальнейшего пребывания в коллективе и временное отстранение от работы или учебы. Предусмотренная законом ответственность.</div>
+            </div>
+            <div class="point">
+                <div class="point-bullet">•</div>
+                <div><span class="emphasis">Для руководителей:</span> предусмотренная законом ответственность.</div>
+            </div>
+            
+            <h3>Особое внимание:</h3>
+            <p> При распространении туберкулёза из-за нарушения профилактики ответственность вплоть до уголовной (зависит от последствий). В детских коллективах несвоевременное выявление туберкулеза особенно опасно из-за большей уязвимости иммунной системы детей.</p>
+        </section>
+
+        <section class="section">
+            <h2>Ключевые факты о туберкулезе</h2>
+            <div class="important-points">
+                <div class="point">
+                    <div class="point-bullet">•</div>
+                    <div><span class="emphasis">Коварство болезни:</span> может долго протекать бессимптомно - человек чувствует себя здоровым, хотя уже болеет и может быть источником инфекции.</div>
+                </div>
+                <div class="point">
+                    <div class="point-bullet">•</div>
+                    <div><span class="emphasis">Точность диагностики:</span> на ранних стадиях изменения незаметны на флюорографии. Для своевременного выявления эффективны<span class="emphasis"> Диаскинтест</span> и <span class="emphasis">компьютерная томография (КТ)</span>.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Методы диагностики, которые мы будем использовать</h2>
+            
+            <div class="subsection">
+                <h3>1. Диаскинтест</h3>
+                <div class="subsection-content">
+                    <div class="characteristics">
+                        <div class="characteristic">
+                            <span class="emphasis">Что это?</span> Современный внутрикожный тест, предназначенный для точного выявления активной туберкулезной инфекции.
+                        </div>
+                        <div class="characteristic">
+                            <span class="emphasis">Это не прививка.</span> Безопасен, не содержит живых бактерий и практически не проникает в кровоток.
+                        </div>
+                        <div class="characteristic">
+                            <span class="emphasis">Как проходит?</span> Результат оценивает медицинный работник через 72 часа (3 суток) после постановки пробы. Можно мочить, но нельзя рассчёсывать.
+                        </div>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <span class="emphasis">Важно знать!</span> Если заражение было совсем недавно, тест может быть отрицательным — иммунная система ещё «не успела понять», что человек инфицирован.<span class="emphasis"> Обследование повторяют через 3, 6 и 12 месяцев.</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3>2. Проверка легких</h3>
+                <div class="subsection-content">
+                    <p>В зависимости от результата теста, для уточнения диагноза используется:</p>
+                    
+                    <div class="point">
+                        <div class="point-bullet">•</div>
+                        <div><span class="emphasis">Отрицательный результат Диаскинтеста</span> → проводится <span class="emphasis">рентгенография легких</span>.</div>
+                    </div>
+                    <div class="point">
+                        <div class="point-bullet">•</div>
+                        <div><span class="emphasis">Положительный результат Диаскинтеста</span> → <span class="emphasis">компьютерная томография (КТ) лёгких</span>, позволяющая увидеть мельчайшие изменения.</div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        Диаскинтест современный и безопасный. Его цель — выявить возможные проблемы на самой ранней стадии, когда лечение наиболее эффективно, чтобы сохранить Ваше здоровье и спокойствие.</div>
+                    
+                    <p>Просим ответственно отнестись к обследованию — вместе мы делаем среду безопасной для всех.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Уровень 1: Основной тест -->
+        <section class="section" id="knowledgeTest">
+            <h2>Промежуточный контроль знаний</h2>
+            
+            <div class="test-container">
+                <div class="question" id="question1">
+                    <h3>Диаскинтест — это прививка?</h3>
+                    <div class="answers">
+                        <div class="answer" data-correct="false">Да</div>
+                        <div class="answer" data-correct="true">Нет</div>
+                    </div>
+                </div>
+                
+                <div class="question" id="question2">
+                    <h3>Когда оценивают результат Диаскинтеста?</h3>
+                    <div class="answers">
+                        <div class="answer" data-correct="false">Сразу после постановки</div>
+                        <div class="answer" data-correct="true">Через 3 дня</div>
+                        <div class="answer" data-correct="false">Через неделю</div>
+                    </div>
+                </div>
+                
+                <div class="question" id="question3">
+                    <h3>Если Диаскинтест положительный, что нужно сделать?</h3>
+                    <div class="answers">
+                        <div class="answer" data-correct="false">Повторить тест через месяц</div>
+                        <div class="answer" data-correct="true">Сделать КТ лёгких</div>
+                        <div class="answer" data-correct="false">Ничего не делать, подождать</div>
+                    </div>
+                </div>
+                
+                <div class="question" id="question4">
+                    <h3>Если Диаскинтест отрицательный, но вы контактировали с больным туберкулёзом, что делать?</h3>
+                    <div class="answers">
+                        <div class="answer" data-correct="false">Можно не переживать</div>
+                        <div class="answer" data-correct="false">Пройти КТ лёгких</div>
+                        <div class="answer" data-correct="true">Пройти рентген и повторить тест через 3–6 месяцев</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Уровень 2: Визуальная диагностика (скрыт изначально) -->
+        <section class="section" id="visualDiagnostics" style="display: none;">
+            <h2>Визуальная диагностика: почему важен Диаскинтест</h2>
+            
+            <div class="subsection">
+                <h3>Как правило, на флюорографии видны только крупные изменения в лёгких, на ранних стадиях изменения незаметны, потому что ещё «прячутся за ребрами»</h3>
+                <div class="image-comparison">
+                    <img src="image1.png" alt="Флюорограмма с изменениями">
+                    <p class="image-caption">На этой флюорографии видны многочисленные пятна на фоне рёбер с обеих сторон. Процесс запущенный, поздно выявили.</p>
+                </div>
+            </div>
+
+            <div class="subsection" id="interactiveCase">
+                <h3>А сможете ли вы найти ранние изменения?</h3>
+                
+                <div class="question" id="fluorQuestion">
+                    <h3>Есть ли на этой картинке изменения в лёгких?</h3>
+                    <div class="image-comparison">
+                        <img src="image2.png" alt="Чистая флюорограмма">
+                    </div>
+                    <div class="answers">
+                        <div class="answer" data-fluor-correct="false">Да, вижу изменения</div>
+                        <div class="answer" data-fluor-correct="true">Нет, все чисто</div>
+                        <div class="answer" data-fluor-correct="false">Не уверен(а)</div>
+                    </div>
+                </div>
+
+                <div class="question" id="ctQuestion" style="display: none;">
+                    <h3>На вышепоказанной флюорографии лёгкие выглядят нормальными, хотя ранняя стадия туберкулёза уже есть. Теперь посмотрите на КТ того же пациента:</h3>
+                    <div class="image-comparison">
+                        <img src="image3.png" alt="КТ легких с очагом">
+                    </div>
+                    <h3>Попробуйте найти участок с изменениями. Где он находится на этой картинке? Не переживайте, очаг хорошо видно.</h3>
+                    <div class="ct-options">
+                        <div class="ct-option" data-ct-correct="false">Сверху слева на картинке</div>
+                        <div class="ct-option" data-ct-correct="true">Сверху справа на картинке</div>
+                        <div class="ct-option" data-ct-correct="false">Снизу слева на картинке</div>
+                        <div class="ct-option" data-ct-correct="false">Снизу справа на картинке</div>
+                    </div>
+                </div>
+
+                <div id="ctResult" style="display: none;">
+                    <!-- Inline result block (kept for compatibility) -->
+                    <div class="final-highlight">
+                        <h3>Вот он! Небольшой очаг справа вверху на картинке. Такие минимальные изменения видны только на КТ.</h3>
+                        <p>КТ проведен только потому, что у пациента был положительный Диаскинтест.</p>
+                    </div>
+
+                    <div class="image-comparison">
+                        <img src="image4.png" alt="КТ с обведенным очагом">
+                    </div>
+                </div>
+
+                <!-- Модальное окно: Наличие очага (первое окно) -->
+                <div class="modal" id="ctFoundModal" aria-hidden="true">
+                    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="ctFoundTitle">
+                        <h3 id="ctFoundTitle">Вот он! Небольшой очаг справа вверху на картинке.</h3>
+                        <p style="margin-bottom: 16px;">Такие минимальные изменения видны только на КТ.</p>
+                        <div class="image-comparison" style="margin-bottom: 16px;">
+                            <img src="image4.png" alt="КТ с обведенным очагом">
+                        </div>
+                        <button id="ctFoundClose" style="padding:10px 16px; border-radius:8px; border:0; cursor:pointer;">Закрыть</button>
+                    </div>
+                </div>
+
+                <!-- Модальное окно: Причина назначения КТ (второе окно) -->
+                <div class="modal" id="ctReasonModal" aria-hidden="true">
+                    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="ctReasonTitle">
+                        <p id="ctReasonTitle" style="font-size:20px; font-weight:600; color:var(--gray-800); margin:0;">
+                            КТ была назначена исключительно из-за положительного результата Диаскинтеста у пациента.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="conclusionBlock" style="display: none;">
+                    <div class="conclusion-box" style="text-align: left; padding: 40px;">
+                        <p style="margin-bottom: 24px; line-height: 1.6;">Диаскинтест — ключевой этап диагностики. Он помогает определить, кто нуждается в более тщательном обследовании с помощью КТ.</p>
+                        
+                        <p style="margin-bottom: 24px; line-height: 1.6;">Компьютерная томография (КТ) позволяет выявить туберкулёз на ранней стадии, когда лечение наиболее эффективно.</p>
+                        
+                        <p style="margin-bottom: 0; line-height: 1.6;">Если при положительном Диаскинтесте на КТ изменений не обнаружено, врач назначает профилактическое лечение, которое предотвращает развитие болезни в будущем.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Уровень 3: Финальная информация (скрыт изначально) -->
+        <section class="next-block" id="finalInfo" style="display: none;">
+            <h2 style="text-align: left; margin-bottom: 20px;">Дополнительная информация</h2>
+            <p style="text-align: left;">После успешного прохождения тестов вы получили важные знания о диагностике туберкулеза. Помните, что своевременное обследование — это ответственность каждого сотрудника и забота о здоровье всего коллектива.</p>
+            <p style="text-align: left;">Если у вас остались вопросы, обратитесь в противотуберкулезный диспансер.</p>
+        </section>
+
+        <!-- Подпись автора (скрыта изначально) -->
+        <div class="author-signature" id="authorSignature">
+            <p>Автор и разработчик: заведующий филиалом "Клинский" ГБУЗ МО МОКПТД Лукаш И.А.</p>
+        </div>
+
+        <div class="modal" id="successModal">
+            <div class="modal-content">
+                <h2>Поздравляю!</h2>
+                <p>Тест пройден успешно.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const basicQuestions = document.querySelectorAll('#knowledgeTest .question') || [];
+    const successModal = document.getElementById('successModal');
+    const knowledgeTest = document.getElementById('knowledgeTest');
+    const visualDiagnostics = document.getElementById('visualDiagnostics');
+    const finalInfo = document.getElementById('finalInfo');
+    const authorSignature = document.getElementById('authorSignature');
+    const ctResult = document.getElementById('ctResult');
+    const ctFoundModal = document.getElementById('ctFoundModal');
+    const ctReasonModal = document.getElementById('ctReasonModal');
+    const ctFoundClose = document.getElementById('ctFoundClose');
+    const ctQuestion = document.getElementById('ctQuestion');
+    const conclusionBlock = document.getElementById('conclusionBlock');
+
+    let currentBasicQuestion = 0;
+    let ctReasonTimer = null;
+    let showFinalTimer = null;
+
+    function initTest() {
+        // show only the first basic question
+        basicQuestions.forEach((q, i) => q.style.display = i === 0 ? 'block' : 'none');
+
+        // attach answer listeners (safe even if elements absent)
+        document.querySelectorAll('#knowledgeTest .answer').forEach(a =>
+            a.addEventListener('click', handleBasicAnswerClick)
+        );
+
+        document.querySelectorAll('#fluorQuestion .answer').forEach(a =>
+            a.addEventListener('click', handleFluorAnswerClick)
+        );
+
+        document.querySelectorAll('.ct-option').forEach(o =>
+            o.addEventListener('click', handleCtOptionClick)
+        );
+
+        // Modal behavior (attach once)
+        if (ctFoundModal) {
+            // close when overlay clicked
+            ctFoundModal.addEventListener('click', closeCtFoundModal);
+            // prevent overlay-close when clicking inside content
+            const content = ctFoundModal.querySelector('.modal-content');
+            if (content) content.addEventListener('click', e => e.stopPropagation());
+            if (ctFoundClose) ctFoundClose.addEventListener('click', e => { e.stopPropagation(); closeCtFoundModal(); });
+        }
+
+        if (ctReasonModal) {
+            ctReasonModal.addEventListener('click', closeCtReasonModal);
+            const content = ctReasonModal.querySelector('.modal-content');
+            if (content) content.addEventListener('click', e => e.stopPropagation());
+        }
+    }
+
+    function handleBasicAnswerClick(e) {
+        const a = e.target;
+        const ok = a.dataset.correct === 'true';
+        a.classList.add(ok ? 'correct' : 'incorrect');
+        setTimeout(() => {
+            if (ok) showNextBasicQuestion();
+            else a.classList.remove('incorrect');
+        }, 800);
+    }
+
+    function handleFluorAnswerClick(e) {
+        const a = e.target;
+        const ok = a.dataset.fluorCorrect === 'true';
+        a.classList.add(ok ? 'correct' : 'incorrect');
+        if (!ok) return setTimeout(() => a.classList.remove('incorrect'), 800);
+
+        setTimeout(() => {
+            const q = document.getElementById('fluorQuestion');
+            if (q) {
+                const answers = q.querySelector('.answers');
+                if (answers) answers.style.display = 'none';
+                const h3 = q.querySelector('h3');
+                if (h3) h3.textContent = 'Флюорограмма выглядит чистой, но это обманчиво...';
+            }
+
+            const ctQ = document.getElementById('ctQuestion');
+            if (ctQ) {
+                ctQ.style.display = 'block';
+                ctQ.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 800);
+    }
+
+    function handleCtOptionClick(e) {
+        const o = e.target;
+        const ok = o.dataset.ctCorrect === 'true';
+        o.classList.add(ok ? 'correct' : 'incorrect');
+        if (!ok) return setTimeout(() => o.classList.remove('incorrect'), 800);
+
+        setTimeout(() => {
+            if (ctQuestion) ctQuestion.style.display = 'none';
+            if (ctResult) {
+                ctResult.style.display = 'block';
+                ctResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // Показать модальное окно с "Вот он..." (первое окно)
+            showCtFoundModal();
+        }, 800);
+    }
+
+    function showCtFoundModal() {
+        if (!ctFoundModal) {
+            // если модальное окно отсутствует, сразу показываем объяснение
+            showCtReasonModal();
+            return;
+        }
+        ctFoundModal.style.display = 'flex';
+        ctFoundModal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeCtFoundModal() {
+        if (ctFoundModal) {
+            ctFoundModal.style.display = 'none';
+            ctFoundModal.setAttribute('aria-hidden', 'true');
+        }
+        // После закрытия первого окна показываем окно с причиной
+        showCtReasonModal();
+    }
+
+    function showCtReasonModal() {
+        if (!ctReasonModal) {
+            scrollToFinalBlocks();
+            return;
+        }
+        // покзать модалку-объяснение
+        ctReasonModal.style.display = 'flex';
+        ctReasonModal.setAttribute('aria-hidden', 'false');
+
+        // автозакрытие через 5 секунд
+        if (ctReasonTimer) clearTimeout(ctReasonTimer);
+        ctReasonTimer = setTimeout(() => {
+            closeCtReasonModal();
+        }, 5000);
+    }
+
+    function closeCtReasonModal() {
+        if (ctReasonTimer) {
+            clearTimeout(ctReasonTimer);
+            ctReasonTimer = null;
+        }
+        if (ctReasonModal) {
+            ctReasonModal.style.display = 'none';
+            ctReasonModal.setAttribute('aria-hidden', 'true');
+        }
+        // После закрытия второго окна прокручиваем к заключению
+        scrollToFinalBlocks();
+    }
+
+    function scrollToFinalBlocks() {
+        const nextBlock = document.getElementById('conclusionBlock');
+        if (nextBlock) nextBlock.style.display = 'block';
+        if (finalInfo) finalInfo.style.display = 'block';
+        if (authorSignature) authorSignature.style.display = 'block';
+
+        const target = nextBlock || finalInfo;
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function showNextBasicQuestion() {
+        if (basicQuestions.length === 0) return;
+        basicQuestions[currentBasicQuestion].style.display = 'none';
+        currentBasicQuestion++;
+        if (currentBasicQuestion < basicQuestions.length)
+            basicQuestions[currentBasicQuestion].style.display = 'block';
+        else
+            showSuccessModal();
+    }
+
+    function showSuccessModal() {
+        if (!successModal) {
+            showVisualDiagnostics();
+            return;
+        }
+        successModal.style.display = 'flex';
+        setTimeout(() => {
+            successModal.style.display = 'none';
+            showVisualDiagnostics();
+        }, 2000);
+    }
+
+    function showVisualDiagnostics() {
+        if (knowledgeTest) knowledgeTest.style.display = 'none';
+        if (visualDiagnostics) {
+            visualDiagnostics.style.display = 'block';
+            visualDiagnostics.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    initTest();
+});
+    </script>
+</body>
+</html>
+: #2563eb;
             --primary-light: #3b82f6;
             --primary-dark: #1d4ed8;
             --secondary: #7c3aed;
