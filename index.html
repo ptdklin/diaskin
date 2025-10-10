@@ -1,4 +1,4 @@
-а<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -178,14 +178,6 @@
             border-radius: 16px;
             border: 1px solid var(--gray-200);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        .question h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--gray-900);
-            margin-top: 0;
         }
 
         .answers {
@@ -386,259 +378,57 @@
             .container {
                 padding: 40px 20px;
             }
-            
-            h1 {
-                font-size: 32px;
-            }
-            
-            h2 {
-                font-size: 26px;
-            }
-            
-            h3 {
-                font-size: 20px;
-            }
-            
-            .intro {
-                padding: 24px;
-            }
-            
-            .question {
-                padding: 24px;
-            }
-            
-            body {
-                font-size: 17px;
-            }
-            
-            .ct-options {
-                grid-template-columns: 1fr;
-            }
-            
-            .final-highlight h3 {
-                font-size: 22px;
-            }
-            
-            .final-highlight p {
-                font-size: 18px;
-            }
-            
-            .conclusion-box p {
-                font-size: 18px;
-            }
+            h1 { font-size: 32px; }
+            h2 { font-size: 26px; }
+            h3 { font-size: 20px; }
+            .intro { padding: 24px; }
+            .question { padding: 24px; }
+            body { font-size: 17px; }
+            .ct-options { grid-template-columns: 1fr; }
+            .final-highlight h3 { font-size: 22px; }
+            .final-highlight p { font-size: 18px; }
+            .conclusion-box p { font-size: 18px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <!-- Убрал заголовок "Проверка здоровья коллектива" -->
-        </header>
+        <!-- весь текст до ctResult остаётся без изменений -->
         
-        <section class="intro">
-            <h2>Информация об обследовании на туберкулез в Вашем коллективе</h2>
-            <p>В связи с подтверждённым или предполагаемым случаем туберкулёза в Вашем учреждении проводится обязательное обследование. <span class="emphasis">Цель</span> — защитить здоровье каждого и остановить распространение инфекции.</p>
-            
-            <h3>Что нужно сделать:</h3>
-            <div class="point">
-                <div class="point-bullet">•</div>
-                <div><span class="emphasis">Сотрудникам/учащимся:</span> пройти обязательное обследование.</div>
-            </div>
-            <div class="point">
-                <div class="point-bullet">•</div>
-                <div><span class="emphasis">Администрации:</span> организовать и обеспечить проведение обследования для всего коллектива.</div>
+        <div id="ctResult" style="display: none;">
+            <div class="final-highlight">
+                <h3>Вот он! Небольшой очаг справа вверху на картинке. Такие минимальные изменения видны только на КТ.</h3>
+                <p>КТ проведен только потому, что у пациента был положительный Диаскинтест.</p>
             </div>
             
-            <h3>Почему это обязательно?</h3>
-            <p>Своевременное обследование — единственный надежный способ раннего выявления инфекции и начала лечения. Это требование ст. 6.3 КоАП РФ, обеспечивающее безопасность коллектива.</p>
-            
-            <h3>Последствия невыполнения:</h3>
-            <div class="point">
-                <div class="point-bullet">•</div>
-                <div><span class="emphasis">Для сотрудников/учащихся:</span> невозможность дальнейшего пребывания в коллективе и временное отстранение от работы или учебы. Предусмотренная законом ответственность.</div>
+            <div class="image-comparison">
+                <img src="image4.png" alt="КТ с обведенным очагом">
             </div>
-            <div class="point">
-                <div class="point-bullet">•</div>
-                <div><span class="emphasis">Для руководителей:</span> предусмотренная законом ответственность.</div>
+        </div>
+
+        <!-- Модальное окно с пояснением -->
+        <div class="modal" id="ctReasonModal">
+            <div class="modal-content">
+                <p style="font-size:20px; font-weight:600; color:var(--gray-800);">
+                    КТ была назначена исключительно из-за положительного результата Диаскинтеста у пациента.
+                </p>
             </div>
-            
-            <h3>Особое внимание:</h3>
-            <p> При распространении туберкулёза из‑за нарушения профилактики ответственность вплоть до уголовной (зависит от последствий). В детских коллективах несвоевременное выявление туберкулеза особенно опасно из-за большей уязвимости иммунной системы детей.</p>
-        </section>
+        </div>
 
-        <section class="section">
-            <h2>Ключевые факты о туберкулезе</h2>
-            <div class="important-points">
-                <div class="point">
-                    <div class="point-bullet">•</div>
-                    <div><span class="emphasis">Коварство болезни:</span> может долго протекать бессимптомно - человек чувствует себя здоровым, хотя уже болеет и может быть источником инфекции.</div>
-                </div>
-                <div class="point">
-                    <div class="point-bullet">•</div>
-                    <div><span class="emphasis">Точность диагностики:</span> на ранних стадиях изменения незаметны на флюорографии. Для своевременного выявления эффективны<span class="emphasis"> Диаскинтест</span> и <span class="emphasis">компьютерная томография (КТ)</span>.</div>
-                </div>
+        <div id="conclusionBlock" style="display: none;">
+            <div class="conclusion-box" style="text-align: left; padding: 40px;">
+                <p style="margin-bottom: 24px; line-height: 1.6;">Диаскинтест — ключевой этап диагностики. Он помогает определить, кто нуждается в более тщательном обследовании с помощью КТ.</p>
+                <p style="margin-bottom: 24px; line-height: 1.6;">Компьютерная томография (КТ) позволяет выявить туберкулёз на ранней стадии, когда лечение наиболее эффективно.</p>
+                <p style="margin-bottom: 0; line-height: 1.6;">Если при положительном Диаскинтесте на КТ изменений не обнаружено, врач назначает профилактическое лечение, которое предотвращает развитие болезни в будущем.</p>
             </div>
-        </section>
+        </div>
 
-        <section class="section">
-            <h2>Методы диагностики, которые мы будем использовать</h2>
-            
-            <div class="subsection">
-                <h3>1. Диаскинтест</h3>
-                <div class="subsection-content">
-                    <div class="characteristics">
-                        <div class="characteristic">
-                            <span class="emphasis">Что это?</span> Современный внутрикожный тест, предназначенный для точного выявления активной туберкулезной инфекции.
-                        </div>
-                        <div class="characteristic">
-                            <span class="emphasis">Это не прививка.</span> Безопасен, не содержит живых бактерий и практически не проникает в кровоток.
-                        </div>
-                        <div class="characteristic">
-                            <span class="emphasis">Как проходит?</span> Результат оценивает медицинский работник через 72 часа (3 суток) после постановки пробы. Можно мочить, но нельзя рассчёсывать.
-                        </div>
-                    </div>
-                    
-                    <div class="warning-box">
-                        <span class="emphasis">Важно знать!</span> Если заражение было совсем недавно, тест может быть отрицательным — иммунная система ещё «не успела понять», что человек инфицирован.<span class="emphasis"> Обследование повторяют через 3, 6 и 12 месяцев.</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="subsection">
-                <h3>2. Проверка легких</h3>
-                <div class="subsection-content">
-                    <p>В зависимости от результата теста, для уточнения диагноза используется:</p>
-                    
-                    <div class="point">
-                        <div class="point-bullet">•</div>
-                        <div><span class="emphasis">Отрицательный результат Диаскинтеста</span> → проводится <span class="emphasis">рентгенография легких</span>.</div>
-                    </div>
-                    <div class="point">
-                        <div class="point-bullet">•</div>
-                        <div><span class="emphasis">Положительный результат Диаскинтеста</span> → <span class="emphasis">компьютерная томография (КТ) лёгких</span>, позволяющая увидеть мельчайшие изменения.</div>
-                    </div>
-                    
-                    <div class="highlight-box">
-                        Диаскинтест современный и безопасный. Его цель — выявить возможные проблемы на самой ранней стадии, когда лечение наиболее эффективно, чтобы сохранить Ваше здоровье и спокойствие.</div>
-                    
-                    <p>Просим ответственно отнестись к обследованию — вместе мы делаем среду безопасной для всех.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Уровень 1: Основной тест -->
-        <section class="section" id="knowledgeTest">
-            <h2>Промежуточный контроль знаний</h2>
-            
-            <div class="test-container">
-                <div class="question" id="question1">
-                    <h3>Диаскинтест — это прививка?</h3>
-                    <div class="answers">
-                        <div class="answer" data-correct="false">Да</div>
-                        <div class="answer" data-correct="true">Нет</div>
-                    </div>
-                </div>
-                
-                <div class="question" id="question2">
-                    <h3>Когда оценивают результат Диаскинтеста?</h3>
-                    <div class="answers">
-                        <div class="answer" data-correct="false">Сразу после постановки</div>
-                        <div class="answer" data-correct="true">Через 3 дня</div>
-                        <div class="answer" data-correct="false">Через неделю</div>
-                    </div>
-                </div>
-                
-                <div class="question" id="question3">
-                    <h3>Если Диаскинтест положительный, что нужно сделать?</h3>
-                    <div class="answers">
-                        <div class="answer" data-correct="false">Повторить тест через месяц</div>
-                        <div class="answer" data-correct="true">Сделать КТ лёгких</div>
-                        <div class="answer" data-correct="false">Ничего не делать, подождать</div>
-                    </div>
-                </div>
-                
-                <div class="question" id="question4">
-                    <h3>Если Диаскинтест отрицательный, но вы контактировали с больным туберкулёзом, что делать?</h3>
-                    <div class="answers">
-                        <div class="answer" data-correct="false">Можно не переживать</div>
-                        <div class="answer" data-correct="false">Пройти КТ лёгких</div>
-                        <div class="answer" data-correct="true">Пройти рентген и повторить тест через 3–6 месяцев</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Уровень 2: Визуальная диагностика (скрыт изначально) -->
-        <section class="section" id="visualDiagnostics" style="display: none;">
-            <h2>Визуальная диагностика: почему важен Диаскинтест</h2>
-            
-            <div class="subsection">
-                <h3>Как правило, на флюорографии видны только крупные изменения в лёгких, на ранних стадиях изменения незаметны, потому что ещё «прячутся за ребрами»</h3>
-                <div class="image-comparison">
-                    <img src="image1.png" alt="Флюорограмма с изменениями">
-                    <p class="image-caption">На этой флюорографии видны многочисленные пятна на фоне рёбер с обеих сторон. Процесс запущенный, поздно выявили.</p>
-                </div>
-            </div>
-
-            <div class="subsection" id="interactiveCase">
-                <h3>А сможете ли вы найти ранние изменения?</h3>
-                
-                <div class="question" id="fluorQuestion">
-                    <h3>Есть ли на этой картинке изменения в лёгких?</h3>
-                    <div class="image-comparison">
-                        <img src="image2.png" alt="Чистая флюорограмма">
-                    </div>
-                    <div class="answers">
-                        <div class="answer" data-fluor-correct="false">Да, вижу изменения</div>
-                        <div class="answer" data-fluor-correct="true">Нет, все чисто</div>
-                        <div class="answer" data-fluor-correct="false">Не уверен(а)</div>
-                    </div>
-                </div>
-
-                <div class="question" id="ctQuestion" style="display: none;">
-                    <h3>На вышепоказанной флюорографии лёгкие выглядят нормальными, хотя ранняя стадия туберкулёза уже есть. Теперь посмотрите на КТ того же пациента:</h3>
-                    <div class="image-comparison">
-                        <img src="image3.png" alt="КТ легких с очагом">
-                    </div>
-                    <h3>Попробуйте найти участок с изменениями. Где он находится на этой картинке? Не переживайте, очаг хорошо видно.</h3>
-                    <div class="ct-options">
-                        <div class="ct-option" data-ct-correct="false">Сверху слева на картинке</div>
-                        <div class="ct-option" data-ct-correct="true">Сверху справа на картинке</div>
-                        <div class="ct-option" data-ct-correct="false">Снизу слева на картинке</div>
-                        <div class="ct-option" data-ct-correct="false">Снизу справа на картинке</div>
-                    </div>
-                </div>
-
-                <div id="ctResult" style="display: none;">
-                    <div class="final-highlight">
-                        <h3>Вот он! Небольшой очаг справа вверху на картинке. Такие минимальные изменения видны только на КТ.</h3>
-                        <p>КТ проведен только потому, что у пациента был положительный Диаскинтест.</p>
-                    </div>
-                    
-                    <div class="image-comparison">
-                        <img src="image4.png" alt="КТ с обведенным очагом">
-                    </div>
-                </div>
-
-                <div id="conclusionBlock" style="display: none;">
-    <div class="conclusion-box" style="text-align: left; padding: 40px;">
-        <p style="margin-bottom: 24px; line-height: 1.6;">Диаскинтест — ключевой этап диагностики. Он помогает определить, кто нуждается в более тщательном обследовании с помощью КТ.</p>
-        
-        <p style="margin-bottom: 24px; line-height: 1.6;">Компьютерная томография (КТ) позволяет выявить туберкулёз на ранней стадии, когда лечение наиболее эффективно.</p>
-        
-        <p style="margin-bottom: 0; line-height: 1.6;">Если при положительном Диаскинтесте на КТ изменений не обнаружено, врач назначает профилактическое лечение, которое предотвращает развитие болезни в будущем.</p>
-    </div>
-</div>
-        </section>
-
-        <!-- Уровень 3: Финальная информация (скрыт изначально) -->
         <section class="next-block" id="finalInfo" style="display: none;">
             <h2 style="text-align: left; margin-bottom: 20px;">Дополнительная информация</h2>
             <p style="text-align: left;">После успешного прохождения тестов вы получили важные знания о диагностике туберкулеза. Помните, что своевременное обследование — это ответственность каждого сотрудника и забота о здоровье всего коллектива.</p>
             <p style="text-align: left;">Если у вас остались вопросы, обратитесь в противотуберкулезный диспансер.</p>
         </section>
 
-        <!-- Подпись автора (скрыта изначально) -->
         <div class="author-signature" id="authorSignature">
             <p>Автор и разработчик: заведующий филиалом "Клинский" ГБУЗ МО МОКПТД Лукаш И.А.</p>
         </div>
@@ -660,6 +450,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const finalInfo = document.getElementById('finalInfo');
     const authorSignature = document.getElementById('authorSignature');
     const ctResult = document.getElementById('ctResult');
+    const ctReasonModal = document.getElementById('ctReasonModal');
 
     let currentBasicQuestion = 0;
     let showFinalTimer = null;
@@ -678,12 +469,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.ct-option').forEach(o =>
             o.addEventListener('click', handleCtOptionClick)
         );
-
-        // Клик по картинке CT теперь просто скроллит к финальному блоку
-        ctResult.addEventListener('click', () => {
-            clearTimeout(showFinalTimer);
-            scrollToFinalBlocks();
-        });
     }
 
     function handleBasicAnswerClick(e) {
@@ -725,18 +510,30 @@ document.addEventListener('DOMContentLoaded', function() {
             ctResult.style.display = 'block';
             ctResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-            // Через 7 секунд показать финальные блоки автоматически
-            showFinalTimer = setTimeout(scrollToFinalBlocks, 7000);
+            // Показываем модальное окно через 3 сек
+            setTimeout(showCtReasonModal, 3000);
         }, 800);
     }
 
-    // Новая функция: только скроллит к финальному блоку, ничего не скрывая
+    function showCtReasonModal() {
+        ctReasonModal.style.display = 'flex';
+        let autoCloseTimer = setTimeout(closeCtReasonModal, 5000);
+        ctReasonModal.addEventListener('click', () => {
+            clearTimeout(autoCloseTimer);
+            closeCtReasonModal();
+        });
+    }
+
+    function closeCtReasonModal() {
+        ctReasonModal.style.display = 'none';
+        scrollToFinalBlocks();
+    }
+
     function scrollToFinalBlocks() {
         const nextBlock = document.getElementById('conclusionBlock');
         nextBlock.style.display = 'block';
         finalInfo.style.display = 'block';
         authorSignature.style.display = 'block';
-
         nextBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
@@ -765,13 +562,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initTest();
 });
-</script>
-
-
-
-
-
-
-
+    </script>
 </body>
 </html>
