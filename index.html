@@ -1,4 +1,4 @@
-аа<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -381,6 +381,40 @@
             border-top: 1px solid var(--gray-200);
         }
 
+        /* Стили для мигающего окна */
+        .blinking-modal {
+            animation: blink 2s ease-in-out 3;
+        }
+
+        @keyframes blink {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 20px 45px rgba(37, 99, 235, 0.4);
+            }
+        }
+
+        .important-modal .modal-content {
+            border-top: 4px solid var(--warning);
+            background: linear-gradient(135deg, #fffaf0 0%, #fed7d7 100%);
+        }
+
+        .important-modal h3 {
+            color: var(--warning);
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .important-modal p {
+            color: var(--gray-800);
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 24px 16px;
@@ -618,6 +652,17 @@
                     </div>
                 </div>
 
+                <!-- Новое мигающее окно с важной информацией -->
+                <div class="modal important-modal" id="preventionModal" aria-hidden="true">
+                    <div class="modal-content blinking-modal" role="dialog" aria-modal="true" aria-labelledby="preventionTitle">
+                        <h3 id="preventionTitle">❗ Важная информация</h3>
+                        <p>Если при положительном Диаскинтесте на КТ изменений не обнаружено, врач назначает профилактическое лечение, которое предотвращает развитие болезни в будущем.</p>
+                        <button id="preventionClose" style="padding:12px 24px; background:var(--warning); color:white; border:none; border-radius:8px; cursor:pointer; margin-top:20px; font-size:16px; font-weight:600;">
+                            Понятно
+                        </button>
+                    </div>
+                </div>
+
                 <div id="conclusionBlock" style="display: none;">
                     <div class="conclusion-box" style="text-align: left; padding: 40px;">
                         <p style="margin-bottom: 24px; line-height: 1.6;">Диаскинтест — ключевой этап диагностики. Он помогает определить, кто нуждается в более тщательном обследовании с помощью КТ.</p>
@@ -660,6 +705,7 @@
         const authorSignature = document.getElementById('authorSignature');
         const ctResult = document.getElementById('ctResult');
         const conclusionBlock = document.getElementById('conclusionBlock');
+        const preventionModal = document.getElementById('preventionModal');
 
         const ctReasonModal = document.createElement('div');
         ctReasonModal.className = 'modal';
@@ -667,7 +713,7 @@
         ctReasonModal.innerHTML = `
             <div class="modal-content" style="max-width:600px; text-align:center;">
                 <p style="font-size:22px; font-weight:600; color:var(--gray-800); line-height:1.6;">
-                    КТ назначена в связи с положительной пробой Диаскинтест. Отказ от привел бы к несвоевременной диагностике изменений в легких.
+                    КТ назначена в связи с положительной пробой Диаскинтест. Отказ от пробы привел бы к несвоевременной диагностике туберкулеза легких.
                 </p>
             </div>
         `;
@@ -690,6 +736,9 @@
             document.querySelectorAll('.ct-option').forEach(o =>
                 o.addEventListener('click', handleCtOptionClick)
             );
+
+            // Обработчик для кнопки закрытия мигающего окна
+            document.getElementById('preventionClose').addEventListener('click', closePreventionModal);
 
             ctResult.addEventListener('click', () => {
                 clearTimeout(showFinalTimer);
@@ -745,6 +794,21 @@
 
         function closeCtReasonModal() {
             ctReasonModal.style.display = 'none';
+            // После закрытия окна с причиной КТ показываем мигающее окно
+            setTimeout(showPreventionModal, 500);
+        }
+
+        // Функция для показа мигающего окна
+        function showPreventionModal() {
+            preventionModal.style.display = 'flex';
+            // Добавляем класс для мигания
+            preventionModal.querySelector('.modal-content').classList.add('blinking-modal');
+        }
+
+        // Функция для закрытия мигающего окна
+        function closePreventionModal() {
+            preventionModal.style.display = 'none';
+            preventionModal.querySelector('.modal-content').classList.remove('blinking-modal');
             scrollToFinalBlocks();
         }
 
