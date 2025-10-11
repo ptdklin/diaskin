@@ -13,111 +13,109 @@
         }
 
         :root {
-            --primary: #2563eb;
-            --primary-light: #3b82f6;
-            --primary-dark: #1d4ed8;
-            --secondary: #7c3aed;
-            --accent: #06b6d4;
-            --success: #10b981;
-            --error: #ef4444;
-            --warning: #f59e0b;
-            --gray-50: #f8fafc;
-            --gray-100: #f1f5f9;
+            --primary: #1a365d;
+            --primary-light: #2d3748;
+            --primary-dark: #0f172a;
+            --secondary: #2b6cb0;
+            --accent: #3182ce;
+            --success: #38a169;
+            --error: #e53e3e;
+            --warning: #dd6b20;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
             --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-400: #94a3b8;
-            --gray-500: #64748b;
-            --gray-600: #475569;
-            --gray-800: #1e293b;
-            --gray-900: #0f172a;
+            --gray-300: #cbd5e0;
+            --gray-400: #a0aec0;
+            --gray-500: #718096;
+            --gray-600: #4a5568;
+            --gray-800: #2d3748;
+            --gray-900: #1a202c;
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 18px;
+            font-size: 16px;
             line-height: 1.6;
             color: var(--gray-900);
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
             font-weight: 400;
             -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 60px 24px;
+            padding: 40px 24px;
         }
 
         header {
             text-align: center;
-            margin-bottom: 64px;
+            margin-bottom: 48px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--gray-200);
         }
 
         h1 {
             font-size: 36px;
             font-weight: 700;
-            color: var(--gray-900);
+            color: var(--primary);
             margin-bottom: 12px;
             letter-spacing: -0.5px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .section {
-            margin-bottom: 56px;
+            margin-bottom: 48px;
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--gray-200);
         }
 
         h2 {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 600;
-            color: var(--gray-900);
+            color: var(--primary);
             margin-bottom: 24px;
-            letter-spacing: -0.3px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--accent);
         }
 
         h3 {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 600;
             color: var(--primary-dark);
-            margin-bottom: 20px;
-            margin-top: 32px;
+            margin-bottom: 16px;
+            margin-top: 24px;
         }
 
         p {
-            margin-bottom: 20px;
-            color: var(--gray-800);
+            margin-bottom: 16px;
+            color: var(--gray-700);
+            line-height: 1.6;
         }
 
         .intro {
-            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
+            background: white;
             padding: 32px;
-            border-radius: 16px;
-            margin-bottom: 48px;
-            border: 1px solid var(--gray-200);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        .intro p {
-            margin-bottom: 16px;
-            padding: 8px 0;
+            border-radius: 12px;
+            margin-bottom: 32px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         .important-points {
-            margin: 24px 0;
+            margin: 20px 0;
         }
 
         .point {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 16px;
-            padding: 12px 16px;
+            margin-bottom: 12px;
+            padding: 16px;
             background: var(--gray-50);
             border-radius: 8px;
-            border-left: 4px solid var(--accent);
+            border-left: 3px solid var(--accent);
         }
 
         .point-bullet {
@@ -129,91 +127,85 @@
         }
 
         .highlight-box {
-            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             padding: 24px;
-            border-radius: 12px;
-            margin: 24px 0;
+            border-radius: 8px;
+            margin: 20px 0;
             color: white;
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
         }
 
         .warning-box {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            padding: 24px;
-            border-radius: 12px;
-            margin: 24px 0;
+            background: #fffaf0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
             border-left: 4px solid var(--warning);
-            color: var(--gray-900);
+            color: var(--gray-800);
         }
 
         .characteristics {
             display: grid;
-            gap: 16px;
-            margin: 24px 0;
+            gap: 12px;
+            margin: 20px 0;
         }
 
         .characteristic {
-            padding: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
-            border-radius: 12px;
+            padding: 16px;
+            background: var(--gray-50);
+            border-radius: 8px;
             font-weight: 500;
             border: 1px solid var(--gray-200);
             transition: all 0.2s ease;
         }
 
         .characteristic:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary-light);
+            border-color: var(--accent);
+            background: white;
         }
 
         .test-container {
-            margin-top: 40px;
+            margin-top: 32px;
         }
 
         .question {
-            margin-bottom: 40px;
-            padding: 32px;
-            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
-            border-radius: 16px;
+            margin-bottom: 32px;
+            padding: 24px;
+            background: white;
+            border-radius: 8px;
             border: 1px solid var(--gray-200);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
         }
 
         .answers {
             display: grid;
-            gap: 12px;
+            gap: 8px;
         }
 
         .answer {
-            padding: 18px 22px;
+            padding: 16px;
             background: white;
-            border: 2px solid var(--gray-200);
-            border-radius: 12px;
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
             font-weight: 500;
-            font-size: 17px;
         }
 
         .answer:hover {
-            border-color: var(--primary-light);
+            border-color: var(--accent);
             background: var(--gray-50);
-            transform: translateY(-1px);
         }
 
         .correct {
-            background: #dcfce7 !important;
+            background: #f0fff4 !important;
             border-color: var(--success) !important;
-            color: #166534;
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+            color: var(--gray-800);
         }
 
         .incorrect {
-            background: #fef2f2 !important;
+            background: #fff5f5 !important;
             border-color: var(--error) !important;
-            color: #991b1b;
-            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+            color: var(--gray-800);
         }
 
         .modal {
@@ -232,57 +224,56 @@
         .modal-content {
             background: white;
             padding: 24px;
-            border-radius: 12px;
+            border-radius: 8px;
             text-align: center;
-            max-width: 520px;
+            max-width: 500px;
             width: 90%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .modal h2 {
             color: var(--success);
             margin-bottom: 16px;
+            border: none;
         }
 
         .next-block {
             display: none;
-            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
-            padding: 40px;
-            border-radius: 16px;
+            background: var(--success);
+            padding: 32px;
+            border-radius: 8px;
             text-align: left;
-            margin-top: 40px;
+            margin-top: 32px;
             color: white;
-            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
         }
 
         .subsection {
-            margin-top: 32px;
+            margin-top: 24px;
         }
 
         .subsection-content {
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         .emphasis {
             font-weight: 600;
-            color: var(--primary-dark);
+            color: var(--primary);
         }
 
         .image-comparison {
             text-align: center;
-            margin: 24px 0;
+            margin: 20px 0;
         }
 
         .image-comparison img {
             max-width: 100%;
             height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         .image-caption {
-            margin-top: 12px;
+            margin-top: 8px;
             font-style: italic;
             color: var(--gray-600);
             text-align: center;
@@ -291,73 +282,71 @@
         .ct-options {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin: 20px 0;
+            gap: 8px;
+            margin: 16px 0;
         }
 
         .ct-option {
             padding: 16px;
             background: white;
-            border: 2px solid var(--gray-200);
-            border-radius: 12px;
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
             cursor: pointer;
             text-align: center;
             transition: all 0.2s ease;
         }
 
         .ct-option:hover {
-            border-color: var(--primary-light);
+            border-color: var(--accent);
             background: var(--gray-50);
         }
 
         .result-image {
-            margin: 20px 0;
+            margin: 16px 0;
             text-align: center;
         }
 
         .result-image img {
             max-width: 100%;
             height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         .final-highlight {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            padding: 32px;
-            border-radius: 16px;
-            margin: 32px 0;
+            background: var(--primary);
+            padding: 24px;
+            border-radius: 8px;
+            margin: 24px 0;
             color: white;
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
             text-align: center;
         }
 
         .final-highlight h3 {
             color: white;
-            font-size: 24px;
-            margin-bottom: 16px;
+            font-size: 20px;
+            margin-bottom: 12px;
         }
 
         .final-highlight p {
             color: white;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
             margin-bottom: 0;
         }
 
         .conclusion-box {
-            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
-            padding: 32px;
-            border-radius: 16px;
-            margin: 32px 0;
+            background: var(--success);
+            padding: 24px;
+            border-radius: 8px;
+            margin: 24px 0;
             color: white;
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
             text-align: center;
         }
 
         .conclusion-box p {
             color: white;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
             margin-bottom: 0;
             line-height: 1.5;
@@ -366,28 +355,25 @@
         .author-signature {
             display: none;
             text-align: center;
-            margin-top: 60px;
+            margin-top: 48px;
             padding: 20px;
             color: var(--gray-500);
             font-size: 14px;
             border-top: 1px solid var(--gray-200);
-            font-style: italic;
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 40px 20px;
+                padding: 24px 16px;
             }
-            h1 { font-size: 32px; }
-            h2 { font-size: 26px; }
-            h3 { font-size: 20px; }
+            h1 { font-size: 28px; }
+            h2 { font-size: 22px; }
+            h3 { font-size: 18px; }
             .intro { padding: 24px; }
-            .question { padding: 24px; }
-            body { font-size: 17px; }
+            .question { padding: 20px; }
+            body { font-size: 15px; }
             .ct-options { grid-template-columns: 1fr; }
-            .final-highlight h3 { font-size: 22px; }
-            .final-highlight p { font-size: 18px; }
-            .conclusion-box p { font-size: 18px; }
+            .section { padding: 24px; }
         }
     </style>
 </head>
@@ -430,7 +416,7 @@
                 <div>В детских коллективах несвоевременное выявление туберкулёза особенно опасно из-за большей уязвимости иммунной системы детей.</div>
             </div>
             
-            <div class="point" style="margin: 16px 0; padding: 16px; background: #fef2f2; border-left: 4px solid var(--error); border-radius: 8px;">
+            <div class="point" style="margin: 16px 0; padding: 16px; background: #fff5f5; border-left: 4px solid var(--error); border-radius: 8px;">
                 <div class="point-bullet">•</div>
                 <div>При нарушении правил профилактики, если это привело к заражению других, ответственность может быть уголовной (ст. 236 УК РФ).</div>
             </div>
@@ -489,9 +475,8 @@
                     </div>
                     
                     <div class="highlight-box">
-                        Просим ответственно отнестись к обследованию — вместе мы делаем среду безопасной для всех.</div>
-                    
-                    
+                        Просим ответственно отнестись к обследованию — вместе мы делаем среду безопасной для всех.
+                    </div>
                 </div>
             </div>
         </section>
@@ -580,7 +565,6 @@
                 </div>
 
                 <div id="ctResult" style="display: none;">
-                    <!-- Inline result block (kept for compatibility) -->
                     <div class="final-highlight">
                         <h3>Вот он! Небольшой очаг справа вверху на картинке. Такие начальные изменения видны только на КТ.</h3>
                     </div>
@@ -612,10 +596,10 @@
                 </div>
 
                 <div id="conclusionBlock" style="display: none;">
-                    <div class="conclusion-box" style="text-align: left; padding: 40px;">
-                        <p style="margin-bottom: 24px; line-height: 1.6;">Диаскинтест — ключевой этап диагностики. Он помогает определить, кто нуждается в более тщательном обследовании с помощью КТ.</p>
+                    <div class="conclusion-box" style="text-align: left; padding: 32px;">
+                        <p style="margin-bottom: 20px; line-height: 1.6;">Диаскинтест — ключевой этап диагностики. Он помогает определить, кто нуждается в более тщательном обследовании с помощью КТ.</p>
                         
-                        <p style="margin-bottom: 24px; line-height: 1.6;">Компьютерная томография (КТ) позволяет выявить туберкулёз на ранней стадии, когда лечение наиболее эффективно.</p>
+                        <p style="margin-bottom: 20px; line-height: 1.6;">Компьютерная томография (КТ) позволяет выявить туберкулёз на ранней стадии, когда лечение наиболее эффективно.</p>
                         
                         <p style="margin-bottom: 0; line-height: 1.6;">Если при положительном Диаскинтесте на КТ изменений не обнаружено, врач назначает профилактическое лечение, которое предотвращает развитие болезни в будущем.</p>
                     </div>
@@ -643,143 +627,137 @@
         </div>
     </div>
 
-    <!-- вставь этот код вместо твоего <script> в самом низу, перед </body> -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const basicQuestions = document.querySelectorAll('#knowledgeTest .question');
-    const successModal = document.getElementById('successModal');
-    const knowledgeTest = document.getElementById('knowledgeTest');
-    const visualDiagnostics = document.getElementById('visualDiagnostics');
-    const finalInfo = document.getElementById('finalInfo');
-    const authorSignature = document.getElementById('authorSignature');
-    const ctResult = document.getElementById('ctResult');
-    const conclusionBlock = document.getElementById('conclusionBlock');
+    <script>
+    // Тот же самый скрипт без изменений
+    document.addEventListener('DOMContentLoaded', function() {
+        const basicQuestions = document.querySelectorAll('#knowledgeTest .question');
+        const successModal = document.getElementById('successModal');
+        const knowledgeTest = document.getElementById('knowledgeTest');
+        const visualDiagnostics = document.getElementById('visualDiagnostics');
+        const finalInfo = document.getElementById('finalInfo');
+        const authorSignature = document.getElementById('authorSignature');
+        const ctResult = document.getElementById('ctResult');
+        const conclusionBlock = document.getElementById('conclusionBlock');
 
-    // 🔹 новое окно
-    const ctReasonModal = document.createElement('div');
-    ctReasonModal.className = 'modal';
-    ctReasonModal.id = 'ctReasonModal';
-    ctReasonModal.innerHTML = `
-        <div class="modal-content" style="max-width:500px; text-align:center;">
-            <p style="font-size:20px; font-weight:600; color:var(--gray-800);">
-                Пациенту назначено КТ из-за положительного результата пробы Диаскинтест. Если бы он отказался от этой пробы, компьютерная томография не была бы проведена, и изменения в легких не были бы обнаружены своевременно.
-            </p>
-        </div>
-    `;
-    document.body.appendChild(ctReasonModal);
+        const ctReasonModal = document.createElement('div');
+        ctReasonModal.className = 'modal';
+        ctReasonModal.id = 'ctReasonModal';
+        ctReasonModal.innerHTML = `
+            <div class="modal-content" style="max-width:500px; text-align:center;">
+                <p style="font-size:20px; font-weight:600; color:var(--gray-800);">
+                    Пациенту назначено КТ из-за положительного результата пробы Диаскинтест. Если бы он отказался от этой пробы, компьютерная томография не была бы проведена, и изменения в легких не были бы обнаружены своевременно.
+                </p>
+            </div>
+        `;
+        document.body.appendChild(ctReasonModal);
 
-    let currentBasicQuestion = 0;
-    let showFinalTimer = null;
+        let currentBasicQuestion = 0;
+        let showFinalTimer = null;
 
-    function initTest() {
-        basicQuestions.forEach((q, i) => q.style.display = i === 0 ? 'block' : 'none');
+        function initTest() {
+            basicQuestions.forEach((q, i) => q.style.display = i === 0 ? 'block' : 'none');
 
-        document.querySelectorAll('#knowledgeTest .answer').forEach(a =>
-            a.addEventListener('click', handleBasicAnswerClick)
-        );
+            document.querySelectorAll('#knowledgeTest .answer').forEach(a =>
+                a.addEventListener('click', handleBasicAnswerClick)
+            );
 
-        document.querySelectorAll('#fluorQuestion .answer').forEach(a =>
-            a.addEventListener('click', handleFluorAnswerClick)
-        );
+            document.querySelectorAll('#fluorQuestion .answer').forEach(a =>
+                a.addEventListener('click', handleFluorAnswerClick)
+            );
 
-        document.querySelectorAll('.ct-option').forEach(o =>
-            o.addEventListener('click', handleCtOptionClick)
-        );
+            document.querySelectorAll('.ct-option').forEach(o =>
+                o.addEventListener('click', handleCtOptionClick)
+            );
 
-        // Добавляем действие по клику на КТ-блок
-        ctResult.addEventListener('click', () => {
-            clearTimeout(showFinalTimer);
-            showCtReasonModal();
-        });
-    }
+            ctResult.addEventListener('click', () => {
+                clearTimeout(showFinalTimer);
+                showCtReasonModal();
+            });
+        }
 
-    function handleBasicAnswerClick(e) {
-        const a = e.target;
-        const ok = a.dataset.correct === 'true';
-        a.classList.add(ok ? 'correct' : 'incorrect');
-        setTimeout(() => {
-            if (ok) showNextBasicQuestion();
-            else a.classList.remove('incorrect');
-        }, 800);
-    }
+        function handleBasicAnswerClick(e) {
+            const a = e.target;
+            const ok = a.dataset.correct === 'true';
+            a.classList.add(ok ? 'correct' : 'incorrect');
+            setTimeout(() => {
+                if (ok) showNextBasicQuestion();
+                else a.classList.remove('incorrect');
+            }, 800);
+        }
 
-    function handleFluorAnswerClick(e) {
-        const a = e.target;
-        const ok = a.dataset.fluorCorrect === 'true';
-        a.classList.add(ok ? 'correct' : 'incorrect');
-        if (!ok) return setTimeout(() => a.classList.remove('incorrect'), 800);
+        function handleFluorAnswerClick(e) {
+            const a = e.target;
+            const ok = a.dataset.fluorCorrect === 'true';
+            a.classList.add(ok ? 'correct' : 'incorrect');
+            if (!ok) return setTimeout(() => a.classList.remove('incorrect'), 800);
 
-        setTimeout(() => {
-            const q = document.getElementById('fluorQuestion');
-            q.querySelector('.answers').style.display = 'none';
-            q.querySelector('h3').textContent =
-                'Флюорограмма выглядит чистой, но это обманчиво...';
+            setTimeout(() => {
+                const q = document.getElementById('fluorQuestion');
+                q.querySelector('.answers').style.display = 'none';
+                q.querySelector('h3').textContent =
+                    'Флюорограмма выглядит чистой, но это обманчиво...';
 
-            const ctQ = document.getElementById('ctQuestion');
-            ctQ.style.display = 'block';
-            ctQ.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 800);
-    }
+                const ctQ = document.getElementById('ctQuestion');
+                ctQ.style.display = 'block';
+                ctQ.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 800);
+        }
 
-    function handleCtOptionClick(e) {
-        const o = e.target;
-        const ok = o.dataset.ctCorrect === 'true';
-        o.classList.add(ok ? 'correct' : 'incorrect');
-        if (!ok) return setTimeout(() => o.classList.remove('incorrect'), 800);
+        function handleCtOptionClick(e) {
+            const o = e.target;
+            const ok = o.dataset.ctCorrect === 'true';
+            o.classList.add(ok ? 'correct' : 'incorrect');
+            if (!ok) return setTimeout(() => o.classList.remove('incorrect'), 800);
 
-        setTimeout(() => {
-            document.getElementById('ctQuestion').style.display = 'none';
-            ctResult.style.display = 'block';
-            ctResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 800);
-    }
+            setTimeout(() => {
+                document.getElementById('ctQuestion').style.display = 'none';
+                ctResult.style.display = 'block';
+                ctResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 800);
+        }
 
-    // 🔹 ИЗМЕНЕНИЕ: убрано закрытие по клику, оставлено только автоматическое закрытие через 5 секунд
-    function showCtReasonModal() {
-        ctReasonModal.style.display = 'flex';
-        // Убираем обработчик клика для закрытия
-        const timer = setTimeout(closeCtReasonModal, 5000);
-        // Больше не добавляем обработчик клика на модальное окно
-    }
+        function showCtReasonModal() {
+            ctReasonModal.style.display = 'flex';
+            const timer = setTimeout(closeCtReasonModal, 5000);
+        }
 
-    function closeCtReasonModal() {
-        ctReasonModal.style.display = 'none';
-        scrollToFinalBlocks();
-    }
+        function closeCtReasonModal() {
+            ctReasonModal.style.display = 'none';
+            scrollToFinalBlocks();
+        }
 
-    function scrollToFinalBlocks() {
-        conclusionBlock.style.display = 'block';
-        finalInfo.style.display = 'block';
-        authorSignature.style.display = 'block';
-        conclusionBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+        function scrollToFinalBlocks() {
+            conclusionBlock.style.display = 'block';
+            finalInfo.style.display = 'block';
+            authorSignature.style.display = 'block';
+            conclusionBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
 
-    function showNextBasicQuestion() {
-        basicQuestions[currentBasicQuestion].style.display = 'none';
-        currentBasicQuestion++;
-        if (currentBasicQuestion < basicQuestions.length)
-            basicQuestions[currentBasicQuestion].style.display = 'block';
-        else
-            showSuccessModal();
-    }
+        function showNextBasicQuestion() {
+            basicQuestions[currentBasicQuestion].style.display = 'none';
+            currentBasicQuestion++;
+            if (currentBasicQuestion < basicQuestions.length)
+                basicQuestions[currentBasicQuestion].style.display = 'block';
+            else
+                showSuccessModal();
+        }
 
-    function showSuccessModal() {
-        successModal.style.display = 'flex';
-        setTimeout(() => {
-            successModal.style.display = 'none';
-            showVisualDiagnostics();
-        }, 2000);
-    }
+        function showSuccessModal() {
+            successModal.style.display = 'flex';
+            setTimeout(() => {
+                successModal.style.display = 'none';
+                showVisualDiagnostics();
+            }, 2000);
+        }
 
-    function showVisualDiagnostics() {
-        knowledgeTest.style.display = 'none';
-        visualDiagnostics.style.display = 'block';
-        visualDiagnostics.scrollIntoView({ behavior: 'smooth' });
-    }
+        function showVisualDiagnostics() {
+            knowledgeTest.style.display = 'none';
+            visualDiagnostics.style.display = 'block';
+            visualDiagnostics.scrollIntoView({ behavior: 'smooth' });
+        }
 
-    initTest();
-});
-</script>
-
+        initTest();
+    });
+    </script>
 </body>
 </html>
