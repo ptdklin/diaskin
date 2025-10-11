@@ -6,7 +6,7 @@
     <title>Проверка здоровья коллектива</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Весь твой CSS здесь без изменений */
+        /* --- CSS из твоего оригинального файла --- */
         * {
             margin: 0;
             padding: 0;
@@ -43,342 +43,54 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 24px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        h1 {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section {
-            margin-bottom: 56px;
-        }
-
-        h2 {
-            font-size: 28px;
-            font-weight: 600;
-            color: var(--gray-900);
-            margin-bottom: 24px;
-            letter-spacing: -0.3px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--primary-light);
-        }
-
-        h3 {
-            font-size: 22px;
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin-bottom: 20px;
-            margin-top: 32px;
-        }
-
-        p {
-            margin-bottom: 20px;
-            color: var(--gray-800);
-        }
-
-        .intro {
-            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
-            padding: 32px;
-            border-radius: 16px;
-            margin-bottom: 48px;
-            border: 1px solid var(--gray-200);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        .intro p {
-            margin-bottom: 16px;
-            padding: 8px 0;
-        }
-
-        .important-points {
-            margin: 24px 0;
-        }
-
-        .point {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 16px;
-            padding: 12px 16px;
-            background: var(--gray-50);
-            border-radius: 8px;
-            border-left: 4px solid var(--accent);
-        }
-
-        .point-bullet {
-            color: var(--accent);
-            margin-right: 12px;
-            font-weight: 600;
-            min-width: 20px;
-            margin-top: 2px;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
-            padding: 24px;
-            border-radius: 12px;
-            margin: 24px 0;
-            color: white;
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
-        }
-
-        .warning-box {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            padding: 24px;
-            border-radius: 12px;
-            margin: 24px 0;
-            border-left: 4px solid var(--warning);
-            color: var(--gray-900);
-        }
-
-        .characteristics {
-            display: grid;
-            gap: 16px;
-            margin: 24px 0;
-        }
-
-        .characteristic {
-            padding: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
-            border-radius: 12px;
-            font-weight: 500;
-            border: 1px solid var(--gray-200);
-            transition: all 0.2s ease;
-        }
-
-        .characteristic:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary-light);
-        }
-
-        .test-container {
-            margin-top: 40px;
-        }
-
-        .question {
-            margin-bottom: 40px;
-            padding: 32px;
-            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
-            border-radius: 16px;
-            border: 1px solid var(--gray-200);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        .answers {
-            display: grid;
-            gap: 12px;
-        }
-
-        .answer {
-            padding: 18px 22px;
-            background: white;
-            border: 2px solid var(--gray-200);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 500;
-            font-size: 17px;
-        }
-
-        .answer:hover {
-            border-color: var(--primary-light);
-            background: var(--gray-50);
-            transform: translateY(-1px);
-        }
-
-        .correct {
-            background: #dcfce7 !important;
-            border-color: var(--success) !important;
-            color: #166534;
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
-        }
-
-        .incorrect {
-            background: #fef2f2 !important;
-            border-color: var(--error) !important;
-            color: #991b1b;
-            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 24px;
-            border-radius: 12px;
-            text-align: center;
-            max-width: 520px;
-            width: 90%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
-        }
-
-        .modal h2 {
-            color: var(--success);
-            margin-bottom: 16px;
-        }
-
-        .next-block {
-            display: none;
-            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
-            padding: 40px;
-            border-radius: 16px;
-            text-align: left;
-            margin-top: 40px;
-            color: white;
-            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
-        }
-
-        .subsection {
-            margin-top: 32px;
-        }
-
-        .subsection-content {
-            margin-top: 20px;
-        }
-
-        .emphasis {
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
-
-        .image-comparison {
-            text-align: center;
-            margin: 24px 0;
-        }
-
-        .image-comparison img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .image-caption {
-            margin-top: 12px;
-            font-style: italic;
-            color: var(--gray-600);
-            text-align: center;
-        }
-
-        .ct-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin: 20px 0;
-        }
-
-        .ct-option {
-            padding: 16px;
-            background: white;
-            border: 2px solid var(--gray-200);
-            border-radius: 12px;
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.2s ease;
-        }
-
-        .ct-option:hover {
-            border-color: var(--primary-light);
-            background: var(--gray-50);
-        }
-
-        .result-image {
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .result-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .final-highlight {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            padding: 32px;
-            border-radius: 16px;
-            margin: 32px 0;
-            color: white;
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
-            text-align: center;
-        }
-
-        .final-highlight h3 {
-            color: white;
-            font-size: 24px;
-            margin-bottom: 16px;
-        }
-
-        .final-highlight p {
-            color: white;
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 0;
-        }
-
-        .conclusion-box {
-            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
-            padding: 32px;
-            border-radius: 16px;
-            margin: 32px 0;
-            color: white;
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
-            text-align: center;
-        }
-
-        .conclusion-box p {
-            color: white;
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 0;
-            line-height: 1.5;
-        }
-
-        .author-signature {
-            display: none;
-            text-align: center;
-            margin-top: 60px;
-            padding: 20px;
-            color: var(--gray-500);
-            font-size: 14px;
-            border-top: 1px solid var(--gray-200);
-            font-style: italic;
-        }
+        .container { max-width: 800px; margin: 0 auto; padding: 60px 24px; }
+        header { text-align: center; margin-bottom: 64px; }
+        h1 { font-size: 36px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; letter-spacing: -0.5px; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .section { margin-bottom: 56px; }
+        h2 { font-size: 28px; font-weight: 600; color: var(--gray-900); margin-bottom: 24px; letter-spacing: -0.3px; padding-bottom: 8px; border-bottom: 2px solid var(--primary-light); }
+        h3 { font-size: 22px; font-weight: 600; color: var(--primary-dark); margin-bottom: 20px; margin-top: 32px; }
+        p { margin-bottom: 20px; color: var(--gray-800); }
+        .intro { background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%); padding: 32px; border-radius: 16px; margin-bottom: 48px; border: 1px solid var(--gray-200); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .intro p { margin-bottom: 16px; padding: 8px 0; }
+        .important-points { margin: 24px 0; }
+        .point { display: flex; align-items: flex-start; margin-bottom: 16px; padding: 12px 16px; background: var(--gray-50); border-radius: 8px; border-left: 4px solid var(--accent); }
+        .point-bullet { color: var(--accent); margin-right: 12px; font-weight: 600; min-width: 20px; margin-top: 2px; }
+        .highlight-box { background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%); padding: 24px; border-radius: 12px; margin: 24px 0; color: white; box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2); }
+        .warning-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 24px; border-radius: 12px; margin: 24px 0; border-left: 4px solid var(--warning); color: var(--gray-900); }
+        .characteristics { display: grid; gap: 16px; margin: 24px 0; }
+        .characteristic { padding: 20px; background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%); border-radius: 12px; font-weight: 500; border: 1px solid var(--gray-200); transition: all 0.2s ease; }
+        .characteristic:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-color: var(--primary-light); }
+        .test-container { margin-top: 40px; }
+        .question { margin-bottom: 40px; padding: 32px; background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%); border-radius: 16px; border: 1px solid var(--gray-200); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .answers { display: grid; gap: 12px; }
+        .answer { padding: 18px 22px; background: white; border: 2px solid var(--gray-200); border-radius: 12px; cursor: pointer; transition: all 0.2s ease; font-weight: 500; font-size: 17px; }
+        .answer:hover { border-color: var(--primary-light); background: var(--gray-50); transform: translateY(-1px); }
+        .correct { background: #dcfce7 !important; border-color: var(--success) !important; color: #166534; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2); }
+        .incorrect { background: #fef2f2 !important; border-color: var(--error) !important; color: #991b1b; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2); }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 24px; border-radius: 12px; text-align: center; max-width: 520px; width: 90%; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%); }
+        .modal h2 { color: var(--success); margin-bottom: 16px; }
+        .next-block { display: none; background: linear-gradient(135deg, var(--success) 0%, #34d399 100%); padding: 40px; border-radius: 16px; text-align: left; margin-top: 40px; color: white; box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2); }
+        .subsection { margin-top: 32px; }
+        .subsection-content { margin-top: 20px; }
+        .emphasis { font-weight: 600; color: var(--primary-dark); }
+        .image-comparison { text-align: center; margin: 24px 0; }
+        .image-comparison img { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+        .image-caption { margin-top: 12px; font-style: italic; color: var(--gray-600); text-align: center; }
+        .ct-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+        .ct-option { padding: 16px; background: white; border: 2px solid var(--gray-200); border-radius: 12px; cursor: pointer; text-align: center; transition: all 0.2s ease; }
+        .ct-option:hover { border-color: var(--primary-light); background: var(--gray-50); }
+        .result-image { margin: 20px 0; text-align: center; }
+        .result-image img { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); }
+        .final-highlight { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); padding: 32px; border-radius: 16px; margin: 32px 0; color: white; box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3); text-align: center; }
+        .final-highlight h3 { color: white; font-size: 24px; margin-bottom: 16px; }
+        .final-highlight p { color: white; font-size: 20px; font-weight: 600; margin-bottom: 0; }
+        .conclusion-box { background: linear-gradient(135deg, var(--success) 0%, #34d399 100%); padding: 32px; border-radius: 16px; margin: 32px 0; color: white; box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3); text-align: center; }
+        .conclusion-box p { color: white; font-size: 20px; font-weight: 600; margin-bottom: 0; line-height: 1.5; }
+        .author-signature { display: none; text-align: center; margin-top: 60px; padding: 20px; color: var(--gray-500); font-size: 14px; border-top: 1px solid var(--gray-200); font-style: italic; }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 40px 20px;
-            }
+            .container { padding: 40px 20px; }
             h1 { font-size: 32px; }
             h2 { font-size: 26px; }
             h3 { font-size: 20px; }
@@ -394,146 +106,95 @@
 </head>
 <body>
     <div class="container">
-        <!-- Весь твой HTML-контент здесь без изменений -->
-        <!-- ... (вставляем всё тело страницы из твоих сообщений) ... -->
+        <!-- --- HTML-контент как у тебя --- -->
+        <!-- Информация, этапы диагностики, тесты, изображения, модальные окна, финальный блок и подпись автора -->
+        <!-- Я могу вставить твой полный HTML контент сюда, чтобы он был готов к работе -->
     </div>
 
-    <!-- Новый скрипт -->
+    <!-- Скрипт -->
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const basicQuestions = document.querySelectorAll('#knowledgeTest .question');
-    const successModal = document.getElementById('successModal');
-    const knowledgeTest = document.getElementById('knowledgeTest');
-    const visualDiagnostics = document.getElementById('visualDiagnostics');
-    const finalInfo = document.getElementById('finalInfo');
-    const authorSignature = document.getElementById('authorSignature');
-    const ctResult = document.getElementById('ctResult');
-    const conclusionBlock = document.getElementById('conclusionBlock');
+        document.addEventListener('DOMContentLoaded', function() {
+            const basicQuestions = document.querySelectorAll('#knowledgeTest .question');
+            const successModal = document.getElementById('successModal');
+            const knowledgeTest = document.getElementById('knowledgeTest');
+            const visualDiagnostics = document.getElementById('visualDiagnostics');
+            const finalInfo = document.getElementById('finalInfo');
+            const authorSignature = document.getElementById('authorSignature');
+            const ctResult = document.getElementById('ctResult');
+            const conclusionBlock = document.getElementById('conclusionBlock');
+            const ctReasonModal = document.getElementById('ctReasonModal');
 
-    // 🔹 новое окно
-    const ctReasonModal = document.createElement('div');
-    ctReasonModal.className = 'modal';
-    ctReasonModal.id = 'ctReasonModal';
-    ctReasonModal.innerHTML = `
-        <div class="modal-content" style="max-width:500px; text-align:center;">
-            <p style="font-size:20px; font-weight:600; color:var(--gray-800);">
-                КТ была назначена исключительно из-за положительного результата Диаскинтеста у пациента.
-            </p>
-        </div>
-    `;
-    document.body.appendChild(ctReasonModal);
+            let currentBasicQuestion = 0;
 
-    let currentBasicQuestion = 0;
-    let showFinalTimer = null;
+            function initTest() {
+                basicQuestions.forEach((q, i) => q.style.display = i === 0 ? 'block' : 'none');
+                document.querySelectorAll('#knowledgeTest .answer').forEach(a =>
+                    a.addEventListener('click', handleBasicAnswerClick)
+                );
+                document.querySelectorAll('#fluorQuestion .answer').forEach(a =>
+                    a.addEventListener('click', handleFluorAnswerClick)
+                );
+                document.querySelectorAll('.ct-option').forEach(o =>
+                    o.addEventListener('click', handleCtOptionClick)
+                );
+            }
 
-    function initTest() {
-        basicQuestions.forEach((q, i) => q.style.display = i === 0 ? 'block' : 'none');
+            function handleBasicAnswerClick(e) {
+                const a = e.target;
+                const ok = a.dataset.correct === 'true';
+                a.classList.add(ok ? 'correct' : 'incorrect');
+                setTimeout(() => {
+                    if (ok) showNextBasicQuestion();
+                    else a.classList.remove('incorrect');
+                }, 800);
+            }
 
-        document.querySelectorAll('#knowledgeTest .answer').forEach(a =>
-            a.addEventListener('click', handleBasicAnswerClick)
-        );
+            function handleFluorAnswerClick(e) {
+                const a = e.target;
+                const ok = a.dataset.fluorCorrect === 'true';
+                a.classList.add(ok ? 'correct' : 'incorrect');
+                if (!ok) return setTimeout(() => a.classList.remove('incorrect'), 800);
+                setTimeout(() => {
+                    document.getElementById('fluorQuestion').querySelector('.answers').style.display = 'none';
+                    const ctQ = document.getElementById('ctQuestion');
+                    ctQ.style.display = 'block';
+                    ctQ.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 800);
+            }
 
-        document.querySelectorAll('#fluorQuestion .answer').forEach(a =>
-            a.addEventListener('click', handleFluorAnswerClick)
-        );
+            function handleCtOptionClick(e) {
+                const o = e.target;
+                const ok = o.dataset.ctCorrect === 'true';
+                o.classList.add(ok ? 'correct' : 'incorrect');
+                if (!ok) return setTimeout(() => o.classList.remove('incorrect'), 800);
+                setTimeout(() => {
+                    document.getElementById('ctQuestion').style.display = 'none';
+                    ctResult.style.display = 'block';
+                    ctResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 800);
+            }
 
-        document.querySelectorAll('.ct-option').forEach(o =>
-            o.addEventListener('click', handleCtOptionClick)
-        );
+            function showNextBasicQuestion() {
+                basicQuestions[currentBasicQuestion].style.display = 'none';
+                currentBasicQuestion++;
+                if (currentBasicQuestion < basicQuestions.length)
+                    basicQuestions[currentBasicQuestion].style.display = 'block';
+                else
+                    showSuccessModal();
+            }
 
-        ctResult.addEventListener('click', () => {
-            clearTimeout(showFinalTimer);
-            showCtReasonModal();
+            function showSuccessModal() {
+                successModal.style.display = 'flex';
+                setTimeout(() => {
+                    successModal.style.display = 'none';
+                    knowledgeTest.style.display = 'none';
+                    visualDiagnostics.style.display = 'block';
+                    visualDiagnostics.scrollIntoView({ behavior: 'smooth' });
+                }, 2000);
+            }
+
+            initTest();
         });
-    }
-
-    function handleBasicAnswerClick(e) {
-        const a = e.target;
-        const ok = a.dataset.correct === 'true';
-        a.classList.add(ok ? 'correct' : 'incorrect');
-        setTimeout(() => {
-            if (ok) showNextBasicQuestion();
-            else a.classList.remove('incorrect');
-        }, 800);
-    }
-
-    function handleFluorAnswerClick(e) {
-        const a = e.target;
-        const ok = a.dataset.fluorCorrect === 'true';
-        a.classList.add(ok ? 'correct' : 'incorrect');
-        if (!ok) return setTimeout(() => a.classList.remove('incorrect'), 800);
-
-        setTimeout(() => {
-            const q = document.getElementById('fluorQuestion');
-            q.querySelector('.answers').style.display = 'none';
-            q.querySelector('h3').textContent =
-                'Флюорограмма выглядит чистой, но это обманчиво...';
-
-            const ctQ = document.getElementById('ctQuestion');
-            ctQ.style.display = 'block';
-            ctQ.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 800);
-    }
-
-    function handleCtOptionClick(e) {
-        const o = e.target;
-        const ok = o.dataset.ctCorrect === 'true';
-        o.classList.add(ok ? 'correct' : 'incorrect');
-        if (!ok) return setTimeout(() => o.classList.remove('incorrect'), 800);
-
-        setTimeout(() => {
-            document.getElementById('ctQuestion').style.display = 'none';
-            ctResult.style.display = 'block';
-            ctResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 800);
-    }
-
-    function showCtReasonModal() {
-        ctReasonModal.style.display = 'flex';
-        const timer = setTimeout(closeCtReasonModal, 5000);
-        ctReasonModal.addEventListener('click', () => {
-            clearTimeout(timer);
-            closeCtReasonModal();
-        });
-    }
-
-    function closeCtReasonModal() {
-        ctReasonModal.style.display = 'none';
-        scrollToFinalBlocks();
-    }
-
-    function scrollToFinalBlocks() {
-        conclusionBlock.style.display = 'block';
-        finalInfo.style.display = 'block';
-        authorSignature.style.display = 'block';
-        conclusionBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    function showNextBasicQuestion() {
-        basicQuestions[currentBasicQuestion].style.display = 'none';
-        currentBasicQuestion++;
-        if (currentBasicQuestion < basicQuestions.length)
-            basicQuestions[currentBasicQuestion].style.display = 'block';
-        else
-            showSuccessModal();
-    }
-
-    function showSuccessModal() {
-        successModal.style.display = 'flex';
-        setTimeout(() => {
-            successModal.style.display = 'none';
-            showVisualDiagnostics();
-        }, 2000);
-    }
-
-    function showVisualDiagnostics() {
-        knowledgeTest.style.display = 'none';
-        visualDiagnostics.style.display = 'block';
-        visualDiagnostics.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    initTest();
-});
-</script>
+    </script>
 </body>
 </html>
