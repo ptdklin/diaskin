@@ -734,14 +734,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 800);
     }
 
-    // 🔹 новое окно: появляется на 5 секунд, потом закрывается или по клику
+    // 🔹 ИЗМЕНЕНИЕ: убрано закрытие по клику, оставлено только автоматическое закрытие через 5 секунд
     function showCtReasonModal() {
         ctReasonModal.style.display = 'flex';
+        // Убираем обработчик клика для закрытия
         const timer = setTimeout(closeCtReasonModal, 5000);
-        ctReasonModal.addEventListener('click', () => {
-            clearTimeout(timer);
-            closeCtReasonModal();
-        });
+        // Больше не добавляем обработчик клика на модальное окно
     }
 
     function closeCtReasonModal() {
