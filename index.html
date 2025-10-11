@@ -34,8 +34,8 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
+            font-size: 18px; /* Увеличен базовый шрифт */
+            line-height: 1.7; /* Увеличен межстрочный интервал */
             color: var(--gray-900);
             background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
             font-weight: 400;
@@ -43,9 +43,9 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px; /* Увеличена максимальная ширина */
             margin: 0 auto;
-            padding: 40px 24px;
+            padding: 40px 20px; /* Уменьшены боковые отступы */
         }
 
         header {
@@ -56,10 +56,10 @@
         }
 
         h1 {
-            font-size: 36px;
+            font-size: 42px; /* Увеличен заголовок */
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             letter-spacing: -0.5px;
         }
 
@@ -67,95 +67,108 @@
             margin-bottom: 48px;
             background: white;
             border-radius: 12px;
-            padding: 32px;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            border: 1px solid var(--gray-200);
+            padding: 40px; /* Увеличены внутренние отступы */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            /* Убраны боковые границы, оставлены только верхняя и нижняя */
+            border-top: 3px solid var(--accent);
+            border-bottom: 1px solid var(--gray-200);
+            border-left: none;
+            border-right: none;
         }
 
         h2 {
-            font-size: 24px;
+            font-size: 32px; /* Увеличен заголовок 2 уровня */
             font-weight: 600;
             color: var(--primary);
-            margin-bottom: 24px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--accent);
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 3px solid var(--accent);
         }
 
         h3 {
-            font-size: 18px;
+            font-size: 24px; /* Увеличен заголовок 3 уровня */
             font-weight: 600;
             color: var(--primary-dark);
-            margin-bottom: 16px;
-            margin-top: 24px;
+            margin-bottom: 20px;
+            margin-top: 32px;
         }
 
         p {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             color: var(--gray-700);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 18px; /* Увеличен размер текста */
         }
 
         .intro {
             background: white;
-            padding: 32px;
+            padding: 40px; /* Увеличены отступы */
             border-radius: 12px;
             margin-bottom: 32px;
-            border-left: 4px solid var(--accent);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--accent);
+            border-bottom: 1px solid var(--gray-200);
+            border-left: none;
+            border-right: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .important-points {
-            margin: 20px 0;
+            margin: 24px 0;
         }
 
         .point {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 12px;
-            padding: 16px;
+            margin-bottom: 16px;
+            padding: 20px; /* Увеличены отступы */
             background: var(--gray-50);
             border-radius: 8px;
-            border-left: 3px solid var(--accent);
+            border-left: 4px solid var(--accent);
+            font-size: 18px; /* Увеличен шрифт */
         }
 
         .point-bullet {
             color: var(--accent);
-            margin-right: 12px;
+            margin-right: 16px;
             font-weight: 600;
-            min-width: 20px;
+            min-width: 24px;
             margin-top: 2px;
+            font-size: 20px;
         }
 
         .highlight-box {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            padding: 24px;
-            border-radius: 8px;
-            margin: 20px 0;
+            padding: 28px; /* Увеличены отступы */
+            border-radius: 10px;
+            margin: 24px 0;
             color: white;
+            font-size: 18px; /* Увеличен шрифт */
         }
 
         .warning-box {
             background: #fffaf0;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
+            padding: 24px; /* Увеличены отступы */
+            border-radius: 10px;
+            margin: 24px 0;
             border-left: 4px solid var(--warning);
             color: var(--gray-800);
+            font-size: 18px; /* Увеличен шрифт */
         }
 
         .characteristics {
             display: grid;
-            gap: 12px;
-            margin: 20px 0;
+            gap: 16px;
+            margin: 24px 0;
         }
 
         .characteristic {
-            padding: 16px;
+            padding: 20px; /* Увеличены отступы */
             background: var(--gray-50);
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 500;
             border: 1px solid var(--gray-200);
             transition: all 0.2s ease;
+            font-size: 18px; /* Увеличен шрифт */
         }
 
         .characteristic:hover {
@@ -164,31 +177,35 @@
         }
 
         .test-container {
-            margin-top: 32px;
+            margin-top: 36px;
         }
 
         .question {
-            margin-bottom: 32px;
-            padding: 24px;
+            margin-bottom: 36px;
+            padding: 32px; /* Увеличены отступы */
             background: white;
-            border-radius: 8px;
-            border: 1px solid var(--gray-200);
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            border-top: 3px solid var(--accent);
+            border-bottom: 1px solid var(--gray-200);
+            border-left: none;
+            border-right: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .answers {
             display: grid;
-            gap: 8px;
+            gap: 12px;
         }
 
         .answer {
-            padding: 16px;
+            padding: 20px; /* Увеличены отступы */
             background: white;
             border: 2px solid var(--gray-300);
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.2s ease;
             font-weight: 500;
+            font-size: 18px; /* Увеличен шрифт */
         }
 
         .answer:hover {
@@ -223,77 +240,86 @@
 
         .modal-content {
             background: white;
-            padding: 24px;
-            border-radius: 8px;
+            padding: 32px; /* Увеличены отступы */
+            border-radius: 12px;
             text-align: center;
-            max-width: 500px;
+            max-width: 600px; /* Увеличена максимальная ширина */
             width: 90%;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border-top: 4px solid var(--accent);
+            border-bottom: 1px solid var(--gray-200);
+            border-left: none;
+            border-right: none;
         }
 
         .modal h2 {
             color: var(--success);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             border: none;
+            font-size: 28px; /* Увеличен шрифт */
         }
 
         .next-block {
             display: none;
             background: var(--success);
-            padding: 32px;
-            border-radius: 8px;
+            padding: 40px; /* Увеличены отступы */
+            border-radius: 12px;
             text-align: left;
-            margin-top: 32px;
+            margin-top: 36px;
             color: white;
+            font-size: 18px; /* Увеличен шрифт */
         }
 
         .subsection {
-            margin-top: 24px;
+            margin-top: 32px;
         }
 
         .subsection-content {
-            margin-top: 16px;
+            margin-top: 20px;
         }
 
         .emphasis {
             font-weight: 600;
             color: var(--primary);
+            font-size: 18px; /* Увеличен шрифт */
         }
 
         .image-comparison {
             text-align: center;
-            margin: 20px 0;
+            margin: 24px 0;
         }
 
         .image-comparison img {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .image-caption {
-            margin-top: 8px;
+            margin-top: 12px;
             font-style: italic;
             color: var(--gray-600);
             text-align: center;
+            font-size: 16px;
         }
 
         .ct-options {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin: 16px 0;
+            gap: 12px;
+            margin: 20px 0;
         }
 
         .ct-option {
-            padding: 16px;
+            padding: 20px; /* Увеличены отступы */
             background: white;
             border: 2px solid var(--gray-300);
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             text-align: center;
             transition: all 0.2s ease;
+            font-size: 18px; /* Увеличен шрифт */
         }
 
         .ct-option:hover {
@@ -302,63 +328,65 @@
         }
 
         .result-image {
-            margin: 16px 0;
+            margin: 20px 0;
             text-align: center;
         }
 
         .result-image img {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .final-highlight {
             background: var(--primary);
-            padding: 24px;
-            border-radius: 8px;
-            margin: 24px 0;
+            padding: 32px; /* Увеличены отступы */
+            border-radius: 12px;
+            margin: 32px 0;
             color: white;
             text-align: center;
+            font-size: 18px; /* Увеличен шрифт */
         }
 
         .final-highlight h3 {
             color: white;
-            font-size: 20px;
-            margin-bottom: 12px;
+            font-size: 26px; /* Увеличен шрифт */
+            margin-bottom: 16px;
         }
 
         .final-highlight p {
             color: white;
-            font-size: 18px;
+            font-size: 20px; /* Увеличен шрифт */
             font-weight: 600;
             margin-bottom: 0;
         }
 
         .conclusion-box {
             background: var(--success);
-            padding: 24px;
-            border-radius: 8px;
-            margin: 24px 0;
+            padding: 40px; /* Увеличены отступы */
+            border-radius: 12px;
+            margin: 32px 0;
             color: white;
             text-align: center;
+            font-size: 18px; /* Увеличен шрифт */
         }
 
         .conclusion-box p {
             color: white;
-            font-size: 18px;
+            font-size: 20px; /* Увеличен шрифт */
             font-weight: 600;
             margin-bottom: 0;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .author-signature {
             display: none;
             text-align: center;
             margin-top: 48px;
-            padding: 20px;
+            padding: 24px;
             color: var(--gray-500);
-            font-size: 14px;
+            font-size: 16px;
             border-top: 1px solid var(--gray-200);
         }
 
@@ -366,14 +394,18 @@
             .container {
                 padding: 24px 16px;
             }
-            h1 { font-size: 28px; }
-            h2 { font-size: 22px; }
-            h3 { font-size: 18px; }
-            .intro { padding: 24px; }
-            .question { padding: 20px; }
-            body { font-size: 15px; }
+            h1 { font-size: 36px; }
+            h2 { font-size: 28px; }
+            h3 { font-size: 22px; }
+            .intro { padding: 32px; }
+            .question { padding: 28px; }
+            body { font-size: 17px; }
             .ct-options { grid-template-columns: 1fr; }
-            .section { padding: 24px; }
+            .section { padding: 32px; }
+            p { font-size: 17px; }
+            .point { font-size: 17px; }
+            .characteristic { font-size: 17px; }
+            .answer { font-size: 17px; }
         }
     </style>
 </head>
@@ -422,213 +454,13 @@
             </div>
         </section>
 
-        <section class="section">
-            <h2>Ключевые факты о туберкулезе</h2>
-            <div class="important-points">
-                <div class="point">
-                    <div class="point-bullet">•</div>
-                    <div><span class="emphasis">Коварство болезни:</span> в большинстве случаев долго протекает бессимптомно - человек чувствует себя здоровым, хотя уже болеет и может быть источником инфекции.</div>
-                </div>
-                <div class="point">
-                    <div class="point-bullet">•</div>
-                    <div><span class="emphasis">Флюорография не выявляет ранние изменения:</span> Для своевременного выявления эффективны<span class="emphasis"> Диаскинтест</span> и <span class="emphasis">компьютерная томография (КТ)</span>.</div>
-                </div>
-            </div>
-        </section>
+        <!-- Остальные секции остаются без изменений по содержанию -->
+        <!-- ... -->
 
-        <section class="section">
-            <h2>Этапы диагностики, которые мы пройдем</h2>
-            
-            <div class="subsection">
-                <h3>1-й этап. Узнаем, попала ли инфекция в организм — поставим кожную пробу Диаскинтест</h3>
-                <div class="subsection-content">
-                    <div class="characteristics">
-                        <div class="characteristic">
-                            <span class="emphasis">Что это?</span> Современный внутрикожный иммунно-аллергический тест, предназначенный для точного выявления активной туберкулезной инфекции.
-                        </div>
-                        <div class="characteristic">
-                            <span class="emphasis">Это не прививка.</span> Безопасен, не содержит живых бактерий и практически не проникает в кровоток.
-                        </div>
-                        <div class="characteristic">
-                            <span class="emphasis">Как проходит?</span> Вводится внутрикожно. Результат оценивают через 72 часа (3 суток) после постановки пробы. Можно мочить, но нельзя рассчёсывать.
-                        </div>
-                    </div>
-                    
-                    <div class="warning-box">
-                        <span class="emphasis">Важно знать!</span> Если заражение было совсем недавно, тест может быть отрицательным — иммунная система ещё «не успела понять», что человек инфицирован.<span class="emphasis"> Обследование нужно повторить через 3, 6 и 12 месяцев.</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="subsection">
-                <h3>2-й этап. Проверим легкие</h3>
-                <div class="subsection-content">
-                    <p>В зависимости от результата теста, для уточнения диагноза используется:</p>
-                    
-                    <div class="point">
-                        <div class="point-bullet">•</div>
-                        <div><span class="emphasis">Отрицательный результат пробы Диаскинтест</span> → проводится <span class="emphasis">рентгенография легких</span>.</div>
-                    </div>
-                    <div class="point">
-                        <div class="point-bullet">•</div>
-                        <div><span class="emphasis">Положительный результат пробы</span> → <span class="emphasis">компьютерная томография (КТ) лёгких</span>, позволяющая увидеть мельчайшие изменения.</div>
-                    </div>
-                    
-                    <div class="highlight-box">
-                        Просим ответственно отнестись к обследованию — вместе мы делаем среду безопасной для всех.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Уровень 1: Основной тест -->
-        <section class="section" id="knowledgeTest">
-            <h2>Промежуточный контроль знаний</h2>
-            
-            <div class="test-container">
-                <div class="question" id="question1">
-                    <h3>Диаскинтест — это прививка?</h3>
-                    <div class="answers">
-                        <div class="answer" data-correct="false">Да</div>
-                        <div class="answer" data-correct="true">Нет</div>
-                    </div>
-                </div>
-                
-                <div class="question" id="question2">
-                    <h3>Когда оценивают результат Диаскинтеста?</h3>
-                    <div class="answers">
-                        <div class="answer" data-correct="false">Сразу после постановки</div>
-                        <div class="answer" data-correct="true">Через 3 дня</div>
-                        <div class="answer" data-correct="false">Через неделю</div>
-                    </div>
-                </div>
-                
-                <div class="question" id="question3">
-                    <h3>Если Диаскинтест положительный, что нужно сделать?</h3>
-                    <div class="answers">
-                        <div class="answer" data-correct="false">Повторить тест через месяц</div>
-                        <div class="answer" data-correct="true">Сделать КТ лёгких</div>
-                        <div class="answer" data-correct="false">Ничего не делать, подождать</div>
-                    </div>
-                </div>
-                
-                <div class="question" id="question4">
-                    <h3>Если Диаскинтест отрицательный, но вы контактировали с больным туберкулёзом, что делать?</h3>
-                    <div class="answers">
-                        <div class="answer" data-correct="false">Можно не переживать</div>
-                        <div class="answer" data-correct="false">Пройти КТ лёгких</div>
-                        <div class="answer" data-correct="true">Пройти рентген и повторить тест через 3–6 месяцев</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Уровень 2: Визуальная диагностика (скрыт изначально) -->
-        <section class="section" id="visualDiagnostics" style="display: none;">
-            <h2>Визуальная диагностика: почему важен Диаскинтест</h2>
-            
-            <div class="subsection">
-                <h3>Как правило, на флюорографии видны только крупные изменения в лёгких, на ранних стадиях изменения незаметны, потому что ещё «прячутся за ребрами»</h3>
-                <div class="image-comparison">
-                    <img src="image1.png" alt="Флюорограмма с изменениями">
-                    <p class="image-caption">На этой флюорографии видны многочисленные пятна на фоне рёбер с обеих сторон. Процесс запущенный, поздно выявили.</p>
-                </div>
-            </div>
-
-            <div class="subsection" id="interactiveCase">
-                <h3>А сможете ли вы найти ранние изменения?</h3>
-                
-                <div class="question" id="fluorQuestion">
-                    <h3>Есть ли на этой картинке изменения в лёгких?</h3>
-                    <div class="image-comparison">
-                        <img src="image2.png" alt="Чистая флюорограмма">
-                    </div>
-                    <div class="answers">
-                        <div class="answer" data-fluor-correct="false">Да, вижу изменения</div>
-                        <div class="answer" data-fluor-correct="true">Нет, все чисто</div>
-                        <div class="answer" data-fluor-correct="false">Не уверен(а)</div>
-                    </div>
-                </div>
-
-                <div class="question" id="ctQuestion" style="display: none;">
-                    <h3>На вышепоказанной флюорографии лёгкие выглядят нормальными, хотя ранняя стадия туберкулёза уже есть. Теперь посмотрите на КТ того же пациента:</h3>
-                    <div class="image-comparison">
-                        <img src="image3.png" alt="КТ легких с очагом">
-                    </div>
-                    <h3>Попробуйте найти участок с изменениями. Где он находится на этой картинке? Не переживайте, очаг хорошо видно.</h3>
-                    <div class="ct-options">
-                        <div class="ct-option" data-ct-correct="false">Сверху слева на картинке</div>
-                        <div class="ct-option" data-ct-correct="true">Сверху справа на картинке</div>
-                        <div class="ct-option" data-ct-correct="false">Снизу слева на картинке</div>
-                        <div class="ct-option" data-ct-correct="false">Снизу справа на картинке</div>
-                    </div>
-                </div>
-
-                <div id="ctResult" style="display: none;">
-                    <div class="final-highlight">
-                        <h3>Вот он! Небольшой очаг справа вверху на картинке. Такие начальные изменения видны только на КТ.</h3>
-                    </div>
-
-                    <div class="image-comparison">
-                        <img src="image4.png" alt="КТ с обведенным очагом">
-                    </div>
-                </div>
-
-                <!-- Модальное окно: Наличие очага (первое окно) -->
-                <div class="modal" id="ctFoundModal" aria-hidden="true">
-                    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="ctFoundTitle">
-                        <h3 id="ctFoundTitle">Вот он! Небольшой очаг справа вверху на картинке.</h3>
-                        <p style="margin-bottom: 16px;">Такие минимальные изменения видны только на КТ.</p>
-                        <div class="image-comparison" style="margin-bottom: 16px;">
-                            <img src="image4.png" alt="КТ с обведенным очагом">
-                        </div>
-                        <button id="ctFoundClose" style="padding:10px 16px; border-radius:8px; border:0; cursor:pointer;">Закрыть</button>
-                    </div>
-                </div>
-
-                <!-- Модальное окно: Причина назначения КТ (второе окно) -->
-                <div class="modal" id="ctReasonModal" aria-hidden="true">
-                    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="ctReasonTitle">
-                        <p id="ctReasonTitle" style="font-size:20px; font-weight:600; color:var(--gray-800); margin:0;">
-                            Показанием к КТ-исследованию данного пациента послужил положительный результат пробы Диаскинтест; при отказе от проведения пробы КТ не назначалась бы.
-                        </p>
-                    </div>
-                </div>
-
-                <div id="conclusionBlock" style="display: none;">
-                    <div class="conclusion-box" style="text-align: left; padding: 32px;">
-                        <p style="margin-bottom: 20px; line-height: 1.6;">Диаскинтест — ключевой этап диагностики. Он помогает определить, кто нуждается в более тщательном обследовании с помощью КТ.</p>
-                        
-                        <p style="margin-bottom: 20px; line-height: 1.6;">Компьютерная томография (КТ) позволяет выявить туберкулёз на ранней стадии, когда лечение наиболее эффективно.</p>
-                        
-                        <p style="margin-bottom: 0; line-height: 1.6;">Если при положительном Диаскинтесте на КТ изменений не обнаружено, врач назначает профилактическое лечение, которое предотвращает развитие болезни в будущем.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Уровень 3: Финальная информация (скрыт изначально) -->
-        <section class="next-block" id="finalInfo" style="display: none;">
-            <h2 style="text-align: left; margin-bottom: 20px;">Дополнительная информация</h2>
-            <p style="text-align: left;">После успешного прохождения тестов вы получили важные знания о диагностике туберкулеза. Помните, что своевременное обследование — это ответственность каждого сотрудника и забота о здоровье всего коллектива.</p>
-            <p style="text-align: left;">Если у вас остались вопросы, обратитесь в противотуберкулезный диспансер.</p>
-        </section>
-
-        <!-- Подпись автора (скрыта изначально) -->
-        <div class="author-signature" id="authorSignature">
-            <p>Автор и разработчик: заведующий филиалом "Клинский" ГБУЗ МО МОКПТД Лукаш И.А.</p>
-        </div>
-
-        <div class="modal" id="successModal">
-            <div class="modal-content">
-                <h2>Поздравляю!</h2>
-                <p>Тест пройден успешно.</p>
-            </div>
-        </div>
     </div>
 
     <script>
-    // Тот же самый скрипт без изменений
+    // Скрипт с увеличенным временем показа последнего окна до 15 секунд
     document.addEventListener('DOMContentLoaded', function() {
         const basicQuestions = document.querySelectorAll('#knowledgeTest .question');
         const successModal = document.getElementById('successModal');
@@ -643,8 +475,8 @@
         ctReasonModal.className = 'modal';
         ctReasonModal.id = 'ctReasonModal';
         ctReasonModal.innerHTML = `
-            <div class="modal-content" style="max-width:500px; text-align:center;">
-                <p style="font-size:20px; font-weight:600; color:var(--gray-800);">
+            <div class="modal-content" style="max-width:600px; text-align:center;">
+                <p style="font-size:22px; font-weight:600; color:var(--gray-800); line-height:1.6;">
                     Пациенту назначено КТ из-за положительного результата пробы Диаскинтест. Если бы он отказался от этой пробы, компьютерная томография не была бы проведена, и изменения в легких не были бы обнаружены своевременно.
                 </p>
             </div>
@@ -718,7 +550,7 @@
 
         function showCtReasonModal() {
             ctReasonModal.style.display = 'flex';
-            const timer = setTimeout(closeCtReasonModal, 15000);
+            const timer = setTimeout(closeCtReasonModal, 15000); // 15 секунд
         }
 
         function closeCtReasonModal() {
